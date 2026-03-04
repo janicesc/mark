@@ -3,68 +3,32 @@
 import Image from "next/image"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
-const screens = [
-  {
-    src: "/images/app-home.jpg",
-    alt: "Mark app home screen showing recent highlights and reading activity",
-  },
-  {
-    src: "/images/app-notes.jpg",
-    alt: "Mark app notes view with organized categories and tags",
-  },
-  {
-    src: "/images/app-share.jpg",
-    alt: "Mark app share feature with a formatted quote card",
-  },
-]
-
 export function OrganizeSection() {
   const [textRef, textVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.2 })
-  const [phonesRef, phonesVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.15 })
+  const [imageRef, imageVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.15 })
 
   return (
     <section className="bg-background overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 md:px-8 py-20 md:py-32">
         <div className="flex flex-col-reverse md:flex-row items-center gap-12 md:gap-16">
-          {/* Phone screens hub */}
+          {/* App UI screens showcase */}
           <div
-            ref={phonesRef}
+            ref={imageRef}
             className="w-full md:w-[60%]"
             style={{
-              opacity: phonesVisible ? 1 : 0,
-              transform: phonesVisible ? "none" : "translateY(50px)",
+              opacity: imageVisible ? 1 : 0,
+              transform: imageVisible ? "none" : "translateY(50px)",
               transition: "opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s",
             }}
           >
-            <div className="flex items-end justify-center gap-3 md:gap-5">
-              {screens.map((screen, i) => (
-                <div
-                  key={screen.alt}
-                  className={`relative rounded-2xl overflow-hidden shadow-2xl ${
-                    i === 1
-                      ? "w-[35%] aspect-[9/19] z-10"
-                      : "w-[28%] aspect-[9/19] opacity-80"
-                  }`}
-                  style={{
-                    transform:
-                      i === 0
-                        ? "translateY(12px) rotate(-3deg)"
-                        : i === 2
-                          ? "translateY(12px) rotate(3deg)"
-                          : "none",
-                    opacity: phonesVisible ? (i === 1 ? 1 : 0.8) : 0,
-                    transition: `opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${0.2 + i * 0.15}s`,
-                  }}
-                >
-                  <Image
-                    src={screen.src}
-                    alt={screen.alt}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 35vw, 20vw"
-                  />
-                </div>
-              ))}
+            <div className="relative w-full aspect-[4/3]">
+              <Image
+                src="/images/organize-ui-set.jpg"
+                alt="Mark app screens showing home dashboard with reading stats, scrollable quote cards from various books, and user profile with reading library"
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, 60vw"
+              />
             </div>
           </div>
 
