@@ -3,6 +3,7 @@
 import { ArrowRight } from "lucide-react"
 import { useState } from "react"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
+import { trackMetaLead } from "@/lib/meta-pixel"
 
 export function WaitlistBanner() {
   const [email, setEmail] = useState("")
@@ -13,6 +14,7 @@ export function WaitlistBanner() {
     e.preventDefault()
     if (email.trim()) {
       setSubmitted(true)
+      trackMetaLead({ content_name: "Waitlist signup" })
     }
   }
 
