@@ -131,8 +131,8 @@ export function ProductCloseup() {
             Sleek. Compact.
           </p>
           <p className="mt-3 text-xs md:text-sm uppercase tracking-wider text-muted-foreground leading-relaxed max-w-md">
-            Mark rests quietly inside your book — wherever your next read takes
-            you. Works seamlessly with books, e-readers, and screens.
+            Designed to travel with your books, wherever your next read takes
+            you. Works seamlessly with any book, e-reader, or screen.
           </p>
         </div>
       </div>
