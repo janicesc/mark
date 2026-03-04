@@ -42,7 +42,7 @@ export function Navbar() {
         scrolled
           ? "bg-background/90 backdrop-blur-md border-b border-border/40 shadow-sm"
           : !isHome
-            ? "bg-white"
+            ? "bg-white border-b border-black/10"
             : "bg-transparent"
       }`}
     >

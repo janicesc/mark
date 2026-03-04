@@ -23,7 +23,7 @@ export function OrganizeSection() {
           >
             <div className="relative w-full aspect-[4/3]">
               <Image
-                src="/images/organize-ui-set.jpg"
+                src="/images/Organize_UIset.png"
                 alt="Mark app screens showing home dashboard with reading stats, scrollable quote cards from various books, and user profile with reading library"
                 fill
                 className="object-contain"

@@ -45,7 +45,7 @@ export function BeyondPaperSection() {
             <div className="relative w-full aspect-[3/2] rounded-2xl overflow-hidden">
               <video
                 className="absolute inset-0 w-full h-full object-cover"
-                src="/videos/voice-annotation.mp4"
+                src="/videos/Voice_Annotation.mp4"
                 autoPlay
                 muted
                 loop

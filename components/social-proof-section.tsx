@@ -1,6 +1,15 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+declare global {
+  interface Window {
+    twttr?: {
+      widgets: { load: (el?: Element) => void }
+      events: { bind: (event: string, cb: () => void) => void }
+    }
+  }
+}
+
+import { useEffect, useRef, useState } from "react"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
 export function SocialProofSection() {
@@ -8,6 +17,7 @@ export function SocialProofSection() {
   const [tweetRef, tweetVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.1 })
   const embedRef = useRef<HTMLDivElement>(null)
   const scriptLoaded = useRef(false)
+  const [tweetReady, setTweetReady] = useState(false)
 
   useEffect(() => {
     if (!tweetVisible || scriptLoaded.current) return
@@ -18,6 +28,15 @@ export function SocialProofSection() {
     script.src = "https://platform.twitter.com/widgets.js"
     script.async = true
     script.charset = "utf-8"
+    script.onload = () => {
+      // Wait for Twitter to render the blockquote into an iframe
+      if (window.twttr && window.twttr.widgets) {
+        window.twttr.widgets.load(embedRef.current ?? undefined)
+        window.twttr.events.bind("rendered", () => {
+          setTweetReady(true)
+        })
+      }
+    }
     document.body.appendChild(script)
 
     return () => {
@@ -58,7 +77,14 @@ export function SocialProofSection() {
               "opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s",
           }}
         >
-          <div ref={embedRef} className="w-full max-w-lg">
+          <div
+            ref={embedRef}
+            className="w-full max-w-lg"
+            style={{
+              opacity: tweetReady ? 1 : 0,
+              transition: "opacity 0.5s ease",
+            }}
+          >
             <blockquote className="twitter-tweet" data-dnt="true" data-theme="light">
               <p lang="en" dir="ltr">
                 {"Introducing Mark — a $129 AI bookmark that helps book readers remember everything."}
