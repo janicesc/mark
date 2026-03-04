@@ -21,8 +21,9 @@ const footerLinks = {
     { label: "Newsletter", href: "#" },
   ],
   Social: [
-    { label: "Instagram", href: "#" },
-    { label: "Twitter", href: "#" },
+    { label: "Instagram", href: "https://instagram.com/mark.engineering" },
+    { label: "LinkedIn", href: "https://linkedin.com/company/markhardware" },
+    { label: "X", href: "https://x.com/markhardware" },
   ],
 }
 
