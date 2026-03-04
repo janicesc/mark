@@ -2,9 +2,13 @@ import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://mark.engineering'
+// Use deployment URL so og:image works when sharing (Vercel sets VERCEL_URL; use env override for production)
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://v0-marklanding.vercel.app')
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: 'Mark – The World\'s First AI Bookmark | Mark Engineering',
   description: 'Turn what you underline into searchable knowledge. Mark captures your highlights and turns physical notes into digital insights.',
   generator: 'v0.app',
@@ -15,7 +19,7 @@ export const metadata: Metadata = {
     siteName: 'Mark',
     images: [
       {
-        url: `${siteUrl}/og.jpg`,
+        url: '/og.jpg',
         width: 1200,
         height: 630,
         alt: 'Mark – The World\'s First AI Bookmark',
@@ -28,7 +32,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Mark – The World\'s First AI Bookmark',
     description: 'Turn what you underline into searchable knowledge.',
-    images: [`${siteUrl}/og.jpg`],
+    images: ['/og.jpg'],
   },
   icons: {
     icon: [
