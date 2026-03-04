@@ -71,7 +71,7 @@ export function HeroSection() {
             }}
           >
             <Link
-              href="#reserve"
+              href="/reserve"
               className="inline-flex items-center gap-2.5 bg-white text-black px-6 py-3.5 rounded-full text-sm font-semibold hover:bg-white/90 transition-colors duration-300"
             >
               <ArrowRight className="h-4 w-4" />

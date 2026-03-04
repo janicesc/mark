@@ -59,7 +59,7 @@ export function Navbar() {
             Join waitlist
           </Link>
           <Link
-            href="#reserve"
+            href="/reserve"
             className={`inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
               scrolled
                 ? "bg-foreground text-background hover:bg-foreground/90"
