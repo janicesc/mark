@@ -7,8 +7,8 @@ const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-dm-sans" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 
 export const metadata: Metadata = {
-  title: 'Step Overview',
-  description: 'Elegant step-by-step phase overview',
+  title: 'Mark – The World\'s First AI Bookmark | Mark Engineering',
+  description: 'Turn what you underline into searchable knowledge. Mark captures your highlights and turns physical notes into digital insights.',
   generator: 'v0.app',
   icons: {
     icon: [

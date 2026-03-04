@@ -1,0 +1,75 @@
+"use client"
+
+import { useEffect, useState } from "react"
+import Image from "next/image"
+import Link from "next/link"
+
+export function Navbar() {
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    function onScroll() {
+      setScrolled(window.scrollY > 60)
+    }
+    window.addEventListener("scroll", onScroll, { passive: true })
+    onScroll()
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "bg-background/90 backdrop-blur-md border-b border-border/40 shadow-sm"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="mx-auto max-w-7xl flex items-center justify-between px-6 md:px-8 h-16 md:h-20">
+        <Link href="/" className="shrink-0">
+          <Image
+            src="/images/mark-logo.png"
+            alt="Mark"
+            width={120}
+            height={28}
+            className={`h-6 md:h-7 w-auto transition-all duration-300 ${
+              scrolled ? "" : "invert brightness-0"
+            }`}
+            priority
+          />
+        </Link>
+        <nav className="hidden md:flex items-center gap-8">
+          <Link
+            href="#how-it-works"
+            className={`text-sm font-medium transition-colors duration-300 ${
+              scrolled
+                ? "text-foreground/70 hover:text-foreground"
+                : "text-white/70 hover:text-white"
+            }`}
+          >
+            How it works
+          </Link>
+          <Link
+            href="#community"
+            className={`text-sm font-medium transition-colors duration-300 ${
+              scrolled
+                ? "text-foreground/70 hover:text-foreground"
+                : "text-white/70 hover:text-white"
+            }`}
+          >
+            Join waitlist
+          </Link>
+          <Link
+            href="#reserve"
+            className={`inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
+              scrolled
+                ? "bg-foreground text-background hover:bg-foreground/90"
+                : "bg-white text-black hover:bg-white/90"
+            }`}
+          >
+            Reserve & save
+          </Link>
+        </nav>
+      </div>
+    </header>
+  )
+}
