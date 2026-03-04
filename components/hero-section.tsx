@@ -17,7 +17,7 @@ export function HeroSection() {
       {/* Video background */}
       <video
         className="absolute inset-0 w-full h-full object-cover"
-        src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Firefly_HeroVideo-mRi9NHxcY3s9KD53J7h9xNUJ2mkZLN.mp4"
+        src="/videos/hero.mp4"
         autoPlay
         muted
         loop
