@@ -80,6 +80,7 @@ export function StepsSection() {
                 stepNumber={step.stepNumber}
                 rounded={step.rounded}
                 objectPosition={objectPosition}
+                priority={i === 0}
               />
             </div>
           ))}
