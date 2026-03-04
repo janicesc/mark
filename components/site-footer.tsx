@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { ArrowRight, ArrowUp } from "lucide-react"
 
 const footerLinks = {
@@ -32,16 +33,17 @@ export function SiteFooter() {
 
   return (
     <footer className="bg-[#0a0a0a] text-white">
-      {/* Giant MARK typography */}
+      {/* Giant MARK logo */}
       <div className="relative overflow-hidden">
-        <div className="px-4 md:px-8">
-          <p
-            className="font-sans font-bold text-white select-none leading-[0.85] tracking-[-0.04em]"
-            style={{ fontSize: "clamp(180px, 28vw, 450px)" }}
-            aria-hidden="true"
-          >
-            MARK
-          </p>
+        <div className="px-4 md:px-8 py-6 md:py-10">
+          <Image
+            src="/images/mark-logo.png"
+            alt="Mark"
+            width={1800}
+            height={400}
+            className="w-full max-h-[clamp(140px,22vw,380px)] object-contain object-left invert brightness-100"
+            priority
+          />
         </div>
       </div>
 
