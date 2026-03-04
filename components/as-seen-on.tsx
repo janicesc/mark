@@ -42,7 +42,7 @@ const logos = [
   {
     name: "Y",
     renderCustom: (
-      <span className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-sm bg-[#F26522] text-white font-bold text-lg md:text-xl">
+      <span className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 bg-[#F26522] text-white font-bold text-lg md:text-xl">
         Y
       </span>
     ),
@@ -65,11 +65,11 @@ export function AsSeenOn() {
   const [logosRef, logosVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.2 })
 
   return (
-    <section className="w-full py-12 md:py-16 bg-white">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col items-center gap-8 md:gap-12">
+    <section className="w-full py-10 md:py-16 bg-[#F5F5F4]">
+      <div className="max-w-[1280px] mx-auto px-5 md:px-8 flex flex-col items-center gap-8 md:gap-12">
         <p
           ref={headRef}
-          className="text-sm md:text-base text-foreground/80 font-sans"
+          className="text-sm md:text-base text-[#333]/80 font-sans"
           style={{
             opacity: headVisible ? 1 : 0,
             transform: headVisible ? "none" : "translateY(20px)",
@@ -80,7 +80,7 @@ export function AsSeenOn() {
         </p>
         <div
           ref={logosRef}
-          className="w-full flex flex-wrap items-center justify-center gap-8 md:gap-14 lg:gap-20 opacity-50"
+          className="w-full flex flex-wrap items-center justify-center gap-8 md:gap-14 lg:gap-20"
           style={{
             opacity: logosVisible ? 0.5 : 0,
             transform: logosVisible ? "none" : "translateY(20px)",
@@ -90,7 +90,7 @@ export function AsSeenOn() {
           {logos.map((logo) => (
             <div
               key={logo.name}
-              className="flex items-center gap-1.5 text-foreground shrink-0"
+              className="flex items-center gap-1.5 text-[#212121] shrink-0"
             >
               {logo.renderCustom ? (
                 logo.renderCustom

@@ -7,7 +7,7 @@ export function MissionSection() {
 
   return (
     <section className="bg-background overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 md:px-8 py-20 md:py-32">
+      <div className="mx-auto max-w-[1280px] px-5 md:px-8 py-10 md:py-16">
         <div
           ref={ref}
           className="max-w-2xl mx-auto text-center"
@@ -17,14 +17,14 @@ export function MissionSection() {
             transition: "opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)",
           }}
         >
-          <p className="text-sm uppercase tracking-widest text-muted-foreground mb-4 font-medium">
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#85817F] mb-4">
             Our Mission
           </p>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight text-foreground leading-tight text-balance mb-10">
+          <h2 className="font-sans text-[32px] font-semibold leading-[40px] text-[#000] mb-10 md:leading-[50px]">
             Maximize the potential of every reader.
           </h2>
           <blockquote
-            className="text-lg md:text-xl italic text-muted-foreground leading-relaxed mb-6"
+            className="text-lg md:text-xl italic text-[#333] leading-relaxed mb-6"
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? "none" : "translateY(20px)",
@@ -36,7 +36,7 @@ export function MissionSection() {
             hope Mark can do the same for other everyday readers.
           </blockquote>
           <p
-            className="text-base font-semibold text-foreground"
+            className="text-base font-semibold text-[#212121]"
             style={{
               opacity: isVisible ? 1 : 0,
               transition: "opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.45s",

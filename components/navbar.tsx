@@ -18,31 +18,31 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-350 ${
         scrolled
-          ? "bg-background/90 backdrop-blur-md border-b border-border/40 shadow-sm"
+          ? "bg-[#ECEBE5]/97 backdrop-blur-xl border-b border-[#212121]/8 shadow-sm"
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto max-w-7xl flex items-center justify-between px-6 md:px-8 h-16 md:h-20">
+      <div className="mx-auto max-w-[1280px] flex items-center justify-between px-5 md:px-8 h-16 md:h-20">
         <Link href="/" className="shrink-0">
           <Image
             src="/images/mark-logo.png"
             alt="Mark"
             width={120}
             height={28}
-            className={`h-6 md:h-7 w-auto transition-all duration-300 ${
+            className={`h-6 md:h-7 w-auto transition-all duration-350 ${
               scrolled ? "" : "invert brightness-0"
             }`}
             priority
           />
         </Link>
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-10">
           <Link
             href="#how-it-works"
-            className={`text-sm font-medium transition-colors duration-300 ${
+            className={`text-[0.9375rem] font-medium transition-all duration-350 ${
               scrolled
-                ? "text-foreground/70 hover:text-foreground"
+                ? "text-[#212121]/70 hover:text-[#212121]"
                 : "text-white/70 hover:text-white"
             }`}
           >
@@ -50,9 +50,9 @@ export function Navbar() {
           </Link>
           <Link
             href="#community"
-            className={`text-sm font-medium transition-colors duration-300 ${
+            className={`text-[0.9375rem] font-medium transition-all duration-350 ${
               scrolled
-                ? "text-foreground/70 hover:text-foreground"
+                ? "text-[#212121]/70 hover:text-[#212121]"
                 : "text-white/70 hover:text-white"
             }`}
           >
@@ -60,11 +60,7 @@ export function Navbar() {
           </Link>
           <Link
             href="#reserve"
-            className={`inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
-              scrolled
-                ? "bg-foreground text-background hover:bg-foreground/90"
-                : "bg-white text-black hover:bg-white/90"
-            }`}
+            className="inline-flex items-center px-5 py-2.5 bg-[#FFDB01] text-black text-[0.9375rem] font-semibold hover:bg-[#E6C801] transition-all duration-200 hover:-translate-y-px"
           >
             Reserve & save
           </Link>

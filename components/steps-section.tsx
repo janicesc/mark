@@ -41,8 +41,8 @@ export function StepsSection() {
   const [gridRef, gridVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.1 })
 
   return (
-    <section id="how-it-works" className="bg-background px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32">
-      <div className="mx-auto max-w-7xl">
+    <section id="how-it-works" className="bg-background px-5 py-10 md:px-8 md:py-16">
+      <div className="mx-auto max-w-[1280px]">
         <div
           ref={headRef}
           style={{
@@ -51,17 +51,17 @@ export function StepsSection() {
             transition: "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
           }}
         >
-          <p className="text-center text-sm md:text-base uppercase tracking-widest text-muted-foreground mb-4">
+          <p className="text-center text-xs font-semibold uppercase tracking-[0.12em] text-[#85817F] mb-4">
             Simple
           </p>
-          <h2 className="text-center font-serif text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight text-foreground text-balance mb-14 md:mb-20">
+          <h2 className="text-center font-sans text-[32px] font-semibold leading-[40px] text-[#000] mb-14 md:mb-20 md:leading-[50px]">
             How Mark Works
           </h2>
         </div>
 
         <div
           ref={gridRef}
-          className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-8 lg:gap-10"
+          className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-10"
         >
           {steps.map(({ objectPosition, ...step }, i) => (
             <div

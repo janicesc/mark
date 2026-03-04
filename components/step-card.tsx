@@ -41,14 +41,14 @@ export function StepCard({
         />
       </div>
       <div className="pt-6 pb-2 flex items-baseline gap-4">
-        <span className="text-3xl md:text-4xl font-serif font-light text-muted-foreground/50">
+        <span className="text-3xl md:text-4xl font-light text-[#CECDC8]">
           {stepNumber}
         </span>
-        <h3 className="text-xl md:text-2xl font-medium tracking-tight text-foreground">
+        <h3 className="text-xl md:text-2xl font-semibold tracking-tight text-[#212121]">
           {title}
         </h3>
       </div>
-      <p className="text-base md:text-lg leading-relaxed text-muted-foreground max-w-xs">
+      <p className="text-[0.9375rem] leading-relaxed text-[#333] max-w-xs">
         {description}
       </p>
     </div>
