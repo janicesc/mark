@@ -1,0 +1,48 @@
+import Image from "next/image"
+
+interface StepCardProps {
+  imageSrc: string
+  imageAlt: string
+  title: string
+  description: string
+  rounded?: "top-left" | "bottom-right" | "none"
+}
+
+export function StepCard({
+  imageSrc,
+  imageAlt,
+  title,
+  description,
+  rounded = "none",
+}: StepCardProps) {
+  const borderRadiusClass =
+    rounded === "top-left"
+      ? "rounded-tl-[60px] md:rounded-tl-[100px]"
+      : rounded === "bottom-right"
+        ? "rounded-br-[60px] md:rounded-br-[100px]"
+        : ""
+
+  return (
+    <div className="flex flex-col">
+      <div
+        className={`relative aspect-[2/3] w-full overflow-hidden ${borderRadiusClass}`}
+      >
+        <Image
+          src={imageSrc}
+          alt={imageAlt}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 33vw"
+        />
+      </div>
+      <div className="pt-6 pb-2">
+        <h3 className="text-xl md:text-2xl font-medium tracking-tight text-foreground">
+          {title}
+        </h3>
+      </div>
+      <p className="text-base md:text-lg leading-relaxed text-muted-foreground max-w-xs">
+        {description}
+      </p>
+    </div>
+  )
+}
