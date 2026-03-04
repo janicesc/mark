@@ -45,7 +45,7 @@ export function SocialProofSection() {
   }, [tweetVisible])
 
   return (
-    <section className="bg-background py-20 md:py-32">
+    <section className="bg-[#1a1a1a] py-20 md:py-32">
       <div className="mx-auto max-w-3xl px-6 md:px-8">
         {/* Heading */}
         <div
@@ -58,11 +58,11 @@ export function SocialProofSection() {
               "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
           }}
         >
-          <h2 className="font-sans text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-foreground text-balance mb-4">
+          <h2 className="font-sans text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-white text-balance mb-4">
             7.4M readers discovered Mark
           </h2>
-          <p className="text-muted-foreground text-base md:text-lg max-w-xl mx-auto text-balance leading-relaxed">
-            A tweet that sparked conversation across the reading community.
+          <p className="text-white/70 text-base md:text-lg max-w-xl mx-auto text-balance leading-relaxed">
+            One tweet ignited a global conversation among readers.
           </p>
         </div>
 

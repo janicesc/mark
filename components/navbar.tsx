@@ -43,7 +43,7 @@ export function Navbar() {
           ? "bg-background/90 backdrop-blur-md border-b border-border/40 shadow-sm"
           : !isHome
             ? "bg-white border-b border-black/10"
-            : "bg-transparent"
+            : "bg-transparent border-b-0"
       }`}
     >
       <div className="mx-auto max-w-7xl flex items-center justify-between px-6 md:px-8 h-16 md:h-20">
@@ -84,11 +84,7 @@ export function Navbar() {
           </Link>
           <Link
             href="/reserve"
-            className={`inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
-              useDarkText
-                ? "bg-foreground text-background hover:bg-foreground/90"
-                : "bg-white text-black hover:bg-white/90"
-            }`}
+            className="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 bg-[#FFDB01] text-black hover:bg-[#FFDB01]/90"
           >
             Reserve & save
           </Link>

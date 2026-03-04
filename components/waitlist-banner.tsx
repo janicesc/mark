@@ -37,7 +37,7 @@ export function WaitlistBanner() {
             <h2 className="font-sans text-2xl md:text-3xl font-semibold tracking-tight text-white mb-3">
               Join the waitlist
             </h2>
-            <p className="text-sm md:text-base text-white/50 leading-relaxed">
+            <p className="text-sm md:text-base text-white/65 leading-relaxed">
               Join 5,063 readers building the future of intelligent reading.
             </p>
           </div>
@@ -66,12 +66,12 @@ export function WaitlistBanner() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email address"
                   required
-                  className="flex-1 bg-transparent border border-white/20 text-white placeholder:text-white/30 px-5 py-3.5 text-sm focus:outline-none focus:border-white/50 transition-colors duration-300"
+                  className="flex-1 bg-transparent border border-white/20 text-white/90 placeholder:text-white/45 px-5 py-3.5 text-sm focus:outline-none focus:border-white/50 transition-colors duration-300"
                   style={{ borderRight: "none" }}
                 />
                 <button
                   type="submit"
-                  className="group flex items-center gap-2.5 bg-white text-[#0a0a0a] px-6 py-3.5 text-sm font-semibold transition-all duration-500 hover:bg-[#f2e48d] hover:text-[#0a0a0a] flex-shrink-0"
+                  className="group flex items-center gap-2.5 bg-[#FFDB01] text-black px-6 py-3.5 text-sm font-semibold transition-all duration-500 hover:bg-[#FFDB01]/90 flex-shrink-0"
                 >
                   Join
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />

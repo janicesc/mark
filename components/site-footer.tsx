@@ -60,18 +60,15 @@ export function SiteFooter() {
           {/* Newsletter — left side */}
           <div className="max-w-[320px]">
             <p className="mb-5 text-xl font-semibold leading-7">
-              Subscribe to the
-              <br />
-              Mark Newsletter
+              Join the Mark waitlist
             </p>
             <p className="mb-6 text-[13px] leading-6 text-white/50 max-w-[247px]">
-              Latest news, musings, announcements and updates direct to your
-              inbox.
+              Get early access, product updates, and launch announcements.
             </p>
             <Link
-              href="#"
+              href="#community"
               className="group relative inline-flex h-10 w-[100px] items-center rounded-full bg-white transition-colors duration-200 hover:bg-[#FFDB01]"
-              aria-label="Go to newsletter signup"
+              aria-label="Go to waitlist signup"
             >
               <ArrowRight
                 className="absolute text-black transition-all duration-300 ease-out left-[calc(100%-44px)] group-hover:left-[calc(50%-12px)]"

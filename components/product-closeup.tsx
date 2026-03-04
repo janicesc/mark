@@ -81,34 +81,33 @@ export function ProductCloseup() {
             </div>
           </div>
 
-          {/* Product image */}
+          {/* Product image - single fixed frame so both variants match size when switching (same as Reserve page) */}
           <div
             ref={imgRef}
-            className="w-full md:w-[62%] relative flex items-center justify-center"
+            className="w-full md:w-[62%] relative flex items-center justify-center min-w-0"
             style={{
               opacity: imgVisible ? 1 : 0,
               transform: imgVisible ? "none" : "translateY(60px) scale(0.95)",
               transition: "opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s",
             }}
           >
-            <div className="relative w-full max-w-lg md:max-w-none aspect-[4/5]">
-              {/* Silver variant */}
+            {/* Frame matches mark-dark.png (1136×1420) and Reserve page viewer for identical sizing */}
+            <div className="relative w-full max-w-[480px] aspect-[1136/1420]">
               <Image
                 src={variants.silver.src}
                 alt={variants.silver.alt}
                 fill
-                className={`object-contain transition-opacity duration-500 ease-in-out ${
+                className={`object-contain object-center transition-opacity duration-500 ease-in-out ${
                   activeColor === "silver" ? "opacity-100" : "opacity-0"
                 }`}
                 sizes="(max-width: 768px) 100vw, 60vw"
                 priority
               />
-              {/* Black variant */}
               <Image
                 src={variants.black.src}
                 alt={variants.black.alt}
                 fill
-                className={`object-contain transition-opacity duration-500 ease-in-out ${
+                className={`object-contain object-center transition-opacity duration-500 ease-in-out ${
                   activeColor === "black" ? "opacity-100" : "opacity-0"
                 }`}
                 sizes="(max-width: 768px) 100vw, 60vw"

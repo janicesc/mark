@@ -31,9 +31,9 @@ export function MissionSection() {
               transition: "opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s",
             }}
           >
-            I got into reading and self-help books and wanted a tool that could
-            organize and keep track of all my thoughts, notes, and insights. I
-            hope Mark can do the same for other everyday readers.
+            “I got into reading and self-help books and wanted a tool that could
+            organize and keep track of all my thoughts, notes, and insights. I hope
+            Mark can do the same for other everyday readers.”
           </blockquote>
           <p
             className="text-base font-semibold text-foreground"

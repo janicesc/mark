@@ -5,12 +5,12 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 const logos = [
   {
     name: "Morning Brew",
-    style: "font-sans font-semibold text-sm md:text-base tracking-wide uppercase",
+    style: "font-sans font-bold text-base md:text-lg tracking-wide uppercase text-foreground",
     icon: (
       <svg
         viewBox="0 0 20 20"
         fill="currentColor"
-        className="w-4 h-4 md:w-5 md:h-5"
+        className="w-5 h-5 md:w-6 md:h-6 shrink-0"
         aria-hidden="true"
       >
         <circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" strokeWidth="1.5" />
@@ -21,28 +21,28 @@ const logos = [
   {
     name: "Tom's Hardware",
     renderCustom: (
-      <span className="text-sm md:text-base tracking-tight">
+      <span className="text-base md:text-lg tracking-tight font-semibold text-foreground">
         {"tom's"}
-        <span className="font-extrabold uppercase">Hardware</span>
+        <span className="font-extrabold uppercase"> Hardware</span>
       </span>
     ),
   },
   {
     name: "Digital Frontier",
     renderCustom: (
-      <span className="text-sm md:text-base italic font-light tracking-wide text-[#c4d442]">
+      <span className="text-base md:text-lg italic font-medium tracking-wide text-foreground">
         +digital frontier
       </span>
     ),
   },
   {
     name: "Gizmodo",
-    style: "font-sans font-black text-lg md:text-2xl tracking-tight uppercase",
+    style: "font-sans font-black text-lg md:text-xl tracking-tight uppercase text-foreground",
   },
   {
     name: "Y",
     renderCustom: (
-      <span className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-sm bg-[#F26522] text-white font-bold text-lg md:text-xl">
+      <span className="flex items-center justify-center w-9 h-9 md:w-11 md:h-11 rounded-sm bg-[#F26522] text-white font-bold text-lg md:text-xl shrink-0">
         Y
       </span>
     ),
@@ -50,8 +50,8 @@ const logos = [
   {
     name: "Product Hunt",
     renderCustom: (
-      <span className="flex items-center gap-1.5 text-sm md:text-base font-medium tracking-tight">
-        <span className="flex items-center justify-center w-5 h-5 md:w-6 md:h-6 rounded-full bg-[#DA552F] text-white text-xs font-bold">
+      <span className="flex items-center gap-2 text-base md:text-lg font-semibold tracking-tight text-foreground">
+        <span className="flex items-center justify-center w-6 h-6 md:w-7 md:h-7 rounded-full bg-[#DA552F] text-white text-sm font-bold shrink-0">
           P
         </span>
         Product Hunt
@@ -61,28 +61,16 @@ const logos = [
 ]
 
 export function AsSeenOn() {
-  const [headRef, headVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.3 })
   const [logosRef, logosVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.2 })
 
   return (
-    <section className="w-full py-12 md:py-16 bg-white">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col items-center gap-8 md:gap-12">
-        <p
-          ref={headRef}
-          className="text-sm md:text-base text-foreground/80 font-sans"
-          style={{
-            opacity: headVisible ? 1 : 0,
-            transform: headVisible ? "none" : "translateY(20px)",
-            transition: "opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
-          }}
-        >
-          As seen on
-        </p>
+    <section className="w-full py-16 md:py-24 bg-background">
+      <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div
           ref={logosRef}
-          className="w-full flex flex-wrap items-center justify-center gap-8 md:gap-14 lg:gap-20 opacity-50"
+          className="w-full flex flex-wrap md:flex-nowrap items-center justify-center md:justify-between gap-x-8 md:gap-x-10 lg:gap-x-14 gap-y-4"
           style={{
-            opacity: logosVisible ? 0.5 : 0,
+            opacity: logosVisible ? 1 : 0,
             transform: logosVisible ? "none" : "translateY(20px)",
             transition: "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s",
           }}
@@ -90,7 +78,7 @@ export function AsSeenOn() {
           {logos.map((logo) => (
             <div
               key={logo.name}
-              className="flex items-center gap-1.5 text-foreground shrink-0"
+              className="flex items-center justify-center gap-3 text-foreground min-h-[3.5rem] whitespace-nowrap"
             >
               {logo.renderCustom ? (
                 logo.renderCustom

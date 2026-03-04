@@ -59,9 +59,7 @@ export function HeroSection() {
               transition: "opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.6s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.6s",
             }}
           >
-            You underline something powerful — but do you remember it?
-            <br />
-            Mark turns every highlight into searchable, lasting insights.
+            You underline something powerful — but do you remember it? Mark turns every highlight into searchable, lasting insights.
           </p>
           <div
             style={{
@@ -72,7 +70,7 @@ export function HeroSection() {
           >
             <Link
               href="/reserve"
-              className="inline-flex items-center gap-2.5 bg-white text-black px-6 py-3.5 rounded-full text-sm font-semibold hover:bg-white/90 transition-colors duration-300"
+              className="inline-flex items-center gap-2.5 bg-[#FFDB01] text-black px-6 py-3.5 rounded-full text-sm font-semibold hover:bg-[#FFDB01]/90 transition-colors duration-300"
             >
               <ArrowRight className="h-4 w-4" />
               Get early access

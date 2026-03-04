@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { useState, useEffect, useCallback } from "react"
-import { Shield, Award, Handshake } from "lucide-react"
+import { Shield, Award, Handshake, Minus, Plus } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import { SiteFooter } from "@/components/site-footer"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
@@ -51,10 +51,17 @@ const guarantees = [
   },
 ]
 
+const UNIT_PRICE = 70
+
 export function ReserveContent() {
   const [activeIndex, setActiveIndex] = useState(0)
+  const [silverQty, setSilverQty] = useState(1)
+  const [blackQty, setBlackQty] = useState(0)
   const [infoRef, infoVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.1 })
   const [trustRef, trustVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.15 })
+
+  const totalQty = silverQty + blackQty
+  const totalPrice = totalQty * UNIT_PRICE
 
   // Auto-advance gallery
   useEffect(() => {
@@ -74,11 +81,11 @@ export function ReserveContent() {
 
       <main className="pt-20">
         {/* Opal-style checkout layout */}
-        <section className="bg-white min-h-[calc(100vh-80px)]">
+        <section className="bg-[#fafafa] min-h-[calc(100vh-80px)]">
           <div className="flex flex-col lg:flex-row">
-            {/* Left: Product image gallery - takes majority of the space */}
-            <div className="w-full lg:w-[60%] xl:w-[62%] bg-[#f5f1e5]">
-              <div className="relative w-full h-[60vh] sm:h-[70vh] lg:h-[calc(100vh-80px)] lg:sticky lg:top-20 flex items-center justify-center overflow-hidden">
+            {/* Left: Product image gallery - Opal-style light grey */}
+            <div className="w-full lg:w-[60%] xl:w-[62%] bg-[#fafafa]">
+              <div className="relative w-full h-[60vh] sm:h-[70vh] lg:h-[calc(100vh-80px)] lg:sticky lg:top-20 flex items-center justify-center overflow-hidden lg:rounded-[8px]">
                 {/* Image carousel */}
                 {productImages.map((img, i) => (
                   <div
@@ -90,7 +97,8 @@ export function ReserveContent() {
                       transition: "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
                     }}
                   >
-                    <div className="relative w-full h-full max-w-[500px]">
+                    {/* Fixed frame so Light (mark-light) and Dark (mark-dark) stay identical in size */}
+                    <div className="relative w-full max-w-[480px] aspect-[1136/1420]">
                       <Image
                         src={img.src}
                         alt={img.alt}
@@ -121,116 +129,184 @@ export function ReserveContent() {
               </div>
             </div>
 
-            {/* Right: Product info panel - sticky */}
-            <div className="w-full lg:w-[40%] xl:w-[38%]">
+            {/* Right: Product config panel - Opal Tadpole style */}
+            <div className="w-full lg:w-[40%] xl:w-[38%] flex flex-col bg-white lg:bg-[#fafafa]">
               <div
                 ref={infoRef}
-                className="lg:sticky lg:top-20 lg:h-[calc(100vh-80px)] flex items-center"
+                className="flex-1 overflow-y-auto px-6 md:px-8 lg:px-10 py-8 lg:pt-7"
               >
-                <div className="w-full px-8 md:px-12 lg:px-14 xl:px-16 py-12 lg:py-0">
-                  {/* Product name and subtitle */}
-                  <div
-                    style={{
-                      opacity: infoVisible ? 1 : 0,
-                      transform: infoVisible ? "none" : "translateY(20px)",
-                      transition: "opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s",
-                    }}
-                  >
-                    <p className="text-sm uppercase tracking-widest text-foreground/40 mb-2 font-medium">
-                      Mark
-                    </p>
-                    <h1 className="font-sans text-3xl md:text-4xl font-medium text-foreground tracking-tight leading-tight">
-                      {"Reserve & Save 50%"}
-                    </h1>
-                  </div>
+                {/* Purchase heading - Opal style */}
+                <h1
+                  className="hidden lg:block font-sans text-2xl md:text-3xl font-light tracking-tight text-black pb-10"
+                  style={{
+                    opacity: infoVisible ? 1 : 0,
+                    transform: infoVisible ? "none" : "translateY(12px)",
+                    transition: "opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s",
+                  }}
+                >
+                  <span className="text-black/20">Purchase your</span>
+                  <br />
+                  <span className="text-black">Mark</span>
+                </h1>
 
-                  {/* Price */}
-                  <div
-                    className="mt-6 flex items-baseline gap-3"
-                    style={{
-                      opacity: infoVisible ? 1 : 0,
-                      transform: infoVisible ? "none" : "translateY(16px)",
-                      transition: "opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s",
-                    }}
-                  >
-                    <span className="text-2xl font-semibold text-foreground">$70</span>
-                    <span className="text-base text-foreground/40 line-through">$150</span>
-                  </div>
+                <p
+                  className="lg:hidden font-sans text-2xl font-medium text-foreground tracking-tight mb-6"
+                  style={{
+                    opacity: infoVisible ? 1 : 0,
+                    transition: "opacity 0.5s ease",
+                  }}
+                >
+                  Reserve your Mark
+                </p>
 
-                  {/* Divider */}
-                  <div
-                    className="my-6"
-                    style={{
-                      opacity: infoVisible ? 1 : 0,
-                      transition: "opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.25s",
-                    }}
-                  >
-                    <div className="w-full h-px bg-foreground/10" />
-                  </div>
+                {/* Choose your finish - Opal style */}
+                <span
+                  className="block text-sm font-semibold text-black mb-3"
+                  style={{ opacity: infoVisible ? 1 : 0, transition: "opacity 0.5s ease 0.15s" }}
+                >
+                  Choose your finish.
+                </span>
 
-                  {/* Description */}
-                  <div
-                    style={{
-                      opacity: infoVisible ? 1 : 0,
-                      transform: infoVisible ? "none" : "translateY(16px)",
-                      transition: "opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s",
-                    }}
-                  >
-                    <p className="text-sm text-foreground/60 leading-relaxed">
-                      Secure your exclusive discount with a $10 deposit.
-                    </p>
-                    <p className="mt-3 text-sm text-foreground/60 leading-relaxed">
-                      {"You\u2019ll lock in $80 off our $150 MSRP \u2014 bringing your total to just $70."}
+                {/* Light finish card */}
+                <div
+                  className="group relative flex items-center justify-between rounded-[4px] border-[1.34px] border-black/[0.05] bg-white cursor-pointer transition-shadow duration-200 hover:border-[#dcdcdc] hover:shadow-[0_2px_4px_rgba(0,0,0,.05)] h-[80px] lg:h-[120px] mb-1 px-4 lg:px-5"
+                  style={{ opacity: infoVisible ? 1 : 0, transition: "opacity 0.5s ease 0.2s" }}
+                  onClick={() => setActiveIndex(0)}
+                >
+                  <div className="flex items-center gap-4 md:gap-5">
+                    <div className="relative w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16">
+                      <Image
+                        src="/images/mark-light.png"
+                        alt="Mark Light"
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                    <p className="text-black text-sm lg:text-base font-medium">
+                      Light
                     </p>
                   </div>
-
-                  {/* Color selector dots */}
-                  <div
-                    className="mt-6 flex items-center gap-3"
-                    style={{
-                      opacity: infoVisible ? 1 : 0,
-                      transform: infoVisible ? "none" : "translateY(12px)",
-                      transition: "opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.35s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.35s",
-                    }}
-                  >
+                  <div className="flex w-[112px] items-center justify-between gap-2">
                     <button
-                      className="w-7 h-7 rounded-full bg-gradient-to-br from-[#d4d4d4] to-[#e8e8e8] border-2 border-foreground/20 transition-all duration-200 hover:border-foreground/50"
-                      onClick={() => setActiveIndex(0)}
-                      aria-label="Silver color"
-                    />
-                    <button
-                      className="w-7 h-7 rounded-full bg-gradient-to-br from-[#2a2a2a] to-[#404040] border-2 border-transparent transition-all duration-200 hover:border-foreground/30"
-                      onClick={() => setActiveIndex(3)}
-                      aria-label="Black color"
-                    />
-                  </div>
-
-                  {/* CTA Button - Opal style: black to yellow on hover */}
-                  <div
-                    className="mt-8"
-                    style={{
-                      opacity: infoVisible ? 1 : 0,
-                      transform: infoVisible ? "none" : "translateY(16px)",
-                      transition: "opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.45s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.45s",
-                    }}
-                  >
-                    <a
-                      href="https://mark.engineering/reserve"
-                      className="group relative inline-flex items-center justify-center w-full h-14 rounded-[4px] bg-[#212121] text-white text-sm font-semibold tracking-wide uppercase overflow-hidden transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-[#f2e48d] hover:text-[#212121]"
+                      type="button"
+                      aria-label="Decrease Light quantity"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setSilverQty((q) => Math.max(0, q - 1))
+                      }}
+                      className="group/btn h-8 w-8 shrink-0 rounded-full border border-black/[0.05] bg-[#fafafa] transition-colors hover:bg-black hover:border-black/20 active:bg-[#343434] flex items-center justify-center"
                     >
-                      <span className="relative z-10 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:text-[#212121]">
-                        Reserve Now
-                      </span>
-                    </a>
+                      <Minus className="h-2.5 w-2.5 text-black group-hover/btn:text-white transition-colors" strokeWidth={2} />
+                    </button>
+                    <span className="relative w-8 text-center text-[20px] font-medium text-black tabular-nums">
+                      {silverQty}
+                    </span>
+                    <button
+                      type="button"
+                      aria-label="Increase Light quantity"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setSilverQty((q) => q + 1)
+                      }}
+                      className="group/btn h-8 w-8 shrink-0 rounded-full border border-black/[0.05] bg-[#fafafa] transition-colors hover:bg-black hover:border-black/20 active:bg-[#343434] flex items-center justify-center"
+                    >
+                      <Plus className="h-2.5 w-2.5 text-black group-hover/btn:text-white transition-colors" strokeWidth={2} />
+                    </button>
                   </div>
                 </div>
+
+                {/* Dark finish card */}
+                <div
+                  className="group relative flex items-center justify-between rounded-[4px] border-[1.34px] border-black/[0.05] bg-white cursor-pointer transition-shadow duration-200 hover:border-[#dcdcdc] hover:shadow-[0_2px_4px_rgba(0,0,0,.05)] h-[80px] lg:h-[120px] px-4 lg:px-5"
+                  style={{ opacity: infoVisible ? 1 : 0, transition: "opacity 0.5s ease 0.25s" }}
+                  onClick={() => setActiveIndex(1)}
+                >
+                  <div className="flex items-center gap-4 md:gap-5">
+                    <div className="relative w-10 h-10 md:w-14 md:h-14 lg:w-16 lg:h-16">
+                      <Image
+                        src="/images/mark-dark.png"
+                        alt="Mark Dark"
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                    <p className="text-black text-sm lg:text-base font-medium">
+                      Dark
+                    </p>
+                  </div>
+                  <div className="flex w-[112px] items-center justify-between gap-2">
+                    <button
+                      type="button"
+                      aria-label="Decrease Dark quantity"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setBlackQty((q) => Math.max(0, q - 1))
+                      }}
+                      className="group/btn h-8 w-8 shrink-0 rounded-full border border-black/[0.05] bg-[#fafafa] transition-colors hover:bg-black hover:border-black/20 active:bg-[#343434] flex items-center justify-center"
+                    >
+                      <Minus className="h-2.5 w-2.5 text-black group-hover/btn:text-white transition-colors" strokeWidth={2} />
+                    </button>
+                    <span className="relative w-8 text-center text-[20px] font-medium text-black tabular-nums">
+                      {blackQty}
+                    </span>
+                    <button
+                      type="button"
+                      aria-label="Increase Dark quantity"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setBlackQty((q) => q + 1)
+                      }}
+                      className="group/btn h-8 w-8 shrink-0 rounded-full border border-black/[0.05] bg-[#fafafa] transition-colors hover:bg-black hover:border-black/20 active:bg-[#343434] flex items-center justify-center"
+                    >
+                      <Plus className="h-2.5 w-2.5 text-black group-hover/btn:text-white transition-colors" strokeWidth={2} />
+                    </button>
+                  </div>
+                </div>
+
+                {/* Shipping / tax - Opal style */}
+                <div
+                  className="text-center text-sm font-medium leading-6 text-[#999999] mt-10 lg:mt-11"
+                  style={{ opacity: infoVisible ? 1 : 0, transition: "opacity 0.5s ease 0.3s" }}
+                >
+                  <p>We ship worldwide.</p>
+                  <p>Taxes are calculated at next step.</p>
+                </div>
+
+                {/* Divider */}
+                <div className="h-px bg-black/10 my-10" style={{ opacity: infoVisible ? 1 : 0, transition: "opacity 0.5s ease 0.35s" }} />
+
+                {/* Short description */}
+                <div
+                  className="text-sm text-foreground/60 leading-relaxed"
+                  style={{ opacity: infoVisible ? 1 : 0, transition: "opacity 0.5s ease 0.4s" }}
+                >
+                  <p>Secure your exclusive discount with a $10 deposit. Lock in $80 off our $150 MSRP.</p>
+                </div>
+              </div>
+
+              {/* Sticky footer - Opal style */}
+              <div className="sticky bottom-0 left-0 border-t border-black/10 bg-white px-4 py-4 lg:px-4 lg:py-4 flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between">
+                <div className="flex items-center justify-between sm:block">
+                  <span className="text-lg lg:text-2xl font-medium text-black">${totalPrice}</span>
+                  {totalQty > 0 && (
+                    <span className="text-sm text-black/50">
+                      {totalQty} {totalQty === 1 ? "unit" : "units"} · $70 each
+                    </span>
+                  )}
+                </div>
+                <a
+                  href="https://mark.engineering/reserve"
+                  className="flex-1 sm:flex-initial flex items-center justify-center h-12 rounded-[4px] bg-black text-white text-sm font-semibold transition-colors duration-200 hover:bg-[#FFDB01] hover:text-black min-w-[140px]"
+                >
+                  Reserve Now
+                </a>
               </div>
             </div>
           </div>
         </section>
 
         {/* Trust bar */}
-        <section className="bg-[#f5f1e5]">
+        <section className="bg-[#fafafa]">
           <div
             ref={trustRef}
             className="mx-auto max-w-7xl px-6 md:px-8 py-14 md:py-20"
