@@ -8,7 +8,6 @@ interface StepCardProps {
   stepNumber: number
   rounded?: "top-left" | "bottom-right" | "none"
   objectPosition?: string
-  priority?: boolean
 }
 
 export function StepCard({
@@ -19,7 +18,6 @@ export function StepCard({
   stepNumber,
   rounded = "none",
   objectPosition = "center",
-  priority = false,
 }: StepCardProps) {
   const borderRadiusClass =
     rounded === "top-left"
@@ -40,7 +38,6 @@ export function StepCard({
           className="object-cover"
           style={{ objectPosition }}
           sizes="(max-width: 768px) 100vw, 33vw"
-          priority={priority}
         />
       </div>
       <div className="pt-6 pb-2 flex items-baseline gap-4">
