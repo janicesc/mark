@@ -6,7 +6,7 @@ export function MissionSection() {
   const [ref, isVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.25 })
 
   return (
-    <section className="bg-background overflow-hidden">
+    <section className="bg-white overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 md:px-8 py-20 md:py-32">
         <div
           ref={ref}

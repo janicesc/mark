@@ -41,7 +41,7 @@ export function StepsSection() {
   const [gridRef, gridVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.1 })
 
   return (
-    <section id="how-it-works" className="bg-background px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32">
+    <section id="how-it-works" className="bg-white px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32">
       <div className="mx-auto max-w-7xl">
         <div
           ref={headRef}
