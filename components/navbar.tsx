@@ -40,10 +40,10 @@ export function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-background/90 backdrop-blur-md border-b border-border/40 shadow-sm"
+          ? "bg-background/90 backdrop-blur-md border-b border-foreground/10 shadow-sm"
           : !isHome
             ? "bg-white border-b border-black/10"
-            : "bg-transparent border-b-0"
+            : "bg-transparent border-b-0 border-b-transparent shadow-none"
       }`}
     >
       <div className="mx-auto max-w-7xl flex items-center justify-between px-6 md:px-8 h-16 md:h-20">
