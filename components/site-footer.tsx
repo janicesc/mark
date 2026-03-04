@@ -6,21 +6,11 @@ import { ArrowRight, ArrowUp } from "lucide-react"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
 const footerLinks = {
-  Products: [
-    { label: "Mark Device", href: "#" },
-    { label: "Mark App", href: "#" },
-    { label: "Accessories", href: "#" },
-  ],
   Company: [
-    { label: "About", href: "#" },
-    { label: "Terms", href: "#" },
-    { label: "Privacy", href: "#" },
-  ],
-  Resources: [
-    { label: "Support", href: "#" },
-    { label: "Media Kit", href: "#" },
-    { label: "Downloads", href: "#" },
-    { label: "Newsletter", href: "#" },
+    { label: "About", href: "https://marketing.mark.engineering/" },
+    { label: "Terms", href: "https://mark.engineering/terms-and-service" },
+    { label: "Privacy", href: "https://mark.engineering/privacy-policy" },
+    { label: "Contact@Mark.Engineering", href: "mailto:Contact@Mark.Engineering" },
   ],
   Social: [
     { label: "Instagram", href: "https://instagram.com/mark.engineering" },
@@ -90,7 +80,7 @@ export function SiteFooter() {
           </div>
 
           {/* Link columns — right side */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 lg:gap-6">
+          <div className="grid grid-cols-2 gap-8 lg:gap-6">
             {Object.entries(footerLinks).map(([category, links]) => (
               <div key={category}>
                 <p className="text-[13px] text-white/40 mb-4">{category}</p>
