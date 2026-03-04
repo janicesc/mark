@@ -1,10 +1,34 @@
 "use client"
 
 import Image from "next/image"
-import { Shield, Award, Handshake, ArrowRight } from "lucide-react"
+import { useState, useEffect, useCallback } from "react"
+import { Shield, Award, Handshake } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import { SiteFooter } from "@/components/site-footer"
-import { ScrollReveal } from "@/components/scroll-reveal"
+import { useScrollReveal } from "@/hooks/use-scroll-reveal"
+
+const productImages = [
+  {
+    src: "/images/mark-light.png",
+    alt: "Mark device in silver finish, three-quarter view",
+  },
+  {
+    src: "/images/mark-hero-1.jpg",
+    alt: "Mark device product shot, front angle",
+  },
+  {
+    src: "/images/mark-hero-2.jpg",
+    alt: "Mark device close-up of scanner head detail",
+  },
+  {
+    src: "/images/mark-dark.png",
+    alt: "Mark device in black finish",
+  },
+  {
+    src: "/images/mark-hero-3.jpg",
+    alt: "Mark device side profile view",
+  },
+]
 
 const guarantees = [
   {
@@ -28,99 +52,211 @@ const guarantees = [
 ]
 
 export function ReserveContent() {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const [infoRef, infoVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.1 })
+  const [trustRef, trustVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.15 })
+
+  // Auto-advance gallery
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % productImages.length)
+    }, 4000)
+    return () => clearInterval(timer)
+  }, [])
+
+  const handleDotClick = useCallback((index: number) => {
+    setActiveIndex(index)
+  }, [])
+
   return (
     <>
       <Navbar />
 
       <main className="pt-20">
-        {/* Hero section */}
-        <section className="bg-[#f5f1e5]">
-          <div className="mx-auto max-w-7xl px-6 md:px-8 py-16 md:py-24 lg:py-32">
-            <div className="flex flex-col md:flex-row items-center gap-12 md:gap-8">
-              {/* Product image */}
-              <ScrollReveal
-                className="w-full md:w-1/2 flex items-center justify-center"
-                direction="left"
-                duration={1}
-                delay={0.1}
-              >
-                <div className="relative w-[260px] md:w-[340px] lg:w-[400px] aspect-[3/4]">
-                  <Image
-                    src="/images/mark-light.png"
-                    alt="Mark device in silver finish"
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 768px) 260px, 400px"
-                    priority
-                  />
-                </div>
-              </ScrollReveal>
+        {/* Opal-style checkout layout */}
+        <section className="bg-white min-h-[calc(100vh-80px)]">
+          <div className="flex flex-col lg:flex-row">
+            {/* Left: Product image gallery - takes majority of the space */}
+            <div className="w-full lg:w-[60%] xl:w-[62%] bg-[#f5f1e5]">
+              <div className="relative w-full h-[60vh] sm:h-[70vh] lg:h-[calc(100vh-80px)] lg:sticky lg:top-20 flex items-center justify-center overflow-hidden">
+                {/* Image carousel */}
+                {productImages.map((img, i) => (
+                  <div
+                    key={img.src}
+                    className="absolute inset-0 flex items-center justify-center p-8 md:p-16 lg:p-20"
+                    style={{
+                      opacity: activeIndex === i ? 1 : 0,
+                      transform: activeIndex === i ? "scale(1)" : "scale(1.02)",
+                      transition: "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
+                    }}
+                  >
+                    <div className="relative w-full h-full max-w-[500px]">
+                      <Image
+                        src={img.src}
+                        alt={img.alt}
+                        fill
+                        className="object-contain"
+                        sizes="(max-width: 1024px) 100vw, 60vw"
+                        priority={i === 0}
+                      />
+                    </div>
+                  </div>
+                ))}
 
-              {/* Reservation card */}
-              <ScrollReveal
-                className="w-full md:w-1/2 flex justify-center md:justify-end"
-                direction="right"
-                duration={1}
-                delay={0.25}
+                {/* Dot indicators */}
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2">
+                  {productImages.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => handleDotClick(i)}
+                      className="group relative w-2.5 h-2.5 rounded-full transition-all duration-300"
+                      style={{
+                        backgroundColor: activeIndex === i ? "#212121" : "rgba(33,33,33,0.2)",
+                        transform: activeIndex === i ? "scale(1.15)" : "scale(1)",
+                      }}
+                      aria-label={`View product image ${i + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Product info panel - sticky */}
+            <div className="w-full lg:w-[40%] xl:w-[38%]">
+              <div
+                ref={infoRef}
+                className="lg:sticky lg:top-20 lg:h-[calc(100vh-80px)] flex items-center"
               >
-                <div className="w-full max-w-md bg-white p-8 md:p-10">
-                  <ScrollReveal delay={0.4} direction="up" distance="20px" duration={0.7}>
-                    <h1 className="font-serif text-3xl md:text-4xl font-normal text-foreground tracking-tight">
+                <div className="w-full px-8 md:px-12 lg:px-14 xl:px-16 py-12 lg:py-0">
+                  {/* Product name and subtitle */}
+                  <div
+                    style={{
+                      opacity: infoVisible ? 1 : 0,
+                      transform: infoVisible ? "none" : "translateY(20px)",
+                      transition: "opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s",
+                    }}
+                  >
+                    <p className="text-sm uppercase tracking-widest text-foreground/40 mb-2 font-medium">
+                      Mark
+                    </p>
+                    <h1 className="font-serif text-3xl md:text-4xl font-normal text-foreground tracking-tight leading-tight">
                       {"Reserve & Save 50%"}
                     </h1>
-                  </ScrollReveal>
+                  </div>
 
-                  <ScrollReveal delay={0.5} direction="none" duration={0.6}>
-                    <div className="w-16 h-px bg-foreground/20 my-6" />
-                  </ScrollReveal>
+                  {/* Price */}
+                  <div
+                    className="mt-6 flex items-baseline gap-3"
+                    style={{
+                      opacity: infoVisible ? 1 : 0,
+                      transform: infoVisible ? "none" : "translateY(16px)",
+                      transition: "opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s",
+                    }}
+                  >
+                    <span className="text-2xl font-semibold text-foreground">$70</span>
+                    <span className="text-base text-foreground/40 line-through">$150</span>
+                  </div>
 
-                  <ScrollReveal delay={0.55} direction="up" distance="16px" duration={0.7}>
-                    <p className="text-base md:text-lg text-foreground/70 leading-relaxed">
+                  {/* Divider */}
+                  <div
+                    className="my-6"
+                    style={{
+                      opacity: infoVisible ? 1 : 0,
+                      transition: "opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.25s",
+                    }}
+                  >
+                    <div className="w-full h-px bg-foreground/10" />
+                  </div>
+
+                  {/* Description */}
+                  <div
+                    style={{
+                      opacity: infoVisible ? 1 : 0,
+                      transform: infoVisible ? "none" : "translateY(16px)",
+                      transition: "opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s",
+                    }}
+                  >
+                    <p className="text-sm text-foreground/60 leading-relaxed">
                       Secure your exclusive discount with a $10 deposit.
                     </p>
-                  </ScrollReveal>
-
-                  <ScrollReveal delay={0.65} direction="up" distance="16px" duration={0.7}>
-                    <p className="mt-5 text-base md:text-lg text-foreground/70 leading-relaxed">
+                    <p className="mt-3 text-sm text-foreground/60 leading-relaxed">
                       {"You\u2019ll lock in $80 off our $150 MSRP \u2014 bringing your total to just $70."}
                     </p>
-                  </ScrollReveal>
+                  </div>
 
-                  <ScrollReveal delay={0.8} direction="up" distance="20px" duration={0.7}>
-                    <div className="mt-8">
-                      <a
-                        href="https://mark.engineering/reserve"
-                        className="inline-flex items-center justify-center gap-2.5 bg-foreground text-background px-7 py-4 text-base font-semibold hover:bg-foreground/90 transition-colors duration-300 w-full"
-                      >
+                  {/* Color selector dots */}
+                  <div
+                    className="mt-6 flex items-center gap-3"
+                    style={{
+                      opacity: infoVisible ? 1 : 0,
+                      transform: infoVisible ? "none" : "translateY(12px)",
+                      transition: "opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.35s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.35s",
+                    }}
+                  >
+                    <button
+                      className="w-7 h-7 rounded-full bg-gradient-to-br from-[#d4d4d4] to-[#e8e8e8] border-2 border-foreground/20 transition-all duration-200 hover:border-foreground/50"
+                      onClick={() => setActiveIndex(0)}
+                      aria-label="Silver color"
+                    />
+                    <button
+                      className="w-7 h-7 rounded-full bg-gradient-to-br from-[#2a2a2a] to-[#404040] border-2 border-transparent transition-all duration-200 hover:border-foreground/30"
+                      onClick={() => setActiveIndex(3)}
+                      aria-label="Black color"
+                    />
+                  </div>
+
+                  {/* CTA Button - Opal style: black to yellow on hover */}
+                  <div
+                    className="mt-8"
+                    style={{
+                      opacity: infoVisible ? 1 : 0,
+                      transform: infoVisible ? "none" : "translateY(16px)",
+                      transition: "opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.45s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.45s",
+                    }}
+                  >
+                    <a
+                      href="https://mark.engineering/reserve"
+                      className="group relative inline-flex items-center justify-center w-full h-14 rounded-[4px] bg-[#212121] text-white text-sm font-semibold tracking-wide uppercase overflow-hidden transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-[#f2e48d] hover:text-[#212121]"
+                    >
+                      <span className="relative z-10 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:text-[#212121]">
                         Reserve Now
-                        <ArrowRight className="h-4 w-4" />
-                      </a>
-                    </div>
-                  </ScrollReveal>
+                      </span>
+                    </a>
+                  </div>
                 </div>
-              </ScrollReveal>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Trust bar */}
-        <section className="bg-[#f2e48d]">
-          <div className="mx-auto max-w-7xl px-6 md:px-8 py-12 md:py-16">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-6">
+        <section className="bg-[#f5f1e5]">
+          <div
+            ref={trustRef}
+            className="mx-auto max-w-7xl px-6 md:px-8 py-14 md:py-20"
+          >
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 md:gap-8">
               {guarantees.map((g, i) => (
-                <ScrollReveal key={g.title} delay={0.1 + i * 0.15} direction="up" distance="30px" duration={0.7}>
+                <div
+                  key={g.title}
+                  style={{
+                    opacity: trustVisible ? 1 : 0,
+                    transform: trustVisible ? "none" : "translateY(24px)",
+                    transition: `opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + i * 0.12}s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + i * 0.12}s`,
+                  }}
+                >
                   <div className="flex flex-col gap-3">
                     <div className="flex items-center gap-3">
-                      <g.icon className="h-6 w-6 text-foreground/50 shrink-0" strokeWidth={1.5} />
-                      <h3 className="text-sm md:text-base font-bold text-foreground">
+                      <g.icon className="h-5 w-5 text-foreground/40 shrink-0" strokeWidth={1.5} />
+                      <h3 className="text-sm font-bold text-foreground tracking-wide">
                         {g.title}
                       </h3>
                     </div>
-                    <p className="text-sm text-foreground/60 leading-relaxed">
+                    <p className="text-sm text-foreground/50 leading-relaxed">
                       {g.description}
                     </p>
                   </div>
-                </ScrollReveal>
+                </div>
               ))}
             </div>
           </div>
