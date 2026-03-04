@@ -139,7 +139,7 @@ export function ReserveContent() {
                     <p className="text-sm uppercase tracking-widest text-foreground/40 mb-2 font-medium">
                       Mark
                     </p>
-                    <h1 className="font-serif text-3xl md:text-4xl font-normal text-foreground tracking-tight leading-tight">
+                    <h1 className="font-sans text-3xl md:text-4xl font-medium text-foreground tracking-tight leading-tight">
                       {"Reserve & Save 50%"}
                     </h1>
                   </div>

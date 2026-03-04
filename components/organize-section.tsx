@@ -45,7 +45,7 @@ export function OrganizeSection() {
             <p className="text-sm uppercase tracking-widest text-muted-foreground mb-4 font-medium">
               Organize
             </p>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight text-foreground leading-tight text-balance mb-6">
+            <h2 className="font-sans text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-foreground leading-tight text-balance mb-6">
               All your ideas.{" "}
               <span className="block">Instantly searchable.</span>
             </h2>

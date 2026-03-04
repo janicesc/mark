@@ -24,7 +24,7 @@ export function BeyondPaperSection() {
             <p className="text-sm uppercase tracking-widest text-muted-foreground mb-4 font-medium">
               Beyond paper
             </p>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight text-foreground leading-tight text-balance mb-6">
+            <h2 className="font-sans text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-foreground leading-tight text-balance mb-6">
               Turn spoken thoughts into structured knowledge.
             </h2>
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-sm">

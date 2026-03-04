@@ -44,7 +44,7 @@ export function StepCard({
         />
       </div>
       <div className="pt-6 pb-2 flex items-baseline gap-4">
-        <span className="text-3xl md:text-4xl font-serif font-light text-muted-foreground/50">
+        <span className="text-3xl md:text-4xl font-sans font-light text-muted-foreground/50">
           {stepNumber}
         </span>
         <h3 className="text-xl md:text-2xl font-medium tracking-tight text-foreground">

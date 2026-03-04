@@ -54,7 +54,7 @@ export function StepsSection() {
           <p className="text-center text-sm md:text-base uppercase tracking-widest text-muted-foreground mb-4">
             Simple
           </p>
-          <h2 className="text-center font-serif text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight text-foreground text-balance mb-14 md:mb-20">
+          <h2 className="text-center font-sans text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-foreground text-balance mb-14 md:mb-20">
             How Mark Works
           </h2>
         </div>

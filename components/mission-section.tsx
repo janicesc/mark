@@ -20,7 +20,7 @@ export function MissionSection() {
           <p className="text-sm uppercase tracking-widest text-muted-foreground mb-4 font-medium">
             Our Mission
           </p>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight text-foreground leading-tight text-balance mb-10">
+          <h2 className="font-sans text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-foreground leading-tight text-balance mb-10">
             Maximize the potential of every reader.
           </h2>
           <blockquote

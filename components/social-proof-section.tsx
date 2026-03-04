@@ -39,7 +39,7 @@ export function SocialProofSection() {
               "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
           }}
         >
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight text-foreground text-balance mb-4">
+          <h2 className="font-sans text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-foreground text-balance mb-4">
             7.4M readers discovered Mark
           </h2>
           <p className="text-muted-foreground text-base md:text-lg max-w-xl mx-auto text-balance leading-relaxed">

@@ -34,7 +34,7 @@ export function CaptureSection() {
             <p className="text-sm uppercase tracking-widest text-muted-foreground mb-4 font-medium">
               Capture
             </p>
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight text-foreground leading-tight text-balance mb-6">
+            <h2 className="font-sans text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-foreground leading-tight text-balance mb-6">
               Capture with ease:{" "}
               <span className="block">physical or digital.</span>
             </h2>

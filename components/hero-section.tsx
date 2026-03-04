@@ -41,7 +41,7 @@ export function HeroSection() {
             The World{"'"}s First AI Bookmark
           </p>
           <h1
-            className="font-serif text-4xl md:text-5xl lg:text-7xl font-normal tracking-tight text-white leading-tight mb-6"
+            className="font-sans text-4xl md:text-5xl lg:text-7xl font-medium tracking-tight text-white leading-tight mb-6"
             style={{
               opacity: mounted ? 1 : 0,
               transform: mounted ? "none" : "translateY(30px)",

@@ -35,7 +35,7 @@ export function ProductCloseup() {
               transition: "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
             }}
           >
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight text-foreground leading-tight text-balance">
+            <h2 className="font-sans text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-foreground leading-tight text-balance">
               Uniquely designed{" "}
               <span className="block">for your reading.</span>
             </h2>

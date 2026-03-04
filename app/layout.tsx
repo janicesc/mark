@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Space_Grotesk } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk" });
 
 export const metadata: Metadata = {
   title: 'Mark – The World\'s First AI Bookmark | Mark Engineering',
@@ -35,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${dmSans.variable} ${playfair.variable} font-sans antialiased`}>
+      <body className={`${spaceGrotesk.variable} font-sans antialiased`}>
         {children}
         <Analytics />
       </body>
