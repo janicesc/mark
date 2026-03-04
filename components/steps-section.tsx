@@ -3,27 +3,30 @@ import { StepCard } from "@/components/step-card"
 const steps = [
   {
     imageSrc: "/images/step-1.jpg",
-    imageAlt: "Elegant fashion editorial of a woman in a cream trench coat",
-    title: "Digitize your closet",
+    imageAlt: "Person scanning text with the Mark device",
+    title: "Scan your text",
     description:
-      "Take full control of what you own with an oh-so-scrollable digital wardrobe",
+      "Highlight with the Mark device — on paper or on screen.",
     rounded: "top-left" as const,
+    stepNumber: 1,
   },
   {
     imageSrc: "/images/step-2.jpg",
-    imageAlt: "Luxury pearl beaded handbag with soft studio lighting",
-    title: "Elevate your style",
+    imageAlt: "Recording thoughts and notes while reading",
+    title: "Record your thoughts",
     description:
-      "Build outfits on your own or get 1:1 support from a personal stylist",
+      "Add voice or typed notes while you read.",
     rounded: "none" as const,
+    stepNumber: 2,
   },
   {
     imageSrc: "/images/step-3.jpg",
-    imageAlt: "Close-up of elegant gold jewelry and flowing cream fabric",
-    title: "Connect and share",
+    imageAlt: "Organized knowledge with highlights and notes",
+    title: "Organize your knowledge",
     description:
-      "Share your digital closet with friends and get inspired by others",
+      "Your highlights, notes, and ideas are automatically organized, searchable, and enhanced with AI.",
     rounded: "bottom-right" as const,
+    stepNumber: 3,
   },
 ]
 
@@ -31,9 +34,11 @@ export function StepsSection() {
   return (
     <section className="bg-background px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32">
       <div className="mx-auto max-w-7xl">
+        <p className="text-center text-sm md:text-base uppercase tracking-widest text-muted-foreground mb-4">
+          Simple
+        </p>
         <h2 className="text-center font-serif text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight text-foreground text-balance mb-14 md:mb-20">
-          The magic of Indyx is how it{" "}
-          <em className="italic">all</em> works together
+          How Mark Works
         </h2>
 
         <div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-8 lg:gap-10">
@@ -44,6 +49,7 @@ export function StepsSection() {
               imageAlt={step.imageAlt}
               title={step.title}
               description={step.description}
+              stepNumber={step.stepNumber}
               rounded={step.rounded}
             />
           ))}

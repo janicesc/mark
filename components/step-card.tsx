@@ -5,6 +5,7 @@ interface StepCardProps {
   imageAlt: string
   title: string
   description: string
+  stepNumber: number
   rounded?: "top-left" | "bottom-right" | "none"
 }
 
@@ -13,6 +14,7 @@ export function StepCard({
   imageAlt,
   title,
   description,
+  stepNumber,
   rounded = "none",
 }: StepCardProps) {
   const borderRadiusClass =
@@ -35,7 +37,10 @@ export function StepCard({
           sizes="(max-width: 768px) 100vw, 33vw"
         />
       </div>
-      <div className="pt-6 pb-2">
+      <div className="pt-6 pb-2 flex items-baseline gap-4">
+        <span className="text-3xl md:text-4xl font-serif font-light text-muted-foreground/50">
+          {stepNumber}
+        </span>
         <h3 className="text-xl md:text-2xl font-medium tracking-tight text-foreground">
           {title}
         </h3>
