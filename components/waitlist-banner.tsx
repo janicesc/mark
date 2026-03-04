@@ -18,6 +18,7 @@ export function WaitlistBanner() {
 
   return (
     <section
+      id="community"
       ref={sectionRef}
       className="bg-[#0a0a0a] text-white"
     >

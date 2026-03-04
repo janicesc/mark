@@ -1,11 +1,14 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
+import { usePathname, useRouter } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
+  const router = useRouter()
 
   useEffect(() => {
     function onScroll() {
@@ -15,6 +18,18 @@ export function Navbar() {
     onScroll()
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
+
+  const smoothScroll = useCallback((e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+    e.preventDefault()
+    if (pathname !== "/") {
+      router.push(`/#${targetId}`)
+      return
+    }
+    const el = document.getElementById(targetId)
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" })
+    }
+  }, [pathname, router])
 
   return (
     <header
@@ -40,6 +55,7 @@ export function Navbar() {
         <nav className="hidden md:flex items-center gap-8">
           <Link
             href="#how-it-works"
+            onClick={(e) => smoothScroll(e, "how-it-works")}
             className={`text-sm font-medium transition-colors duration-300 ${
               scrolled
                 ? "text-foreground/70 hover:text-foreground"
@@ -50,6 +66,7 @@ export function Navbar() {
           </Link>
           <Link
             href="#community"
+            onClick={(e) => smoothScroll(e, "community")}
             className={`text-sm font-medium transition-colors duration-300 ${
               scrolled
                 ? "text-foreground/70 hover:text-foreground"
