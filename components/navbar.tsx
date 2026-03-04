@@ -9,6 +9,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
+  const isHome = pathname === "/"
 
   useEffect(() => {
     function onScroll() {
@@ -31,12 +32,18 @@ export function Navbar() {
     }
   }, [pathname, router])
 
+  /* On home page: white text when at top (over dark hero video), dark text when scrolled.
+     On other pages (e.g. /reserve): always dark text, white bg at top, blurred bg when scrolled. */
+  const useDarkText = scrolled || !isHome
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? "bg-background/90 backdrop-blur-md border-b border-border/40 shadow-sm"
-          : "bg-transparent"
+          : !isHome
+            ? "bg-white"
+            : "bg-transparent"
       }`}
     >
       <div className="mx-auto max-w-7xl flex items-center justify-between px-6 md:px-8 h-16 md:h-20">
@@ -47,7 +54,7 @@ export function Navbar() {
             width={120}
             height={28}
             className={`h-6 md:h-7 w-auto transition-all duration-300 ${
-              scrolled ? "" : "invert brightness-0"
+              useDarkText ? "" : "invert brightness-0"
             }`}
             priority
           />
@@ -57,7 +64,7 @@ export function Navbar() {
             href="#how-it-works"
             onClick={(e) => smoothScroll(e, "how-it-works")}
             className={`text-sm font-medium transition-colors duration-300 ${
-              scrolled
+              useDarkText
                 ? "text-foreground/70 hover:text-foreground"
                 : "text-white/70 hover:text-white"
             }`}
@@ -68,7 +75,7 @@ export function Navbar() {
             href="#community"
             onClick={(e) => smoothScroll(e, "community")}
             className={`text-sm font-medium transition-colors duration-300 ${
-              scrolled
+              useDarkText
                 ? "text-foreground/70 hover:text-foreground"
                 : "text-white/70 hover:text-white"
             }`}
@@ -78,7 +85,7 @@ export function Navbar() {
           <Link
             href="/reserve"
             className={`inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${
-              scrolled
+              useDarkText
                 ? "bg-foreground text-background hover:bg-foreground/90"
                 : "bg-white text-black hover:bg-white/90"
             }`}
