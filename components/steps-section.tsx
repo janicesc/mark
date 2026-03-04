@@ -3,7 +3,7 @@ import { StepCard } from "@/components/step-card"
 const steps = [
   {
     imageSrc: "/images/step-1.png",
-    imageAlt: "Overhead view of a person reading on a Kindle with stats overlay showing 32 notes, 1h32m duration, and 21 ideas",
+    imageAlt: "Person reading a book on an airplane with stats overlay showing 32 notes, 1h32m duration, and 21 ideas",
     title: "Scan your text",
     description:
       "Highlight with the Mark device — on paper or on screen.",
