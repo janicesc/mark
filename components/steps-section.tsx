@@ -2,31 +2,34 @@ import { StepCard } from "@/components/step-card"
 
 const steps = [
   {
-    imageSrc: "/images/step-1.jpg",
-    imageAlt: "Person scanning text with the Mark device",
+    imageSrc: "/images/step-1.png",
+    imageAlt: "Overhead view of a person reading on a Kindle with stats overlay showing 32 notes, 1h32m duration, and 21 ideas",
     title: "Scan your text",
     description:
       "Highlight with the Mark device — on paper or on screen.",
     rounded: "top-left" as const,
     stepNumber: 1,
+    objectPosition: "center" as string | undefined,
   },
   {
-    imageSrc: "/images/step-2.jpg",
-    imageAlt: "Recording thoughts and notes while reading",
+    imageSrc: "/images/step-2.png",
+    imageAlt: "Woman reading in a library with a notification card showing a note from Atomic Habits",
     title: "Record your thoughts",
     description:
       "Add voice or typed notes while you read.",
     rounded: "none" as const,
     stepNumber: 2,
+    objectPosition: undefined as string | undefined,
   },
   {
-    imageSrc: "/images/step-3.jpg",
-    imageAlt: "Organized knowledge with highlights and notes",
+    imageSrc: "/images/step-3.png",
+    imageAlt: "Mark app interface showing recently scanned quotes and organized notes",
     title: "Organize your knowledge",
     description:
       "Your highlights, notes, and ideas are automatically organized, searchable, and enhanced with AI.",
     rounded: "bottom-right" as const,
     stepNumber: 3,
+    objectPosition: "top",
   },
 ]
 
@@ -42,7 +45,7 @@ export function StepsSection() {
         </h2>
 
         <div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-8 lg:gap-10">
-          {steps.map((step) => (
+          {steps.map(({ objectPosition, ...step }) => (
             <StepCard
               key={step.title}
               imageSrc={step.imageSrc}
@@ -51,6 +54,7 @@ export function StepsSection() {
               description={step.description}
               stepNumber={step.stepNumber}
               rounded={step.rounded}
+              objectPosition={objectPosition}
             />
           ))}
         </div>

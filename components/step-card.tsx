@@ -7,6 +7,7 @@ interface StepCardProps {
   description: string
   stepNumber: number
   rounded?: "top-left" | "bottom-right" | "none"
+  objectPosition?: string
 }
 
 export function StepCard({
@@ -16,6 +17,7 @@ export function StepCard({
   description,
   stepNumber,
   rounded = "none",
+  objectPosition = "center",
 }: StepCardProps) {
   const borderRadiusClass =
     rounded === "top-left"
@@ -34,6 +36,7 @@ export function StepCard({
           alt={imageAlt}
           fill
           className="object-cover"
+          style={{ objectPosition }}
           sizes="(max-width: 768px) 100vw, 33vw"
         />
       </div>
