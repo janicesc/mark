@@ -5,6 +5,7 @@ import { OrganizeSection } from "@/components/organize-section"
 import { BeyondPaperSection } from "@/components/beyond-paper-section"
 import { ProductCloseup } from "@/components/product-closeup"
 import { StepsSection } from "@/components/steps-section"
+import { SocialProofSection } from "@/components/social-proof-section"
 import { MissionSection } from "@/components/mission-section"
 import { AsSeenOn } from "@/components/as-seen-on"
 import { SiteFooter } from "@/components/site-footer"
@@ -34,7 +35,10 @@ export default function Home() {
           <StepsSection />
         </div>
 
-        {/* 7. Our Mission */}
+        {/* 7. Social Proof */}
+        <SocialProofSection />
+
+        {/* 8. Our Mission */}
         <MissionSection />
 
         {/* 8. As seen on */}
