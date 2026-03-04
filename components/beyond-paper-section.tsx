@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
 export function BeyondPaperSection() {
@@ -44,12 +43,14 @@ export function BeyondPaperSection() {
             }}
           >
             <div className="relative w-full aspect-[3/2] rounded-2xl overflow-hidden">
-              <Image
-                src="/images/voice-capture.jpg"
-                alt="Voice capture and transcription with Mark device"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 60vw"
+              <video
+                className="absolute inset-0 w-full h-full object-cover"
+                src="/videos/voice-annotation.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                aria-label="Voice annotation capture and transcription with Mark device"
               />
             </div>
           </div>
