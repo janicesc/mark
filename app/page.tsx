@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/navbar"
 import { HeroSection } from "@/components/hero-section"
+import { WaitlistBanner } from "@/components/waitlist-banner"
 import { CaptureSection } from "@/components/capture-section"
 import { OrganizeSection } from "@/components/organize-section"
 import { BeyondPaperSection } from "@/components/beyond-paper-section"
@@ -17,6 +18,9 @@ export default function Home() {
       <main>
         {/* 1. Hero */}
         <HeroSection />
+
+        {/* Waitlist Banner */}
+        <WaitlistBanner />
 
         {/* 2. Capture */}
         <CaptureSection />
