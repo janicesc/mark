@@ -47,7 +47,7 @@ export function SiteFooter() {
             alt="Mark"
             width={1800}
             height={400}
-            className="w-full max-h-[clamp(120px,22vw,380px)] object-contain object-left invert brightness-100"
+            className="w-full max-h-[clamp(120px,22vw,380px)] object-contain object-left brightness-0 invert"
             priority
           />
         </div>
