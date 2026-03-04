@@ -2,12 +2,23 @@
 
 import Image from "next/image"
 import Link from "next/link"
+import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
 export function SiteFooter() {
+  const [logoRef, logoVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.1 })
+
   return (
     <footer className="bg-[#0a0a0a] text-white">
       {/* Giant logo */}
-      <div className="relative overflow-hidden">
+      <div
+        ref={logoRef}
+        className="relative overflow-hidden"
+        style={{
+          opacity: logoVisible ? 1 : 0,
+          transform: logoVisible ? "none" : "translateY(40px) scale(0.96)",
+          transition: "opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1)",
+        }}
+      >
         <div className="px-4 md:px-8 py-8 md:py-12">
           <Image
             src="/images/mark-logo.png"

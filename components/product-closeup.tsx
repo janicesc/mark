@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
+import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
 const variants = {
   silver: {
@@ -16,15 +17,24 @@ const variants = {
 
 export function ProductCloseup() {
   const [activeColor, setActiveColor] = useState<"silver" | "black">("silver")
-
-  const current = variants[activeColor]
+  const [textRef, textVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.2 })
+  const [imgRef, imgVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.15 })
+  const [tagRef, tagVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.3 })
 
   return (
     <section className="bg-background overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 md:px-8 py-20 md:py-32">
         <div className="flex flex-col md:flex-row items-center gap-12 md:gap-8 lg:gap-16">
           {/* Text content */}
-          <div className="w-full md:w-[38%] shrink-0">
+          <div
+            ref={textRef}
+            className="w-full md:w-[38%] shrink-0"
+            style={{
+              opacity: textVisible ? 1 : 0,
+              transform: textVisible ? "none" : "translateY(40px)",
+              transition: "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
+            }}
+          >
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight text-foreground leading-tight text-balance">
               Uniquely designed{" "}
               <span className="block">for your reading.</span>
@@ -72,7 +82,15 @@ export function ProductCloseup() {
           </div>
 
           {/* Product image */}
-          <div className="w-full md:w-[62%] relative flex items-center justify-center">
+          <div
+            ref={imgRef}
+            className="w-full md:w-[62%] relative flex items-center justify-center"
+            style={{
+              opacity: imgVisible ? 1 : 0,
+              transform: imgVisible ? "none" : "translateY(60px) scale(0.95)",
+              transition: "opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s",
+            }}
+          >
             <div className="relative w-full max-w-lg md:max-w-none aspect-[4/5]">
               {/* Silver variant */}
               <Image
@@ -100,7 +118,15 @@ export function ProductCloseup() {
         </div>
 
         {/* Tagline below */}
-        <div className="mt-16 md:mt-24 max-w-xl">
+        <div
+          ref={tagRef}
+          className="mt-16 md:mt-24 max-w-xl"
+          style={{
+            opacity: tagVisible ? 1 : 0,
+            transform: tagVisible ? "none" : "translateY(30px)",
+            transition: "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
+          }}
+        >
           <p className="text-xs md:text-sm font-bold uppercase tracking-wider text-foreground">
             Sleek. Compact.
           </p>

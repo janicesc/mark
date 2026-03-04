@@ -1,4 +1,7 @@
+"use client"
+
 import { StepCard } from "@/components/step-card"
+import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
 const steps = [
   {
@@ -34,28 +37,51 @@ const steps = [
 ]
 
 export function StepsSection() {
-  return (
-    <section className="bg-background px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32">
-      <div className="mx-auto max-w-7xl">
-        <p className="text-center text-sm md:text-base uppercase tracking-widest text-muted-foreground mb-4">
-          Simple
-        </p>
-        <h2 className="text-center font-serif text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight text-foreground text-balance mb-14 md:mb-20">
-          How Mark Works
-        </h2>
+  const [headRef, headVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.3 })
+  const [gridRef, gridVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.1 })
 
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-8 lg:gap-10">
-          {steps.map(({ objectPosition, ...step }) => (
-            <StepCard
+  return (
+    <section id="how-it-works" className="bg-background px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32">
+      <div className="mx-auto max-w-7xl">
+        <div
+          ref={headRef}
+          style={{
+            opacity: headVisible ? 1 : 0,
+            transform: headVisible ? "none" : "translateY(30px)",
+            transition: "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
+          }}
+        >
+          <p className="text-center text-sm md:text-base uppercase tracking-widest text-muted-foreground mb-4">
+            Simple
+          </p>
+          <h2 className="text-center font-serif text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight text-foreground text-balance mb-14 md:mb-20">
+            How Mark Works
+          </h2>
+        </div>
+
+        <div
+          ref={gridRef}
+          className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-8 lg:gap-10"
+        >
+          {steps.map(({ objectPosition, ...step }, i) => (
+            <div
               key={step.title}
-              imageSrc={step.imageSrc}
-              imageAlt={step.imageAlt}
-              title={step.title}
-              description={step.description}
-              stepNumber={step.stepNumber}
-              rounded={step.rounded}
-              objectPosition={objectPosition}
-            />
+              style={{
+                opacity: gridVisible ? 1 : 0,
+                transform: gridVisible ? "none" : "translateY(50px)",
+                transition: `opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + i * 0.15}s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + i * 0.15}s`,
+              }}
+            >
+              <StepCard
+                imageSrc={step.imageSrc}
+                imageAlt={step.imageAlt}
+                title={step.title}
+                description={step.description}
+                stepNumber={step.stepNumber}
+                rounded={step.rounded}
+                objectPosition={objectPosition}
+              />
+            </div>
           ))}
         </div>
       </div>

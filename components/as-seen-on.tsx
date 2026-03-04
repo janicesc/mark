@@ -1,3 +1,7 @@
+"use client"
+
+import { useScrollReveal } from "@/hooks/use-scroll-reveal"
+
 const logos = [
   {
     name: "Morning Brew",
@@ -57,13 +61,32 @@ const logos = [
 ]
 
 export function AsSeenOn() {
+  const [headRef, headVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.3 })
+  const [logosRef, logosVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.2 })
+
   return (
     <section className="w-full py-12 md:py-16 bg-white">
       <div className="max-w-6xl mx-auto px-6 flex flex-col items-center gap-8 md:gap-12">
-        <p className="text-sm md:text-base text-foreground/80 font-sans">
+        <p
+          ref={headRef}
+          className="text-sm md:text-base text-foreground/80 font-sans"
+          style={{
+            opacity: headVisible ? 1 : 0,
+            transform: headVisible ? "none" : "translateY(20px)",
+            transition: "opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)",
+          }}
+        >
           As seen on
         </p>
-        <div className="w-full flex flex-wrap items-center justify-center gap-8 md:gap-14 lg:gap-20 opacity-50">
+        <div
+          ref={logosRef}
+          className="w-full flex flex-wrap items-center justify-center gap-8 md:gap-14 lg:gap-20 opacity-50"
+          style={{
+            opacity: logosVisible ? 0.5 : 0,
+            transform: logosVisible ? "none" : "translateY(20px)",
+            transition: "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s",
+          }}
+        >
           {logos.map((logo) => (
             <div
               key={logo.name}

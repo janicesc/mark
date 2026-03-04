@@ -1,4 +1,7 @@
+"use client"
+
 import Image from "next/image"
+import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
 const screens = [
   {
@@ -16,12 +19,23 @@ const screens = [
 ]
 
 export function OrganizeSection() {
+  const [textRef, textVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.2 })
+  const [phonesRef, phonesVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.15 })
+
   return (
     <section className="bg-background overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 md:px-8 py-20 md:py-32">
         <div className="flex flex-col-reverse md:flex-row items-center gap-12 md:gap-16">
           {/* Phone screens hub */}
-          <div className="w-full md:w-[60%]">
+          <div
+            ref={phonesRef}
+            className="w-full md:w-[60%]"
+            style={{
+              opacity: phonesVisible ? 1 : 0,
+              transform: phonesVisible ? "none" : "translateY(50px)",
+              transition: "opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s",
+            }}
+          >
             <div className="flex items-end justify-center gap-3 md:gap-5">
               {screens.map((screen, i) => (
                 <div
@@ -38,6 +52,8 @@ export function OrganizeSection() {
                         : i === 2
                           ? "translateY(12px) rotate(3deg)"
                           : "none",
+                    opacity: phonesVisible ? (i === 1 ? 1 : 0.8) : 0,
+                    transition: `opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) ${0.2 + i * 0.15}s`,
                   }}
                 >
                   <Image
@@ -53,7 +69,15 @@ export function OrganizeSection() {
           </div>
 
           {/* Text content */}
-          <div className="w-full md:w-[40%] shrink-0">
+          <div
+            ref={textRef}
+            className="w-full md:w-[40%] shrink-0"
+            style={{
+              opacity: textVisible ? 1 : 0,
+              transform: textVisible ? "none" : "translateY(40px)",
+              transition: "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
+            }}
+          >
             <p className="text-sm uppercase tracking-widest text-muted-foreground mb-4 font-medium">
               Organize
             </p>
