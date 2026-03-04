@@ -42,13 +42,13 @@ export function ProductCloseup() {
 
             <div className="mt-8 flex flex-col gap-5 text-muted-foreground text-sm md:text-base leading-relaxed max-w-sm">
               <p>
-                Mark is the remarkably small, reading-dedicated scanning device
-                designed to capture and organize your thoughts.
+                Mark is a compact device built for readers — designed to capture
+                highlights, record ideas, and organize what you learn as you read.
               </p>
               <p>
-                It comes with an intuitive scanner that works on paper and
-                screens, voice and typed note recording, and AI-powered
-                knowledge organization built in.
+                With an intuitive scanner that works on paper and screens, voice
+                and typed notes, and built-in AI organization, Mark turns your
+                reading into structured knowledge.
               </p>
             </div>
 
@@ -131,8 +131,8 @@ export function ProductCloseup() {
             Sleek. Compact.
           </p>
           <p className="mt-3 text-xs md:text-sm uppercase tracking-wider text-muted-foreground leading-relaxed max-w-md">
-            The Mark is just small enough to fit in your pocket. It works
-            seamlessly with any book, e-reader, or screen.
+            Mark rests quietly inside your book — wherever your next read takes
+            you. Works seamlessly with books, e-readers, and screens.
           </p>
         </div>
       </div>
