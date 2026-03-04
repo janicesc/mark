@@ -59,7 +59,7 @@ export function SocialProofSection() {
           }}
         >
           <h2 className="font-sans text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-white text-balance mb-4">
-            7.4M readers discovered Mark
+            7.4 million readers discovered Mark
           </h2>
           <p className="text-white/70 text-base md:text-lg max-w-xl mx-auto text-balance leading-relaxed">
             One tweet ignited a global conversation among readers.
