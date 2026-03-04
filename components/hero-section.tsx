@@ -3,6 +3,7 @@
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import { trackMetaCustomEvent } from "@/lib/meta-pixel"
 
 export function HeroSection() {
   const [mounted, setMounted] = useState(false)
@@ -70,6 +71,7 @@ export function HeroSection() {
           >
             <Link
               href="/reserve"
+              onClick={() => trackMetaCustomEvent("ReserveCTAClick", { source: "hero" })}
               className="inline-flex items-center gap-2.5 bg-[#FFDB01] text-black px-6 py-3.5 rounded-full text-sm font-semibold hover:bg-[#FFDB01]/90 transition-colors duration-300"
             >
               <ArrowRight className="h-4 w-4" />

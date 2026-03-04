@@ -6,6 +6,7 @@ import { Shield, Award, Handshake } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import { SiteFooter } from "@/components/site-footer"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
+import { trackMetaLead } from "@/lib/meta-pixel"
 
 const productImages = [
   { src: "/images/mark-light.png", alt: "Mark device in silver finish, three-quarter view" },
@@ -123,6 +124,7 @@ export function ReserveContent() {
                 <span className="text-lg lg:text-2xl font-medium text-black">$70</span>
                 <a
                   href="https://mark.engineering/reserve"
+                  onClick={() => trackMetaLead({ content_name: "Reserve Now" })}
                   className="flex-1 sm:flex-initial flex items-center justify-center h-12 rounded-[4px] bg-black text-white text-sm font-semibold transition-colors duration-200 hover:bg-[#FFDB01] hover:text-black min-w-[140px]"
                 >
                   Reserve Now

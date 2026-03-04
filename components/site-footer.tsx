@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, ArrowUp } from "lucide-react"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
+import { trackMetaCustomEvent } from "@/lib/meta-pixel"
 
 const footerLinks = {
   Company: [
@@ -67,6 +68,7 @@ export function SiteFooter() {
             </p>
             <Link
               href="#community"
+              onClick={() => trackMetaCustomEvent("JoinWaitlistClick", { source: "footer" })}
               className="group relative inline-flex h-10 w-[100px] items-center rounded-full bg-white transition-colors duration-200 hover:bg-[#FFDB01]"
               aria-label="Go to waitlist signup"
             >

@@ -23,7 +23,17 @@ export function trackMetaEvent(
   }
 }
 
-/** Fire Lead event (e.g. after waitlist signup). */
+/** Fire Lead event (e.g. after waitlist signup, Reserve Now click). */
 export function trackMetaLead(params?: Record<string, unknown>): void {
   trackMetaEvent("Lead", params)
+}
+
+/** Fire a custom event (for CTA clicks, etc.). */
+export function trackMetaCustomEvent(
+  eventName: string,
+  params?: Record<string, unknown>
+): void {
+  if (typeof window !== "undefined" && window.fbq) {
+    window.fbq("trackCustom", eventName, params)
+  }
 }

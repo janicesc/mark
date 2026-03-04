@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from "react"
 import { usePathname, useRouter } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
+import { trackMetaCustomEvent } from "@/lib/meta-pixel"
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
@@ -73,7 +74,10 @@ export function Navbar() {
           </Link>
           <Link
             href="#community"
-            onClick={(e) => smoothScroll(e, "community")}
+            onClick={(e) => {
+              trackMetaCustomEvent("JoinWaitlistClick", { source: "navbar" })
+              smoothScroll(e, "community")
+            }}
             className={`text-sm font-medium transition-colors duration-300 ${
               useDarkText
                 ? "text-foreground/70 hover:text-foreground"
@@ -84,6 +88,7 @@ export function Navbar() {
           </Link>
           <Link
             href="/reserve"
+            onClick={() => trackMetaCustomEvent("ReserveCTAClick", { source: "navbar" })}
             className="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 bg-[#FFDB01] text-black hover:bg-[#FFDB01]/90"
           >
             Reserve & save
