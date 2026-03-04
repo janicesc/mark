@@ -75,8 +75,8 @@ export function CaptureSection() {
                   style={{ backfaceVisibility: "hidden" }}
                 >
                   <Image
-                    src="/images/physical-scan.jpg"
-                    alt="Mark scanning highlighted text on a physical book"
+                    src="/images/capture-physical.jpg"
+                    alt="Mark device scanning highlighted text on a physical book page with scanner light visible"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 60vw"
@@ -88,8 +88,8 @@ export function CaptureSection() {
                   style={{ backfaceVisibility: "hidden" }}
                 >
                   <Image
-                    src="/images/digital-scan.jpg"
-                    alt="Mark scanning text on an e-reader screen"
+                    src="/images/capture-digital.jpg"
+                    alt="Mark device scanning text on a Kindle e-reader screen with scanner light visible"
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 60vw"
