@@ -8,26 +8,26 @@ export function BeyondPaperSection() {
   const [mediaRef, mediaVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.15 })
 
   return (
-    <section className="bg-[#212121] text-[#ECEBE5] overflow-hidden">
-      <div className="mx-auto max-w-[1280px] px-5 md:px-8 py-10 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center min-h-[50vh]">
+    <section className="bg-[#0a0a0a] text-white overflow-hidden">
+      <div className="mx-auto max-w-7xl px-6 md:px-8 py-20 md:py-32">
+        <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
           {/* Text content */}
           <div
             ref={textRef}
-            className="py-10"
+            className="w-full md:w-[40%] shrink-0"
             style={{
               opacity: textVisible ? 1 : 0,
               transform: textVisible ? "none" : "translateY(40px)",
               transition: "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
             }}
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#85817F] mb-4">
+            <p className="text-sm uppercase tracking-widest text-white/50 mb-4 font-medium">
               Beyond paper
             </p>
-            <h2 className="font-sans text-[32px] font-semibold leading-[40px] text-[#ECEBE5] mb-6 md:leading-[50px]">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight text-white leading-tight text-balance mb-6">
               Turn spoken thoughts into structured knowledge.
             </h2>
-            <p className="text-base text-[#ECEBE5]/[0.92] leading-[1.65]">
+            <p className="text-base md:text-lg text-white/60 leading-relaxed max-w-sm">
               Capture lectures, conversations, and audiobooks — automatically
               transcribed and linked to your reading.
             </p>
@@ -36,19 +36,20 @@ export function BeyondPaperSection() {
           {/* Media */}
           <div
             ref={mediaRef}
+            className="w-full md:w-[60%]"
             style={{
               opacity: mediaVisible ? 1 : 0,
               transform: mediaVisible ? "none" : "translateY(50px) scale(0.97)",
               transition: "opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s",
             }}
           >
-            <div className="relative w-full aspect-[3/2] overflow-hidden bg-[#F5F5F4]">
+            <div className="relative w-full aspect-[3/2] rounded-2xl overflow-hidden">
               <Image
                 src="/images/voice-capture.jpg"
                 alt="Voice capture and transcription with Mark device"
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
+                sizes="(max-width: 768px) 100vw, 60vw"
               />
             </div>
           </div>

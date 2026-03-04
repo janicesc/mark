@@ -25,18 +25,13 @@ export function HeroSection() {
         aria-hidden="true"
       />
       {/* Overlay */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: "linear-gradient(135deg, rgba(33,33,33,0.75) 0%, rgba(33,33,33,0.4) 50%, rgba(33,33,33,0.15) 100%)",
-        }}
-      />
+      <div className="absolute inset-0 bg-black/50" />
 
       {/* Content */}
-      <div className="relative z-10 max-w-[560px] w-full px-5 md:px-8 pt-[100px] md:pt-[120px]">
-        <div>
+      <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-8 w-full py-32 md:py-40">
+        <div className="max-w-2xl">
           <p
-            className="text-xs font-semibold uppercase tracking-[0.12em] text-[#FFDB01] mb-4"
+            className="text-sm md:text-base uppercase tracking-widest text-white/70 mb-5 font-medium"
             style={{
               opacity: mounted ? 1 : 0,
               transform: mounted ? "none" : "translateY(30px)",
@@ -46,7 +41,7 @@ export function HeroSection() {
             The World{"'"}s First AI Bookmark
           </p>
           <h1
-            className="font-sans text-[clamp(2rem,5vw,3.25rem)] font-semibold leading-[1.25] text-white mb-6"
+            className="font-serif text-4xl md:text-5xl lg:text-7xl font-normal tracking-tight text-white leading-tight mb-6"
             style={{
               opacity: mounted ? 1 : 0,
               transform: mounted ? "none" : "translateY(30px)",
@@ -57,7 +52,7 @@ export function HeroSection() {
             <span className="block">Retrieve anytime.</span>
           </h1>
           <p
-            className="text-base md:text-lg text-white/[0.95] leading-relaxed max-w-full mb-10"
+            className="text-base md:text-lg text-white/70 leading-relaxed max-w-md mb-10"
             style={{
               opacity: mounted ? 1 : 0,
               transform: mounted ? "none" : "translateY(30px)",
@@ -77,7 +72,7 @@ export function HeroSection() {
           >
             <Link
               href="#reserve"
-              className="inline-flex items-center gap-2.5 bg-[#FFDB01] text-black px-6 py-3.5 text-[0.9375rem] font-semibold hover:bg-[#E6C801] transition-all duration-200 hover:-translate-y-px"
+              className="inline-flex items-center gap-2.5 bg-white text-black px-6 py-3.5 rounded-full text-sm font-semibold hover:bg-white/90 transition-colors duration-300"
             >
               <ArrowRight className="h-4 w-4" />
               Get early access

@@ -4,31 +4,31 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #ECEBE5;
-  --foreground: #212121;
-  --card: #ECEBE5;
-  --card-foreground: #212121;
-  --popover: #ECEBE5;
-  --popover-foreground: #212121;
-  --primary: #212121;
-  --primary-foreground: #ECEBE5;
-  --secondary: #F5F5F4;
-  --secondary-foreground: #212121;
-  --muted: #F5F5F4;
-  --muted-foreground: #85817F;
-  --accent: #FFDB01;
-  --accent-foreground: #000000;
+  --background: oklch(0.95 0.01 80);
+  --foreground: oklch(0.15 0.01 60);
+  --card: oklch(0.95 0.01 80);
+  --card-foreground: oklch(0.15 0.01 60);
+  --popover: oklch(0.95 0.01 80);
+  --popover-foreground: oklch(0.15 0.01 60);
+  --primary: oklch(0.15 0.01 60);
+  --primary-foreground: oklch(0.95 0.01 80);
+  --secondary: oklch(0.90 0.015 75);
+  --secondary-foreground: oklch(0.15 0.01 60);
+  --muted: oklch(0.90 0.015 75);
+  --muted-foreground: oklch(0.45 0.02 60);
+  --accent: oklch(0.88 0.02 70);
+  --accent-foreground: oklch(0.15 0.01 60);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: #CECDC8;
-  --input: #CECDC8;
-  --ring: #85817F;
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --radius: 0rem;
+  --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -37,17 +37,6 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
-
-  /* Mark theme tokens */
-  --color-beige: #ECEBE5;
-  --color-beige-warm: #F5F5F4;
-  --color-charcoal: #212121;
-  --color-dark-grey: #333333;
-  --color-light-grey: #CECDC8;
-  --color-brown: #85817F;
-  --color-yellow: #FFDB01;
-  --color-white: #FFFFFF;
-  --btn-primary-text: #000000;
 }
 
 .dark {
@@ -86,8 +75,8 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-dm-sans), 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-serif: var(--font-dm-sans), 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: var(--font-dm-sans), 'DM Sans', sans-serif;
+  --font-serif: var(--font-playfair), 'Playfair Display', Georgia, serif;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -127,16 +116,11 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
-    -webkit-font-smoothing: antialiased;
   }
 }

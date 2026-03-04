@@ -9,6 +9,7 @@ export function CaptureSection() {
   const [sectionRef, sectionVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.2 })
   const [flipRef, flipVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.3 })
 
+  // Auto-flip when the card becomes visible
   useEffect(() => {
     if (!flipVisible) return
     const interval = setInterval(() => {
@@ -19,25 +20,25 @@ export function CaptureSection() {
 
   return (
     <section className="bg-background overflow-hidden">
-      <div ref={sectionRef} className="mx-auto max-w-[1280px] px-5 md:px-8 py-10 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center min-h-[50vh]">
+      <div ref={sectionRef} className="mx-auto max-w-7xl px-6 md:px-8 py-20 md:py-32">
+        <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
           {/* Text content */}
           <div
-            className="py-10"
+            className="w-full md:w-[40%] shrink-0"
             style={{
               opacity: sectionVisible ? 1 : 0,
               transform: sectionVisible ? "none" : "translateY(40px)",
               transition: "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
             }}
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-[#85817F] mb-4">
+            <p className="text-sm uppercase tracking-widest text-muted-foreground mb-4 font-medium">
               Capture
             </p>
-            <h2 className="font-sans text-[32px] font-semibold leading-[40px] text-[#000] mb-6 md:leading-[50px]">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-normal tracking-tight text-foreground leading-tight text-balance mb-6">
               Capture with ease:{" "}
               <span className="block">physical or digital.</span>
             </h2>
-            <p className="text-base text-[#333] leading-[1.65]">
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-sm">
               Wherever you read — from eBooks to paperbacks — Mark captures it.
             </p>
           </div>
@@ -45,6 +46,7 @@ export function CaptureSection() {
           {/* Flip media */}
           <div
             ref={flipRef}
+            className="w-full md:w-[60%]"
             style={{
               opacity: flipVisible ? 1 : 0,
               transform: flipVisible ? "none" : "translateY(50px)",
@@ -67,8 +69,9 @@ export function CaptureSection() {
                 }`}
                 style={{ transformStyle: "preserve-3d" }}
               >
+                {/* Front: Physical */}
                 <div
-                  className="absolute inset-0 overflow-hidden bg-[#F5F5F4]"
+                  className="absolute inset-0 rounded-2xl overflow-hidden"
                   style={{ backfaceVisibility: "hidden" }}
                 >
                   <Image
@@ -76,11 +79,12 @@ export function CaptureSection() {
                     alt="Mark scanning highlighted text on a physical book"
                     fill
                     className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 768px) 100vw, 60vw"
                   />
                 </div>
+                {/* Back: Digital */}
                 <div
-                  className="absolute inset-0 overflow-hidden bg-[#F5F5F4] [transform:rotateY(180deg)]"
+                  className="absolute inset-0 rounded-2xl overflow-hidden [transform:rotateY(180deg)]"
                   style={{ backfaceVisibility: "hidden" }}
                 >
                   <Image
@@ -88,19 +92,19 @@ export function CaptureSection() {
                     alt="Mark scanning text on an e-reader screen"
                     fill
                     className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 768px) 100vw, 60vw"
                   />
                 </div>
               </div>
               <div className="mt-4 flex items-center justify-center gap-3">
                 <span
                   className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    !showDigital ? "bg-[#212121] scale-100" : "bg-[#212121]/30 scale-75"
+                    !showDigital ? "bg-foreground scale-100" : "bg-foreground/30 scale-75"
                   }`}
                 />
                 <span
                   className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    showDigital ? "bg-[#212121] scale-100" : "bg-[#212121]/30 scale-75"
+                    showDigital ? "bg-foreground scale-100" : "bg-foreground/30 scale-75"
                   }`}
                 />
               </div>
