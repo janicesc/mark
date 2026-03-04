@@ -43,7 +43,7 @@ export function SocialProofSection() {
             7.4M readers discovered Mark
           </h2>
           <p className="text-muted-foreground text-base md:text-lg max-w-xl mx-auto text-balance leading-relaxed">
-            A single tweet introducing Mark sparked a global conversation among book lovers.
+            A tweet that sparked conversation across the reading community.
           </p>
         </div>
 
