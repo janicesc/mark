@@ -113,7 +113,7 @@ export function ReserveContent() {
                   <p>Taxes calculated at checkout.</p>
                 </div>
                 <div className="h-px bg-black/10 my-10" style={{ opacity: infoVisible ? 1 : 0, transition: "opacity 0.5s ease 0.35s" }} />
-                <div className="text-sm text-foreground/60 leading-relaxed" style={{ opacity: infoVisible ? 1 : 0, transition: "opacity 0.5s ease 0.4s" }}>
+                <div className="text-sm text-foreground/60 leading-relaxed text-center" style={{ opacity: infoVisible ? 1 : 0, transition: "opacity 0.5s ease 0.4s" }}>
                   <p>Secure your exclusive discount with a $10 deposit.</p>
                   <p>Lock in $80 off the $150 MSRP — yours for just $70.</p>
                 </div>
