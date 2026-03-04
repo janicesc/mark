@@ -9,13 +9,21 @@ export function CaptureSection() {
   const [sectionRef, sectionVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.2 })
   const [flipRef, flipVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.3 })
 
-  // Auto-flip when the card becomes visible
+  // Auto-flip when the card becomes visible: first flip sooner, then every 3.5s
   useEffect(() => {
     if (!flipVisible) return
+    const firstFlipDelay = 900
+    const intervalDelay = 3500
+    const firstTimer = setTimeout(() => {
+      setShowDigital((prev) => !prev)
+    }, firstFlipDelay)
     const interval = setInterval(() => {
       setShowDigital((prev) => !prev)
-    }, 3500)
-    return () => clearInterval(interval)
+    }, intervalDelay)
+    return () => {
+      clearTimeout(firstTimer)
+      clearInterval(interval)
+    }
   }, [flipVisible])
 
   return (
