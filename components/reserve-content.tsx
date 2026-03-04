@@ -13,20 +13,20 @@ const productImages = [
     alt: "Mark device in silver finish, three-quarter view",
   },
   {
-    src: "/images/mark-hero-1.jpg",
-    alt: "Mark device product shot, front angle",
-  },
-  {
-    src: "/images/mark-hero-2.jpg",
-    alt: "Mark device close-up of scanner head detail",
-  },
-  {
     src: "/images/mark-dark.png",
     alt: "Mark device in black finish",
   },
   {
-    src: "/images/mark-hero-3.jpg",
-    alt: "Mark device side profile view",
+    src: "/images/mark-light-handheld.png",
+    alt: "Silver Mark device held in hand, showing compact form factor",
+  },
+  {
+    src: "/images/mark-dark-handheld.png",
+    alt: "Black Mark device held in hand, showing compact form factor",
+  },
+  {
+    src: "/images/smartest-bookmark.png",
+    alt: "The Smartest bookmark - Mark device resting on a desk beside an open book",
   },
 ]
 
