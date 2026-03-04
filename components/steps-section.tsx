@@ -23,13 +23,13 @@ const steps = [
   },
   {
     imageSrc: "/images/step-3.png",
-    imageAlt: "Mark app interface showing recently scanned quotes and organized notes",
+    imageAlt: "Mark app note card showing a quote from Zero to One with tags for Business, Startups, and Growth",
     title: "Organize your knowledge",
     description:
       "Your highlights, notes, and ideas are automatically organized, searchable, and enhanced with AI.",
     rounded: "bottom-right" as const,
     stepNumber: 3,
-    objectPosition: "top",
+    objectPosition: "center" as string | undefined,
   },
 ]
 
