@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic"
 export const metadata: Metadata = {
   title: "Reserve & Save 50% | Mark",
   description:
-    "Secure your exclusive discount on Mark with a $10 deposit. Lock in $80 off our $150 MSRP.",
+    "Secure your exclusive discount on Mark with a $1 deposit. Lock in $80 off our $150 MSRP.",
 }
 
 export default function ReservePage() {

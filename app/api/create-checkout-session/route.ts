@@ -3,7 +3,7 @@ import Stripe from "stripe"
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
-const RESERVATION_AMOUNT_CENTS = 7000 // $70.00
+const RESERVATION_AMOUNT_CENTS = 100 // $1.00 deposit
 const CURRENCY = "usd"
 
 export async function POST(req: NextRequest) {
@@ -19,20 +19,50 @@ export async function POST(req: NextRequest) {
     const successUrl = `${origin}/reserve/success?session_id={CHECKOUT_SESSION_ID}`
     const cancelUrl = `${origin}/reserve?canceled=1`
 
-    const lineItems: Stripe.Checkout.SessionCreateParams["line_items"] = process.env.STRIPE_PRICE_ID
-      ? [{ price: process.env.STRIPE_PRICE_ID, quantity: 1 }]
+    // Use selected finish (light/dark) so Stripe shows the correct product image in the order summary (right side)
+    let finish: "light" | "dark" = "light"
+    try {
+      const body = await req.json()
+      if (body?.finish === "dark" || body?.finish === "light") finish = body.finish
+    } catch {
+      // ignore invalid JSON
+    }
+
+    // When using a Stripe Price ID, Stripe uses the image on that Product — you can't override it.
+    // So: (1) use two Price IDs (Light + Dark) and we pick the right one here, or
+    // (2) leave STRIPE_PRICE_ID unset and we use price_data + product_data with our image URL.
+    const priceIdLight = process.env.STRIPE_PRICE_ID_LIGHT || process.env.STRIPE_PRICE_ID
+    const priceIdDark = process.env.STRIPE_PRICE_ID_DARK
+    const productId = process.env.STRIPE_PRODUCT_ID
+
+    // Image URL for Stripe Checkout. Must be publicly reachable: use HTTPS in production.
+    // On localhost Stripe cannot fetch the image, so it will appear only when deployed.
+    const productImage =
+      origin && (origin.startsWith("http://") || origin.startsWith("https://"))
+        ? `${origin}/images/mark-${finish}.png`
+        : undefined
+
+    const useStripeProduct =
+      finish === "dark" && priceIdDark
+        ? priceIdDark
+        : priceIdLight
+
+    const lineItems: Stripe.Checkout.SessionCreateParams["line_items"] = useStripeProduct
+      ? [{ price: useStripeProduct, quantity: 1 }]
       : [
           {
             price_data: {
               currency: CURRENCY,
               unit_amount: RESERVATION_AMOUNT_CENTS,
-              product_data: {
-                name: "Mark — Reserve your device",
-                description: "Secure your exclusive discount. Lock in $80 off the $150 MSRP — yours for just $70.",
-                images: req.headers.get("origin")
-                  ? [`${origin}/images/mark-light.png`]
-                  : undefined,
-              },
+              ...(productId
+                ? { product: productId }
+                : {
+                    product_data: {
+                      name: "Mark — Reserve your device",
+                      description: "Secure your spot with a $1 deposit. Lock in $80 off the $150 MSRP — yours for just $70.",
+                      images: productImage ? [productImage] : undefined,
+                    },
+                  }),
             },
             quantity: 1,
           },

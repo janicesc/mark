@@ -142,10 +142,10 @@ export function ReserveContent() {
                     <button
                       type="button"
                       onClick={() => handleFinishSelect("light")}
-                      className={`flex items-center gap-3 rounded-[4px] border-[1.34px] px-4 py-3 transition-shadow hover:border-[#dcdcdc] hover:shadow-[0_2px_4px_rgba(0,0,0,.05)] ${
+                      className={`flex items-center gap-3 rounded-[4px] border-[1.34px] bg-white px-4 py-3 transition-shadow hover:border-[#dcdcdc] hover:shadow-[0_2px_4px_rgba(0,0,0,.05)] ${
                         selectedFinish === "light"
-                          ? "border-black bg-black/[0.04] shadow-[0_2px_4px_rgba(0,0,0,.08)]"
-                          : "border-black/[0.05] bg-white"
+                          ? "border-[#dcdcdc] shadow-[0_2px_4px_rgba(0,0,0,.05)]"
+                          : "border-black/[0.05]"
                       }`}
                     >
                       <div className="relative w-10 h-10">
@@ -156,10 +156,10 @@ export function ReserveContent() {
                     <button
                       type="button"
                       onClick={() => handleFinishSelect("dark")}
-                      className={`flex items-center gap-3 rounded-[4px] border-[1.34px] px-4 py-3 transition-shadow hover:border-[#dcdcdc] hover:shadow-[0_2px_4px_rgba(0,0,0,.05)] ${
+                      className={`flex items-center gap-3 rounded-[4px] border-[1.34px] bg-white px-4 py-3 transition-shadow hover:border-[#dcdcdc] hover:shadow-[0_2px_4px_rgba(0,0,0,.05)] ${
                         selectedFinish === "dark"
-                          ? "border-black bg-black/[0.04] shadow-[0_2px_4px_rgba(0,0,0,.08)]"
-                          : "border-black/[0.05] bg-white"
+                          ? "border-[#dcdcdc] shadow-[0_2px_4px_rgba(0,0,0,.05)]"
+                          : "border-black/[0.05]"
                       }`}
                     >
                       <div className="relative w-10 h-10">
@@ -178,11 +178,6 @@ export function ReserveContent() {
               </div>
 
               <div className="sticky bottom-0 left-0 border-t border-black/10 bg-white px-4 py-4 lg:px-4 lg:py-4 flex flex-col gap-3 w-full">
-                {checkoutError && (
-                  <p className="text-sm font-medium text-red-600" role="alert">
-                    {checkoutError}
-                  </p>
-                )}
                 <div className="flex justify-end">
                   <button
                     type="button"
