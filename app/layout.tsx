@@ -10,7 +10,7 @@ const siteUrl =
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: 'Mark – The World\'s First AI Bookmark | Mark Engineering',
+  title: 'Mark – The World\'s First AI Bookmark',
   description: 'Turn what you underline into searchable knowledge. Mark captures your highlights and turns physical notes into digital insights.',
   generator: 'v0.app',
   openGraph: {
@@ -37,6 +37,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
+      { url: '/favicon.ico', sizes: '256x256', type: 'image/x-icon' },
       {
         url: '/icon-light-32x32.png',
         media: '(prefers-color-scheme: light)',
