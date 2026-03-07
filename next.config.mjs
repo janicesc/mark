@@ -8,6 +8,7 @@ const nextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "iconlogovector.com", pathname: "/**" },
       { protocol: "https", hostname: "digitalfrontier.com", pathname: "/**" },
+      { protocol: "https", hostname: "images.seeklogo.com", pathname: "/**" },
     ],
   },
 }

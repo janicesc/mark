@@ -64,11 +64,11 @@ function LogoIcon({ name }: { name: string }) {
     case "Product Hunt":
       return (
         <Image
-          src="https://iconlogovector.com/uploads/images/2025/01/lg-677913f1f1034-Product-Hunt.webp"
+          src="https://images.seeklogo.com/logo-png/33/1/product-hunt-logo-png_seeklogo-339102.png"
           alt="Product Hunt"
-          width={220}
-          height={56}
-          className="h-7 w-auto min-h-[26px] object-contain"
+          width={120}
+          height={26}
+          className={`${LOGO_HEIGHT} w-auto object-contain`}
           unoptimized
         />
       )
