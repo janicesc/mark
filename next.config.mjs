@@ -5,6 +5,10 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
+    remotePatterns: [
+      { protocol: "https", hostname: "iconlogovector.com", pathname: "/**" },
+      { protocol: "https", hostname: "digitalfrontier.com", pathname: "/**" },
+    ],
   },
 }
 

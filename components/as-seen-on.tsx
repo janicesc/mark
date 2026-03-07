@@ -64,10 +64,10 @@ function LogoIcon({ name }: { name: string }) {
     case "Product Hunt":
       return (
         <Image
-          src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Product_Hunt_Logo.png"
+          src="https://iconlogovector.com/uploads/images/2025/01/lg-677913f1f1034-Product-Hunt.webp"
           alt="Product Hunt"
-          width={160}
-          height={28}
+          width={220}
+          height={56}
           className="h-7 w-auto min-h-[26px] object-contain"
           unoptimized
         />
@@ -85,9 +85,14 @@ function LogoIcon({ name }: { name: string }) {
       )
     case "Digital Frontier":
       return (
-        <span className="text-base italic leading-6 text-inherit">
-          +digital frontier
-        </span>
+        <Image
+          src="https://digitalfrontier.com/assets/df-logo-black-CqSl-n7C.png"
+          alt="Digital Frontier"
+          width={160}
+          height={28}
+          className={`${LOGO_HEIGHT} w-auto object-contain`}
+          unoptimized
+        />
       )
     case "Superhuman AI":
       return (
