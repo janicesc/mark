@@ -19,34 +19,34 @@ export default function Home() {
         {/* 1. Hero */}
         <HeroSection />
 
-        {/* Waitlist Banner */}
+        {/* 2. As seen on */}
+        <AsSeenOn />
+
+        {/* 3. Waitlist Banner */}
         <WaitlistBanner />
 
-        {/* 2. Capture */}
+        {/* 4. Capture */}
         <CaptureSection />
 
-        {/* 3. Organize */}
+        {/* 5. Organize */}
         <OrganizeSection />
 
-        {/* 4. Beyond paper */}
+        {/* 6. Beyond paper */}
         <BeyondPaperSection />
 
-        {/* 5. Product closeup */}
+        {/* 7. Product closeup */}
         <ProductCloseup />
 
-        {/* 6. How Mark Works */}
+        {/* 8. How Mark Works */}
         <div id="how-it-works">
           <StepsSection />
         </div>
 
-        {/* 7. Social Proof */}
+        {/* 9. Social Proof */}
         <SocialProofSection />
 
-        {/* 8. Our Mission */}
+        {/* 10. Mission */}
         <MissionSection />
-
-        {/* 8. As seen on */}
-        <AsSeenOn />
       </main>
 
       {/* Footer */}

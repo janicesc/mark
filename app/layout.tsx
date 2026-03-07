@@ -2,9 +2,10 @@ import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-// Use deployment URL so og:image works when sharing (Vercel sets VERCEL_URL; use env override for production)
+// Use deployment URL so og:image works when sharing (set NEXT_PUBLIC_SITE_URL in prod, or Vercel sets VERCEL_URL)
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ||
+  process.env.NEXT_PUBLIC_APP_URL ||
   (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://v0-marklanding.vercel.app')
 
 export const metadata: Metadata = {
