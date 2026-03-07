@@ -6,11 +6,11 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
 const variants = {
   silver: {
-    src: "/images/mark-light.png",
+    src: "/images/mark-light-front.png",
     alt: "Mark device in silver finish - premium 3D render showing the scanner and reader body",
   },
   black: {
-    src: "/images/mark-dark.png",
+    src: "/images/mark-dark-front.png",
     alt: "Mark device in black finish - premium 3D render showing the scanner and reader body",
   },
 }
@@ -91,7 +91,7 @@ export function ProductCloseup() {
               transition: "opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s",
             }}
           >
-            {/* Frame matches mark-dark.png (1136×1420) and Reserve page viewer for identical sizing */}
+            {/* Frame matches side-view aspect and Reserve page viewer for identical sizing */}
             <div className="relative w-full max-w-[480px] aspect-[1136/1420]">
               <Image
                 src={variants.silver.src}
@@ -100,8 +100,9 @@ export function ProductCloseup() {
                 className={`object-contain object-center transition-opacity duration-500 ease-in-out ${
                   activeColor === "silver" ? "opacity-100" : "opacity-0"
                 }`}
-                sizes="(max-width: 768px) 100vw, 60vw"
+                sizes="(max-width: 768px) 100vw, 960px"
                 priority
+                quality={90}
               />
               <Image
                 src={variants.black.src}
@@ -110,7 +111,8 @@ export function ProductCloseup() {
                 className={`object-contain object-center transition-opacity duration-500 ease-in-out ${
                   activeColor === "black" ? "opacity-100" : "opacity-0"
                 }`}
-                sizes="(max-width: 768px) 100vw, 60vw"
+                sizes="(max-width: 768px) 100vw, 960px"
+                quality={90}
               />
             </div>
           </div>

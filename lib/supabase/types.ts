@@ -9,5 +9,6 @@ export type ReserveSignup = {
   id: string
   email: string | null
   source: string | null
+  finish: "light" | "dark" | null
   created_at: string
 }

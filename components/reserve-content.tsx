@@ -9,9 +9,11 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 import { trackMetaLead } from "@/lib/meta-pixel"
 
 const productImages = [
-  { src: "/images/mark-light.png", alt: "Mark device in silver finish, three-quarter view" },
-  { src: "/images/mark-dark.png", alt: "Mark device in black finish" },
+  { src: "/images/mark-light-front.png", alt: "Mark device in silver finish, front view" },
+  { src: "/images/mark-light-side.png", alt: "Mark device in silver finish, side view" },
   { src: "/images/mark-light-handheld.png", alt: "Silver Mark device held in hand" },
+  { src: "/images/mark-dark-front.png", alt: "Mark device in black finish, front view" },
+  { src: "/images/mark-dark-side.png", alt: "Mark device in black finish, side view" },
   { src: "/images/mark-dark-handheld.png", alt: "Black Mark device held in hand" },
   { src: "/images/smartest-bookmark.png", alt: "Mark device resting on a desk beside an open book" },
 ]
@@ -36,7 +38,7 @@ export function ReserveContent() {
   const handleFinishSelect = useCallback((finish: Finish) => {
     setSelectedFinish(finish)
     setCheckoutError(null)
-    setActiveIndex(finish === "light" ? 0 : 1)
+    setActiveIndex(finish === "light" ? 0 : 3)
   }, [])
 
   const handleReserveClick = useCallback(async () => {
@@ -48,6 +50,7 @@ export function ReserveContent() {
     }
     setIsCheckingOut(true)
     trackMetaLead({ content_name: "Reserve Now" })
+
     try {
       const res = await fetch("/api/create-checkout-session", {
         method: "POST",
@@ -91,7 +94,7 @@ export function ReserveContent() {
                     }}
                   >
                     <div className="relative w-full max-w-[480px] aspect-[1136/1420]">
-                      <Image src={img.src} alt={img.alt} fill className="object-contain" sizes="(max-width: 1024px) 100vw, 60vw" priority={i === 0} />
+                      <Image src={img.src} alt={img.alt} fill className="object-contain" sizes="(max-width: 1024px) 100vw, 960px" priority={i === 0} quality={90} />
                     </div>
                   </div>
                 ))}
@@ -112,14 +115,14 @@ export function ReserveContent() {
             <div className="w-full lg:w-[40%] xl:w-[38%] flex flex-col bg-white lg:bg-[#fafafa]">
               <div ref={infoRef} className="flex-1 overflow-y-auto px-6 md:px-8 lg:px-10 py-8 lg:pt-7">
                 <h1
-                  className="hidden lg:block font-sans text-2xl md:text-3xl font-light tracking-tight text-black pb-2"
+                  className="hidden lg:block font-sans text-2xl md:text-3xl font-light tracking-tight text-black pb-6"
                   style={{ opacity: infoVisible ? 1 : 0, transform: infoVisible ? "none" : "translateY(12px)", transition: "opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s" }}
                 >
                   <span className="text-black/20">Reserve your</span>
                   <br />
                   <span className="text-black">Mark</span>
                 </h1>
-                <p className="lg:hidden font-sans text-2xl font-medium text-foreground tracking-tight mb-2" style={{ opacity: infoVisible ? 1 : 0, transition: "opacity 0.5s ease" }}>
+                <p className="lg:hidden font-sans text-2xl font-medium text-foreground tracking-tight mb-6" style={{ opacity: infoVisible ? 1 : 0, transition: "opacity 0.5s ease" }}>
                   Reserve your Mark
                 </p>
 
@@ -149,7 +152,7 @@ export function ReserveContent() {
                       }`}
                     >
                       <div className="relative w-10 h-10">
-                        <Image src="/images/mark-light.png" alt="Light" fill className="object-contain" />
+                        <Image src="/images/mark-light-front.png" alt="Light" fill className="object-contain" sizes="80px" quality={90} />
                       </div>
                       <span className="text-sm font-medium text-black">Light</span>
                     </button>
@@ -163,7 +166,7 @@ export function ReserveContent() {
                       }`}
                     >
                       <div className="relative w-10 h-10">
-                        <Image src="/images/mark-dark.png" alt="Dark" fill className="object-contain" />
+                        <Image src="/images/mark-dark-front.png" alt="Dark" fill className="object-contain" sizes="80px" quality={90} />
                       </div>
                       <span className="text-sm font-medium text-black">Dark</span>
                     </button>
@@ -171,7 +174,7 @@ export function ReserveContent() {
                 </div>
 
                 <div className="h-px bg-black/10 my-10" style={{ opacity: infoVisible ? 1 : 0, transition: "opacity 0.5s ease 0.35s" }} />
-                <div className="text-sm text-foreground/60 leading-relaxed text-center" style={{ opacity: infoVisible ? 1 : 0, transition: "opacity 0.5s ease 0.4s" }}>
+                <div className="text-sm text-foreground/60 leading-relaxed text-left" style={{ opacity: infoVisible ? 1 : 0, transition: "opacity 0.5s ease 0.4s" }}>
                   <p>Secure your exclusive discount with a $1 deposit.</p>
                   <p>Lock in $80 off the $150 MSRP — yours for just $70.</p>
                 </div>

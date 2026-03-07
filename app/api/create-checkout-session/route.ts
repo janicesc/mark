@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import Stripe from "stripe"
+import { getClient } from "@/lib/supabase/client"
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
 
@@ -39,7 +40,7 @@ export async function POST(req: NextRequest) {
     // On localhost Stripe cannot fetch the image, so it will appear only when deployed.
     const productImage =
       origin && (origin.startsWith("http://") || origin.startsWith("https://"))
-        ? `${origin}/images/mark-${finish}.png`
+        ? `${origin}/images/mark-${finish}-front.png`
         : undefined
 
     const useStripeProduct =
@@ -68,12 +69,29 @@ export async function POST(req: NextRequest) {
           },
         ]
 
+    // One row per session: create reserve_signup now so webhook can update it on completion
+    let reserveSignupId: string | null = null
+    const supabase = getClient()
+    if (supabase) {
+      const { data } = await supabase
+        .from("reserve_signups")
+        .insert({
+          email: null,
+          source: "reserve_page",
+          finish,
+        })
+        .select("id")
+        .single()
+      reserveSignupId = data?.id ?? null
+    }
+
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items: lineItems,
       success_url: successUrl,
       cancel_url: cancelUrl,
       submit_type: "pay",
+      metadata: { finish, ...(reserveSignupId && { reserve_signup_id: reserveSignupId }) },
     })
 
     if (!session.url) {

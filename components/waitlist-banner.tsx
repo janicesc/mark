@@ -2,20 +2,35 @@
 
 import { ArrowRight } from "lucide-react"
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 import { trackMetaLead } from "@/lib/meta-pixel"
+import { getClient } from "@/lib/supabase/client"
+
+const WAITLIST_SOURCE = "waitlist_banner"
 
 export function WaitlistBanner() {
   const [email, setEmail] = useState("")
   const [submitted, setSubmitted] = useState(false)
+  const router = useRouter()
   const [sectionRef, sectionVisible] = useScrollReveal<HTMLElement>({ threshold: 0.2 })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (email.trim()) {
-      setSubmitted(true)
-      trackMetaLead({ content_name: "Waitlist signup" })
+    const trimmed = email.trim()
+    if (!trimmed) return
+
+    const supabase = getClient()
+    if (supabase) {
+      await supabase.from("waitlist_signups").insert({
+        email: trimmed,
+        source: WAITLIST_SOURCE,
+      })
     }
+
+    setSubmitted(true)
+    trackMetaLead({ content_name: "Waitlist signup" })
+    setTimeout(() => router.push("/reserve"), 2000)
   }
 
   return (

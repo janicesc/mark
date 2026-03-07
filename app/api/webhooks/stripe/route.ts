@@ -34,26 +34,49 @@ export async function POST(req: NextRequest) {
     const session = event.data.object as Stripe.Checkout.Session
     const email = session.customer_email ?? session.customer_details?.email ?? null
     const sessionId = session.id
+    const finish = (session.metadata?.finish === "dark" || session.metadata?.finish === "light")
+      ? session.metadata.finish
+      : null
+    const reserveSignupId = session.metadata?.reserve_signup_id ?? null
 
     if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
       try {
         const supabase = createClient()
-        const { error } = await supabase.from("reserve_signups").insert({
-          email: email || undefined,
-          source: "stripe",
-          stripe_session_id: sessionId,
-        })
+        if (reserveSignupId) {
+          // Update the row we created when they started checkout (one row per user/session)
+          const { error } = await supabase
+            .from("reserve_signups")
+            .update({
+              email: email || null,
+              source: "stripe",
+              stripe_session_id: sessionId,
+              ...(finish && { finish }),
+            })
+            .eq("id", reserveSignupId)
+            .is("stripe_session_id", null)
 
-        if (error) {
-          if (error.code === "23505") {
-            // Unique violation = already recorded (idempotent)
-            return NextResponse.json({ received: true })
+          if (error) {
+            console.error("Supabase update error:", error)
+            return NextResponse.json(
+              { error: "Failed to record reservation" },
+              { status: 500 }
+            )
           }
-          console.error("Supabase insert error:", error)
-          return NextResponse.json(
-            { error: "Failed to record reservation" },
-            { status: 500 }
-          )
+        } else {
+          // Fallback: no reserve_signup_id (e.g. old session) — insert so we don't lose the completion
+          const { error } = await supabase.from("reserve_signups").insert({
+            email: email || undefined,
+            source: "stripe",
+            stripe_session_id: sessionId,
+            finish,
+          })
+          if (error && error.code !== "23505") {
+            console.error("Supabase insert error:", error)
+            return NextResponse.json(
+              { error: "Failed to record reservation" },
+              { status: 500 }
+            )
+          }
         }
       } catch (err) {
         console.error("Webhook handler error:", err)

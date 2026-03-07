@@ -24,5 +24,5 @@ Copy `.env.example` to `.env.local` and set:
 
 ## Tables
 
-- **waitlist_signups** — Emails from the “Join” waitlist form (`email`, `source`, `created_at`).
-- **reserve_signups** — Users who click “Reserve now” (`email` optional until you add a form, `source`, `created_at`).
+- **waitlist_signups** — Emails from the “Join” waitlist form (`email`, `source`, `created_at`). Source is set to `waitlist_banner`.
+- **reserve_signups** — Reserve intent (`source=reserve_page`) or completed Stripe checkout (`source=stripe`, `stripe_session_id` set). Columns: `email`, `source`, `finish` (light/dark), `stripe_session_id`, `created_at`.

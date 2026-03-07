@@ -67,10 +67,10 @@ export function SiteFooter() {
               Get early access, product updates, and launch announcements.
             </p>
             <Link
-              href="#community"
+              href="/reserve"
               onClick={() => trackMetaCustomEvent("JoinWaitlistClick", { source: "footer" })}
               className="group relative inline-flex h-10 w-[100px] items-center rounded-full bg-white transition-colors duration-200 hover:bg-[#FFDB01]"
-              aria-label="Go to waitlist signup"
+              aria-label="Go to Reserve page"
             >
               <ArrowRight
                 className="absolute text-black transition-all duration-300 ease-out left-[calc(100%-44px)] group-hover:left-[calc(50%-12px)]"
