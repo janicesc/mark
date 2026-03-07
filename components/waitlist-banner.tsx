@@ -8,21 +8,22 @@ import { trackMetaLead } from "@/lib/meta-pixel"
 import { getClient } from "@/lib/supabase/client"
 
 const WAITLIST_SOURCE = "waitlist_banner"
-const FALLBACK_READER_COUNT = 5064
+const BASE_READER_COUNT = 5064
 
 async function fetchWaitlistCount(): Promise<number> {
   const supabase = getClient()
-  if (!supabase) return FALLBACK_READER_COUNT
+  if (!supabase) return BASE_READER_COUNT
   const { data, error } = await supabase.rpc("get_waitlist_signups_count")
-  if (error != null || data == null) return FALLBACK_READER_COUNT
-  const n = Number(data)
-  return Number.isFinite(n) && n >= 0 ? n : FALLBACK_READER_COUNT
+  if (error != null || data == null) return BASE_READER_COUNT
+  const signupCount = Number(data)
+  const n = Number.isFinite(signupCount) && signupCount >= 0 ? signupCount : 0
+  return BASE_READER_COUNT + n
 }
 
 export function WaitlistBanner() {
   const [email, setEmail] = useState("")
   const [submitted, setSubmitted] = useState(false)
-  const [readerCount, setReaderCount] = useState(FALLBACK_READER_COUNT)
+  const [readerCount, setReaderCount] = useState(BASE_READER_COUNT)
   const router = useRouter()
   const [sectionRef, sectionVisible] = useScrollReveal<HTMLElement>({ threshold: 0.2 })
 
