@@ -1,19 +1,38 @@
 "use client"
 
 import { ArrowRight } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { useRouter } from "next/navigation"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 import { trackMetaLead } from "@/lib/meta-pixel"
 import { getClient } from "@/lib/supabase/client"
 
 const WAITLIST_SOURCE = "waitlist_banner"
+const FALLBACK_READER_COUNT = 5064
+
+async function fetchWaitlistCount(): Promise<number> {
+  const supabase = getClient()
+  if (!supabase) return FALLBACK_READER_COUNT
+  const { data, error } = await supabase.rpc("get_waitlist_signups_count")
+  if (error != null || data == null) return FALLBACK_READER_COUNT
+  const n = Number(data)
+  return Number.isFinite(n) && n >= 0 ? n : FALLBACK_READER_COUNT
+}
 
 export function WaitlistBanner() {
   const [email, setEmail] = useState("")
   const [submitted, setSubmitted] = useState(false)
+  const [readerCount, setReaderCount] = useState(FALLBACK_READER_COUNT)
   const router = useRouter()
   const [sectionRef, sectionVisible] = useScrollReveal<HTMLElement>({ threshold: 0.2 })
+
+  const loadCount = useCallback(() => {
+    fetchWaitlistCount().then(setReaderCount)
+  }, [])
+
+  useEffect(() => {
+    loadCount()
+  }, [loadCount])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -29,6 +48,8 @@ export function WaitlistBanner() {
     }
 
     setSubmitted(true)
+    setReaderCount((c) => c + 1)
+    loadCount()
     trackMetaLead({ content_name: "Waitlist signup" })
     setTimeout(() => router.push("/reserve"), 2000)
   }
@@ -55,7 +76,7 @@ export function WaitlistBanner() {
               Join the waitlist
             </h2>
             <p className="text-sm md:text-base text-white/65 leading-relaxed">
-              Join 5,063 readers building the future of intelligent reading.
+              Join {readerCount.toLocaleString()} readers building the future of intelligent reading.
             </p>
           </div>
 

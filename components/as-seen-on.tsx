@@ -174,7 +174,7 @@ export function AsSeenOn() {
           Featured in
         </p>
         <div className="relative">
-          <div className="flex items-center gap-x-20 md:gap-x-24 animate-marquee [animation-duration:35s]">
+          <div className="flex items-center gap-x-20 md:gap-x-24 animate-marquee [animation-duration:22s]">
             {duplicatedOutlets.map((outlet, index) => (
               <a
                 key={`${outlet.name}-${index}`}

@@ -94,6 +94,14 @@ export function Navbar() {
             Reserve & save
           </Link>
         </nav>
+        {/* Mobile: show Reserve & save at top right only */}
+        <Link
+          href="/reserve"
+          onClick={() => trackMetaCustomEvent("ReserveCTAClick", { source: "navbar_mobile" })}
+          className="md:hidden inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 bg-[#FFDB01] text-black hover:bg-[#FFDB01]/90 shrink-0"
+        >
+          Reserve & save
+        </Link>
       </div>
     </header>
   )
