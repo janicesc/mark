@@ -109,7 +109,7 @@ export function ProductCloseup() {
                   Reserve & save
                 </Link>
                 <p className="mt-3 text-xs text-muted-foreground text-center">
-                  $1 deposit • $80 off MSRP
+                  $1 deposit • 25% off MSRP
                 </p>
               </div>
             </div>

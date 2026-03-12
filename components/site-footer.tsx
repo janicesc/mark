@@ -16,9 +16,9 @@ const footerLinks = {
     { label: "Privacy", href: "https://mark.engineering/privacy-policy" },
   ],
   Social: [
-    { label: "Instagram", href: "https://instagram.com/mark.engineering" },
+    { label: "Instagram", href: "https://www.instagram.com/thinkwithmark" },
     { label: "LinkedIn", href: "https://linkedin.com/company/markhardware" },
-    { label: "X", href: "https://x.com/markhardware" },
+    { label: "X", href: "https://x.com/thinkwithmark" },
   ],
 }
 

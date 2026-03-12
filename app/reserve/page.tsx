@@ -5,9 +5,9 @@ import type { Metadata } from "next"
 export const dynamic = "force-dynamic"
 
 export const metadata: Metadata = {
-  title: "Reserve & Save 50% | Mark",
+  title: "Reserve & Save 25% | Mark",
   description:
-    "Secure your exclusive discount on Mark with a $1 deposit. Lock in $80 off our $150 MSRP.",
+    "Reserve your Mark AI bookmark with a $1 deposit. Lock in 25% off the $159 MSRP — yours for $119.25.",
 }
 
 export default function ReservePage() {

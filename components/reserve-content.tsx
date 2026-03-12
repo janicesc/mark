@@ -176,7 +176,7 @@ export function ReserveContent() {
                 <div className="h-px bg-black/10 my-10" style={{ opacity: infoVisible ? 1 : 0, transition: "opacity 0.5s ease 0.35s" }} />
                 <div className="text-sm text-foreground/60 leading-relaxed text-left" style={{ opacity: infoVisible ? 1 : 0, transition: "opacity 0.5s ease 0.4s" }}>
                   <p>Secure your exclusive discount with a $1 deposit.</p>
-                  <p>Lock in $80 off the $150 MSRP — yours for just $70.</p>
+                  <p>Lock in 25% off the $159 MSRP — yours for $119.25.</p>
                 </div>
               </div>
 

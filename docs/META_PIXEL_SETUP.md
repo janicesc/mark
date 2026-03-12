@@ -55,6 +55,25 @@ No code changes are required for basic setup; only the env variable in Step 2.
    - **Lead** when you submit the waitlist form.
 4. In **Events Manager**, open your pixel and check **Test Events** (or **Overview**) to see events in real time.
 
+### Test Events not showing in Events Manager
+
+If **Test Events** doesn’t show your actions (e.g. Reserve or Join waitlist):
+
+1. **Use the full URL**  
+   In “Enter website URL” use **`https://v0-marklanding.vercel.app`** (include `https://`). Without the protocol, the test view may not load or match your site correctly.
+
+2. **Test in a normal tab**  
+   Keep the **Test Events** tab open in Events Manager, then open a **second tab** and go to `https://v0-marklanding.vercel.app`. Take the action (join waitlist or Reserve) in that second tab. Events are matched by browser; the iframe inside Test Events can block tracking.
+
+3. **Disable ad blockers**  
+   Ad blockers often block `connect.facebook.net` and prevent the pixel from loading. Test in a window with extensions disabled or use an incognito window with no extensions.
+
+4. **Confirm the pixel on the page**  
+   On your site, open **View Page Source** and search for `960369136415593`. You should see it in the script in the `<head>`. If it’s missing, the latest deployment may not be live yet.
+
+5. **Use Meta Pixel Helper**  
+   On your site tab, open the Pixel Helper. You should see **PageView** on load and **Lead** after submitting the waitlist or clicking Reserve. If Lead never appears, the event isn’t firing; if it appears there but not in Test Events, the issue is usually URL, ad blocker, or testing inside the iframe.
+
 ---
 
 ## Step 5: (Optional) Track more events
