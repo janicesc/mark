@@ -79,10 +79,10 @@ export function ReserveContent() {
     <>
       <Navbar />
       <main className="pt-16 md:pt-20">
-        <section className="bg-white min-h-[calc(100vh-80px)]">
+        <section className="bg-white min-h-[calc(100vh-80px)] pt-6 md:pt-10">
           <div className="flex flex-col lg:flex-row">
             <div className="w-full lg:w-[60%] xl:w-[62%] bg-[#fafafa]">
-              <div className="relative w-full h-[55vh] sm:h-[65vh] lg:h-[calc(100vh-80px)] lg:sticky lg:top-20 flex items-center justify-center overflow-hidden lg:rounded-[8px]">
+              <div className="relative w-full h-[52vh] sm:h-[60vh] lg:h-[calc(100vh-80px)] lg:sticky lg:top-20 flex items-center justify-center overflow-hidden lg:rounded-[8px]">
                 {productImages.map((img, i) => (
                   <div
                     key={img.src}

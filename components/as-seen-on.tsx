@@ -174,7 +174,7 @@ export function AsSeenOn() {
         transition: "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s",
       }}
     >
-      <div className="relative flex flex-col items-center gap-6 md:gap-8">
+      <div className="relative flex flex-col items-center gap-8 md:gap-10">
         <p className="text-xs font-normal uppercase tracking-[0.2em] text-muted-foreground text-center">
           Featured in
         </p>
