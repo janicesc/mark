@@ -11,11 +11,11 @@ const siteUrl =
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: 'Mark – The World\'s First AI Bookmark',
-  description: 'Turn what you underline into searchable knowledge. Mark captures your highlights and turns physical notes into digital insights.',
+  description: 'Turn what you underline into searchable knowledge. Mark is an AI bookmark that captures highlights from books, eBooks, and PDFs and turns them into organized insights.',
   generator: 'v0.app',
   openGraph: {
     title: 'Mark – The World\'s First AI Bookmark',
-    description: 'Turn what you underline into searchable knowledge. Mark captures your highlights and turns physical notes into digital insights.',
+    description: 'Turn what you underline into searchable knowledge. Mark is an AI bookmark that captures highlights from books, eBooks, and PDFs and turns them into organized insights.',
     url: siteUrl,
     siteName: 'Mark',
     images: [
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Mark – The World\'s First AI Bookmark',
-    description: 'Turn what you underline into searchable knowledge.',
+    description: 'Turn what you underline into searchable knowledge. Mark is an AI bookmark that captures highlights from books, eBooks, and PDFs and turns them into organized insights.',
     images: ['/og.jpg'],
   },
   icons: {

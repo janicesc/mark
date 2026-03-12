@@ -59,8 +59,8 @@ export async function POST(req: NextRequest) {
                 ? { product: productId }
                 : {
                     product_data: {
-                      name: "Mark — Reserve your device",
-                      description: "Secure your spot with a $1 deposit. Lock in $80 off the $150 MSRP — yours for just $70.",
+                      name: "Reserve your Mark",
+                      description: "Secure your exclusive discount with a $1 deposit. Lock in 25% off the $159 MSRP — yours for $119.25.",
                       images: productImage ? [productImage] : undefined,
                     },
                   }),
