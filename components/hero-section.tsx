@@ -72,10 +72,10 @@ export function HeroSection() {
             <Link
               href="/reserve"
               onClick={() => trackMetaCustomEvent("ReserveCTAClick", { source: "hero" })}
-              className="inline-flex items-center gap-2.5 bg-[#FFDB01] text-black px-6 py-3.5 rounded-full text-sm font-semibold hover:bg-[#FFDB01]/90 transition-colors duration-300"
+              className="inline-flex items-center justify-center gap-2.5 min-h-[48px] w-full sm:w-auto bg-[#FFDB01] text-black px-6 py-3.5 rounded-full text-sm font-semibold hover:bg-[#FFDB01]/90 transition-colors duration-300 touch-manipulation active:scale-[0.98]"
             >
               <ArrowRight className="h-4 w-4" />
-              Get early access
+              Reserve & save
             </Link>
           </div>
         </div>

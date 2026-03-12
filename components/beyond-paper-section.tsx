@@ -27,7 +27,7 @@ export function BeyondPaperSection() {
               Turn spoken thoughts into structured knowledge.
             </h2>
             <p className="text-base md:text-lg text-white/70 leading-relaxed max-w-sm">
-              Capture lectures, conversations, and audiobooks — automatically
+              Record lectures, conversations, and audiobooks — automatically
               transcribed and linked to your reading.
             </p>
           </div>

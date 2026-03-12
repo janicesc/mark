@@ -21,7 +21,7 @@ export function MissionSection() {
             Our Mission
           </p>
           <h2 className="font-sans text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-foreground leading-tight text-balance mb-10">
-            Maximize the potential of every reader.
+            Unlock your intellectual potential
           </h2>
           <blockquote
             className="text-lg md:text-xl italic text-muted-foreground leading-relaxed mb-6"
