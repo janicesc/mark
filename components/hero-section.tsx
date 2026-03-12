@@ -14,7 +14,7 @@ export function HeroSection() {
   }, [])
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-black">
+    <section className="relative min-h-[85vh] md:min-h-screen flex items-center overflow-hidden bg-black">
       {/* Video background */}
       <video
         className="absolute inset-0 w-full h-full object-cover"

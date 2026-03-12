@@ -78,11 +78,11 @@ export function ReserveContent() {
   return (
     <>
       <Navbar />
-      <main className="pt-20">
-        <section className="bg-[#fafafa] min-h-[calc(100vh-80px)]">
+      <main className="pt-16 md:pt-20">
+        <section className="bg-white min-h-[calc(100vh-80px)]">
           <div className="flex flex-col lg:flex-row">
             <div className="w-full lg:w-[60%] xl:w-[62%] bg-[#fafafa]">
-              <div className="relative w-full h-[60vh] sm:h-[70vh] lg:h-[calc(100vh-80px)] lg:sticky lg:top-20 flex items-center justify-center overflow-hidden lg:rounded-[8px]">
+              <div className="relative w-full h-[55vh] sm:h-[65vh] lg:h-[calc(100vh-80px)] lg:sticky lg:top-20 flex items-center justify-center overflow-hidden lg:rounded-[8px]">
                 {productImages.map((img, i) => (
                   <div
                     key={img.src}
@@ -98,7 +98,7 @@ export function ReserveContent() {
                     </div>
                   </div>
                 ))}
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2">
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 hidden lg:flex">
                   {productImages.map((_, i) => (
                     <button
                       key={i}
@@ -109,6 +109,17 @@ export function ReserveContent() {
                     />
                   ))}
                 </div>
+              </div>
+              <div className="mt-4 mb-6 flex items-center justify-center gap-2 lg:hidden">
+                {productImages.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => handleDotClick(i)}
+                    className="group relative w-2.5 h-2.5 rounded-full transition-all duration-300"
+                    style={{ backgroundColor: activeIndex === i ? "#212121" : "rgba(33,33,33,0.2)", transform: activeIndex === i ? "scale(1.15)" : "scale(1)" }}
+                    aria-label={`View product image ${i + 1}`}
+                  />
+                ))}
               </div>
             </div>
 

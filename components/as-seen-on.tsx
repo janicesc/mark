@@ -167,19 +167,19 @@ export function AsSeenOn() {
   return (
     <section
       ref={sectionRef}
-      className="w-full py-14 md:py-22 pl-12 md:pl-20 lg:pl-28 bg-white overflow-hidden"
+      className="w-full py-10 md:py-16 px-8 md:px-20 lg:px-28 bg-white overflow-hidden"
       style={{
         opacity: sectionVisible ? 1 : 0,
         transform: sectionVisible ? "none" : "translateY(20px)",
         transition: "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s",
       }}
     >
-      <div className="relative flex flex-col gap-16">
-        <p className="text-center text-xs font-normal uppercase tracking-[0.2em] text-muted-foreground">
+      <div className="relative flex flex-col items-center gap-6 md:gap-8">
+        <p className="text-xs font-normal uppercase tracking-[0.2em] text-muted-foreground text-center">
           Featured in
         </p>
-        <div className="relative">
-          <div className="flex items-center gap-x-20 md:gap-x-24 animate-marquee">
+        <div className="relative w-full">
+          <div className="flex items-center gap-x-16 md:gap-x-24 animate-marquee">
             {duplicatedOutlets.map((outlet, index) => (
               <a
                 key={`${outlet.name}-${index}`}
