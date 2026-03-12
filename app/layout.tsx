@@ -91,7 +91,7 @@ fbq('track', 'PageView');
         </noscript>
         {/* End Meta Pixel Code */}
       </head>
-      <body className="font-sans antialiased overflow-x-hidden">
+      <body className="font-sans antialiased">
         {children}
         <Analytics />
       </body>

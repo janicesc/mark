@@ -69,7 +69,7 @@ export function SiteFooter() {
             <Link
               href="/#community"
               onClick={() => trackMetaCustomEvent("JoinWaitlistClick", { source: "footer" })}
-              className="group relative inline-flex min-h-[44px] min-w-[44px] w-[100px] items-center justify-center rounded-full bg-white transition-colors duration-200 hover:bg-[#FFDB01] touch-manipulation"
+              className="group relative inline-flex h-10 w-[100px] items-center rounded-full bg-white transition-colors duration-200 hover:bg-[#FFDB01]"
               aria-label="Scroll to waitlist signup"
             >
               <ArrowRight

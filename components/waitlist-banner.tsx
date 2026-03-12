@@ -99,18 +99,19 @@ export function WaitlistBanner() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 sm:gap-0 w-full">
+              <form onSubmit={handleSubmit} className="flex gap-0">
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Email address"
                   required
-                  className="flex-1 min-h-[48px] sm:min-h-0 bg-transparent border border-white/20 sm:border-r-0 text-white/90 placeholder:text-white/45 px-5 py-3.5 text-base sm:text-sm focus:outline-none focus:border-white/50 transition-colors duration-300 rounded-lg sm:rounded-l-lg sm:rounded-r-none"
+                  className="flex-1 bg-transparent border border-white/20 text-white/90 placeholder:text-white/45 px-5 py-3.5 text-sm focus:outline-none focus:border-white/50 transition-colors duration-300"
+                  style={{ borderRight: "none" }}
                 />
                 <button
                   type="submit"
-                  className="group flex items-center justify-center gap-2.5 min-h-[48px] bg-[#FFDB01] text-black px-6 py-3.5 text-sm font-semibold transition-all duration-500 hover:bg-[#FFDB01]/90 flex-shrink-0 rounded-lg sm:rounded-r-lg sm:rounded-l-none border border-white/20 sm:border-l-0 touch-manipulation active:scale-[0.98]"
+                  className="group flex items-center gap-2.5 bg-[#FFDB01] text-black px-6 py-3.5 text-sm font-semibold transition-all duration-500 hover:bg-[#FFDB01]/90 flex-shrink-0"
                 >
                   Join
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />

@@ -67,31 +67,31 @@ export function ProductCloseup() {
                 </p>
               </div>
 
-              {/* Color swatches — closer to content flow, above CTA; 44px min touch target on mobile */}
+              {/* Color swatches — closer to content flow, above CTA */}
               <div className="mt-8 flex items-center gap-3">
                 <button
                   type="button"
                   onClick={() => setActiveColor("silver")}
-                  className={`min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full border-2 transition-all duration-300 touch-manipulation ${
+                  className={`w-9 h-9 rounded-full border-2 transition-all duration-300 ${
                     activeColor === "silver"
                       ? "border-foreground/40 scale-110"
                       : "border-transparent hover:border-foreground/20"
                   }`}
                   aria-label="Silver"
                 >
-                  <span className="block w-9 h-9 rounded-full bg-gradient-to-br from-[#d4d4d4] to-[#a3a3a3]" />
+                  <span className="block w-full h-full rounded-full bg-gradient-to-br from-[#d4d4d4] to-[#a3a3a3]" />
                 </button>
                 <button
                   type="button"
                   onClick={() => setActiveColor("black")}
-                  className={`min-h-[44px] min-w-[44px] flex items-center justify-center rounded-full border-2 transition-all duration-300 touch-manipulation ${
+                  className={`w-9 h-9 rounded-full border-2 transition-all duration-300 ${
                     activeColor === "black"
                       ? "border-foreground/40 scale-110"
                       : "border-transparent hover:border-foreground/20"
                   }`}
                   aria-label="Black"
                 >
-                  <span className="block w-9 h-9 rounded-full bg-gradient-to-br from-[#404040] to-[#171717]" />
+                  <span className="block w-full h-full rounded-full bg-gradient-to-br from-[#404040] to-[#171717]" />
                 </button>
               </div>
 
@@ -104,7 +104,7 @@ export function ProductCloseup() {
                 <Link
                   href="/reserve"
                   onClick={() => trackMetaCustomEvent("ReserveCTAClick", { source: "product_showcase" })}
-                  className="inline-flex items-center justify-center w-full sm:w-auto min-h-[52px] px-8 sm:px-10 rounded-full text-sm font-semibold bg-[#FFDB01] text-black hover:bg-[#FFDB01]/90 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] touch-manipulation active:scale-[0.98]"
+                  className="inline-flex items-center justify-center bg-[#FFDB01] text-black px-8 py-3.5 rounded-full text-sm font-semibold hover:bg-[#FFDB01]/90 transition-colors duration-300"
                 >
                   Reserve & save
                 </Link>
