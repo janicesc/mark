@@ -70,7 +70,7 @@ export function HeroSection() {
     }) as const
 
   return (
-    <section className="relative min-h-[100svh] overflow-hidden bg-black">
+    <section className="relative flex min-h-[100svh] flex-col overflow-hidden bg-black">
       {/* Full-bleed video — product sits in lower frame like Opal C1 */}
       <video
         ref={videoRef}
@@ -87,9 +87,9 @@ export function HeroSection() {
         disableRemotePlayback
         aria-hidden="true"
       />
-      {/* Readability: light top falloff + heavier bottom blend into black */}
+      {/* Readability: stronger bottom scrim on small screens so bottom-left copy sits on darker video */}
       <div
-        className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/25 to-black/85 pointer-events-none"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/30 to-black/[0.92] max-md:via-black/40 md:from-black/50 md:via-black/25 md:to-black/85"
         aria-hidden="true"
       />
 
@@ -100,16 +100,19 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Left stack — Opal Tadpole: title + subhead + CTA aligned to page grid, not over center of video */}
+      {/* Mobile: bottom-left stack over darker scrim. md+: top-left grid like Opal desktop. */}
       <header
         id="mark-hero"
-        className="relative z-[60] w-full min-[960px]:pt-[22vh] pt-[calc(5rem+10svh)] pb-16 md:pb-24"
+        className="relative z-[60] flex w-full flex-1 flex-col justify-end pb-10 pt-0 max-md:pb-[max(2.5rem,env(safe-area-inset-bottom,0px))] md:flex-none md:justify-start md:pt-[calc(5rem+10svh)] md:pb-24 min-[960px]:pt-[22vh]"
       >
         <div
           id="mark-hero-content"
           className="mx-auto flex w-full max-w-7xl flex-col items-start px-6 text-left md:px-12 lg:px-20"
         >
-          <div id="mark-hero-txt" className="max-w-2xl">
+          <div
+            id="mark-hero-txt"
+            className="max-w-2xl max-md:[text-shadow:0_2px_32px_rgba(0,0,0,0.55)]"
+          >
             <h1
               id="mark-hero-txt-title"
               className="font-sans text-[clamp(2rem,6vw,4.5rem)] font-medium leading-[1.05] tracking-[-0.02em] text-white"
@@ -119,14 +122,14 @@ export function HeroSection() {
             </h1>
             <p
               id="mark-hero-txt-p"
-              className="mt-4 text-lg font-normal leading-snug tracking-[-0.01em] text-zinc-400 sm:text-xl md:mt-5 md:text-2xl md:leading-8"
+              className="mt-4 text-lg font-normal leading-snug tracking-[-0.01em] text-zinc-300 sm:text-xl md:mt-5 md:text-2xl md:leading-8 md:text-zinc-400"
               style={fade("0.15s")}
             >
               Read once. Retrieve anytime.
             </p>
           </div>
 
-          <div style={fade("0.28s")} className="mt-12 md:mt-14">
+          <div style={fade("0.28s")} className="mt-8 md:mt-14">
             <Link
               href="/reserve"
               onClick={() => trackMetaCustomEvent("ReserveCTAClick", { source: "hero" })}
