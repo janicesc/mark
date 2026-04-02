@@ -4,25 +4,26 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #f5f1e5;
-  --foreground: oklch(0.15 0.01 60);
-  --card: #f5f1e5;
-  --card-foreground: oklch(0.15 0.01 60);
-  --popover: #f5f1e5;
-  --popover-foreground: oklch(0.15 0.01 60);
-  --primary: oklch(0.15 0.01 60);
-  --primary-foreground: #f5f1e5;
-  --secondary: oklch(0.90 0.015 75);
-  --secondary-foreground: oklch(0.15 0.01 60);
-  --muted: oklch(0.90 0.015 75);
-  --muted-foreground: oklch(0.45 0.02 60);
-  --accent: oklch(0.88 0.02 70);
-  --accent-foreground: oklch(0.15 0.01 60);
+  /* Opal-like landing: near-white field, ink type, yellow accent on interactions */
+  --background: #fafafa;
+  --foreground: #0a0a0a;
+  --card: #ffffff;
+  --card-foreground: #0a0a0a;
+  --popover: #ffffff;
+  --popover-foreground: #0a0a0a;
+  --primary: #0a0a0a;
+  --primary-foreground: #fafafa;
+  --secondary: oklch(0.96 0 0);
+  --secondary-foreground: #0a0a0a;
+  --muted: oklch(0.96 0 0);
+  --muted-foreground: oklch(0.45 0 0);
+  --accent: #ffdb01;
+  --accent-foreground: #0a0a0a;
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: oklch(0.9 0 0);
+  --input: oklch(0.9 0 0);
+  --ring: oklch(0.55 0 0);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -122,6 +123,35 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .mark-cta {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-black px-6 py-3.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-[#FFDB01] hover:text-black;
+  }
+
+  /* Muted autoplay background videos: hide iOS/Android overlay play button & control chrome */
+  .mark-decorative-video {
+    pointer-events: none;
+  }
+  .mark-decorative-video::-webkit-media-controls {
+    display: none !important;
+  }
+  .mark-decorative-video::-webkit-media-controls-enclosure {
+    display: none !important;
+  }
+  .mark-decorative-video::-webkit-media-controls-panel {
+    display: none !important;
+  }
+  .mark-decorative-video::-webkit-media-controls-play-button {
+    display: none !important;
+  }
+  .mark-decorative-video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+  }
+  .mark-decorative-video::-webkit-media-controls-overlay-play-button {
+    display: none !important;
   }
 }
 

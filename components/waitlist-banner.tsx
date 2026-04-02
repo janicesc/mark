@@ -60,7 +60,7 @@ export function WaitlistBanner() {
     <section
       id="community"
       ref={sectionRef}
-      className="bg-[#0a0a0a] text-white"
+      className="border-t border-black/20 bg-[#0a0a0a] text-white"
     >
       <div
         className="mx-auto max-w-7xl px-6 md:px-8 py-16 md:py-20"
@@ -111,7 +111,7 @@ export function WaitlistBanner() {
                 />
                 <button
                   type="submit"
-                  className="group flex items-center gap-2.5 bg-[#FFDB01] text-black px-6 py-3.5 text-sm font-semibold transition-all duration-500 hover:bg-[#FFDB01]/90 flex-shrink-0"
+                  className="group flex items-center gap-2.5 bg-white px-6 py-3.5 text-sm font-semibold text-black transition-colors duration-300 hover:bg-[#FFDB01] flex-shrink-0"
                 >
                   Join
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />

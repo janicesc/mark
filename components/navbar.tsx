@@ -41,9 +41,9 @@ export function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-background/90 backdrop-blur-md border-b border-foreground/10 shadow-sm"
+          ? "bg-background/90 backdrop-blur-md border-b border-black/10 shadow-sm"
           : !isHome
-            ? "bg-white border-b border-black/10"
+            ? "bg-background border-b border-black/10"
             : "bg-transparent border-b-0 border-b-transparent shadow-none"
       }`}
     >
@@ -89,7 +89,7 @@ export function Navbar() {
           <Link
             href="/reserve"
             onClick={() => trackMetaCustomEvent("ReserveCTAClick", { source: "navbar" })}
-            className="inline-flex items-center px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 bg-[#FFDB01] text-black hover:bg-[#FFDB01]/90"
+            className="mark-cta px-5 py-2.5 text-sm"
           >
             Reserve & save
           </Link>
@@ -98,7 +98,7 @@ export function Navbar() {
         <Link
           href="/reserve"
           onClick={() => trackMetaCustomEvent("ReserveCTAClick", { source: "navbar_mobile" })}
-          className="md:hidden inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold transition-all duration-300 bg-[#FFDB01] text-black hover:bg-[#FFDB01]/90 shrink-0"
+          className="mark-cta md:hidden px-4 py-2 text-sm shrink-0"
         >
           Reserve & save
         </Link>

@@ -166,7 +166,7 @@ export function AsSeenOn() {
   return (
     <section
       ref={sectionRef}
-      className="w-full py-14 md:py-20 px-8 md:px-20 lg:px-28 bg-white overflow-hidden"
+      className="w-full border-t border-black/[0.06] py-14 md:py-20 px-8 md:px-20 lg:px-28 bg-background overflow-hidden"
       style={{
         opacity: sectionVisible ? 1 : 0,
         transform: sectionVisible ? "none" : "translateY(20px)",

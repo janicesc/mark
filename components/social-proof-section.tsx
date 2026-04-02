@@ -45,7 +45,7 @@ export function SocialProofSection() {
   }, [tweetVisible])
 
   return (
-    <section className="bg-[#1a1a1a] py-20 md:py-32">
+    <section className="border-t border-white/10 bg-[#0a0a0a] py-20 md:py-32">
       <div className="mx-auto max-w-3xl px-6 md:px-8">
         {/* Heading */}
         <div
@@ -85,7 +85,7 @@ export function SocialProofSection() {
               transition: "opacity 0.5s ease",
             }}
           >
-            <blockquote className="twitter-tweet" data-dnt="true" data-theme="light">
+            <blockquote className="twitter-tweet" data-dnt="true" data-theme="dark">
               <p lang="en" dir="ltr">
                 {"Introducing Mark — a $129 AI bookmark that helps book readers remember everything."}
                 <br />

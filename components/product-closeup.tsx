@@ -24,7 +24,7 @@ export function ProductCloseup() {
   const [ctaRef, ctaVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.3 })
 
   return (
-    <section className="bg-background overflow-hidden">
+    <section className="border-t border-black/[0.06] bg-background overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 md:px-8 py-20 md:py-32">
         {/* Opal-style: content + image row */}
         <div className="flex flex-col md:flex-row items-stretch gap-12 md:gap-8 lg:gap-16">
@@ -58,7 +58,7 @@ export function ProductCloseup() {
               </p>
 
               {/* Battery as micro feature highlight */}
-              <div className="mt-6 pt-6 border-t border-border/60">
+              <div className="mt-6 pt-6 border-t border-black/10">
                 <p className="text-sm font-bold uppercase tracking-wider text-foreground">
                   7+ days battery life
                 </p>
@@ -104,7 +104,7 @@ export function ProductCloseup() {
                 <Link
                   href="/reserve"
                   onClick={() => trackMetaCustomEvent("ReserveCTAClick", { source: "product_showcase" })}
-                  className="inline-flex items-center justify-center bg-[#FFDB01] text-black px-8 py-3.5 rounded-full text-sm font-semibold hover:bg-[#FFDB01]/90 transition-colors duration-300"
+                  className="mark-cta px-8"
                 >
                   Reserve & save
                 </Link>
@@ -130,7 +130,8 @@ export function ProductCloseup() {
               className="absolute inset-0 flex items-end justify-center pointer-events-none"
               aria-hidden
               style={{
-                background: "radial-gradient(ellipse 70% 60% at 50% 85%, rgba(232, 227, 215, 0.5) 0%, rgba(226, 220, 207, 0.25) 40%, transparent 70%)",
+                background:
+                  "radial-gradient(ellipse 70% 60% at 50% 85%, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0.02) 45%, transparent 72%)",
               }}
             />
             {/* Device frame: scale up ~7%, allow bleed toward bottom */}
