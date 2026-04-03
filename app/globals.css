@@ -115,14 +115,6 @@
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.625rem;
-  /* Silver CTA glass (nav, Reserve hover, Join/footer pills) — slightly bright, not dreary */
-  --mark-silver-shark: #1d1d1f;
-  --mark-silver-highlight: #d2d2d6;
-  --mark-silver-base: #b6b6ba;
-  --mark-silver-shadow: #9e9ea2;
-  --mark-silver-hover-mid: #a8a8ac;
-  --mark-silver-hover-deep: #98989c;
-  --mark-silver-active: #8a8a8e;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -267,107 +259,74 @@
     animation: none !important;
   }
 
-  /* Navbar Reserve: silver glass (distinct from hero glass CTA) */
+  /* Navbar Reserve: Apple light system grays (UIKit light mode — systemGray5 / 4 / 3) */
   .mark-cta.mark-cta-nav-silver {
-    color: var(--mark-silver-shark);
+    color: #1d1d1f;
     animation: none !important;
-    border: 1px solid rgba(29, 29, 31, 0.18);
-    background-color: rgba(178, 178, 182, 0.9);
-    background-image:
-      linear-gradient(148deg, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0.06) 38%, transparent 50%),
-      linear-gradient(322deg, rgba(0, 0, 0, 0.1) 0%, transparent 45%),
-      linear-gradient(155deg, var(--mark-silver-highlight) 0%, var(--mark-silver-base) 40%, var(--mark-silver-shadow) 100%);
-    backdrop-filter: blur(12px) saturate(1.1);
-    -webkit-backdrop-filter: blur(12px) saturate(1.1);
+    border: 1px solid rgba(29, 29, 31, 0.12);
+    background-color: #e5e5ea;
+    background-image: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.68),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.16),
-      inset 1px 0 0 rgba(255, 255, 255, 0.24),
-      inset -1px 0 0 rgba(0, 0, 0, 0.07),
-      0 2px 4px rgba(0, 0, 0, 0.1),
-      0 8px 22px rgba(0, 0, 0, 0.14);
+      inset 0 1px 0 rgba(255, 255, 255, 0.72),
+      0 1px 2px rgba(0, 0, 0, 0.06),
+      0 6px 16px rgba(0, 0, 0, 0.08);
   }
   .mark-cta.mark-cta-nav-silver:hover:not(:disabled) {
-    border-color: rgba(29, 29, 31, 0.22);
-    color: var(--mark-silver-shark);
-    background-color: rgba(168, 168, 172, 0.92);
-    background-image:
-      linear-gradient(148deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.06) 38%, transparent 50%),
-      linear-gradient(322deg, rgba(0, 0, 0, 0.1) 0%, transparent 45%),
-      linear-gradient(
-        155deg,
-        var(--mark-silver-highlight) 0%,
-        var(--mark-silver-hover-mid) 44%,
-        var(--mark-silver-hover-deep) 100%
-      );
-    backdrop-filter: blur(12px) saturate(1.12);
-    -webkit-backdrop-filter: blur(12px) saturate(1.12);
+    background-color: #d1d1d6;
+    border-color: rgba(29, 29, 31, 0.16);
+    color: #1d1d1f;
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.58),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.18),
-      inset 1px 0 0 rgba(255, 255, 255, 0.2),
-      0 3px 6px rgba(0, 0, 0, 0.12),
-      0 10px 26px rgba(0, 0, 0, 0.16);
+      0 2px 4px rgba(0, 0, 0, 0.08),
+      0 8px 20px rgba(0, 0, 0, 0.1);
   }
   .mark-cta.mark-cta-nav-silver:active:not(:disabled) {
-    background-color: rgba(154, 154, 158, 0.94);
-    background-image:
-      linear-gradient(148deg, rgba(255, 255, 255, 0.3) 0%, transparent 44%),
-      linear-gradient(155deg, var(--mark-silver-hover-mid) 0%, var(--mark-silver-active) 100%);
+    background-color: #c7c7cc;
     box-shadow:
-      inset 0 2px 5px rgba(0, 0, 0, 0.14),
-      inset 0 1px 0 rgba(255, 255, 255, 0.38),
-      0 1px 3px rgba(0, 0, 0, 0.14);
+      inset 0 1px 0 rgba(255, 255, 255, 0.35),
+      0 1px 2px rgba(0, 0, 0, 0.1);
   }
   .mark-cta.mark-cta-nav-silver:focus-visible {
-    outline: 2px solid rgba(29, 29, 31, 0.4);
+    outline: 2px solid rgba(29, 29, 31, 0.35);
     outline-offset: 2px;
   }
 
-  /* White pills (Join, footer arrow): idle white → same silver glass on hover */
-  .mark-silver-hover-pill {
-    background-color: #fff;
-    background-image: none;
-    border: 1px solid transparent;
-    transition:
-      color 0.2s ease,
-      border-color 0.2s ease,
-      background-color 0.2s ease,
-      box-shadow 0.2s ease;
+  /*
+   * Nav Reserve over dark hero only (class toggled in navbar): same hover/active/focus as
+   * .mark-join-hero-glass-hover — white label, animated glass. When bar is white, class omitted → flat silver.
+   */
+  .mark-cta.mark-cta-nav-silver.mark-nav-reserve-join-glass-hover:hover,
+  .mark-cta.mark-cta-nav-silver.mark-nav-reserve-join-glass-hover:focus-visible {
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.52);
+    background-color: transparent;
+    background-image:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.26), rgba(212, 219, 230, 0.14) 38%, rgba(255, 255, 255, 0.32) 72%, rgba(230, 232, 236, 0.2) 100%),
+      linear-gradient(285deg, rgba(255, 255, 255, 0.08), rgba(180, 188, 200, 0.14) 45%, rgba(255, 255, 255, 0.12) 100%),
+      radial-gradient(120% 120% at 0% 0%, rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0) 55%),
+      radial-gradient(100% 140% at 100% 100%, rgba(195, 205, 217, 0.34), rgba(195, 205, 217, 0) 58%),
+      linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.26) 50%, transparent 65%);
+    background-size: 260% 260%, 220% 220%, 180% 180%, 190% 190%, 220% 100%;
+    background-position: 0% 50%, 100% 40%, 0% 0%, 100% 100%, 0% 50%;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.55),
+      0 12px 34px rgba(0, 0, 0, 0.26);
+    animation: hero-glass-shift 12s ease-in-out infinite;
   }
-  .mark-silver-hover-pill:focus-visible {
-    outline: 2px solid rgba(29, 29, 31, 0.38);
+  .mark-cta.mark-cta-nav-silver.mark-nav-reserve-join-glass-hover:active {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.45);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.5),
+      0 8px 22px rgba(0, 0, 0, 0.35);
+  }
+  .mark-cta.mark-cta-nav-silver.mark-nav-reserve-join-glass-hover:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.45);
     outline-offset: 2px;
-  }
-  .mark-silver-hover-pill:hover {
-    color: var(--mark-silver-shark);
-    border-color: rgba(29, 29, 31, 0.18);
-    background-color: rgba(178, 178, 182, 0.9);
-    background-image:
-      linear-gradient(148deg, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0.06) 38%, transparent 50%),
-      linear-gradient(322deg, rgba(0, 0, 0, 0.1) 0%, transparent 45%),
-      linear-gradient(155deg, var(--mark-silver-highlight) 0%, var(--mark-silver-base) 40%, var(--mark-silver-shadow) 100%);
-    backdrop-filter: blur(12px) saturate(1.1);
-    -webkit-backdrop-filter: blur(12px) saturate(1.1);
-    box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.68),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.16),
-      inset 1px 0 0 rgba(255, 255, 255, 0.24),
-      inset -1px 0 0 rgba(0, 0, 0, 0.07),
-      0 2px 4px rgba(0, 0, 0, 0.1),
-      0 8px 22px rgba(0, 0, 0, 0.14);
-  }
-  .mark-silver-hover-pill:active {
-    color: var(--mark-silver-shark);
-    border-color: rgba(29, 29, 31, 0.2);
-    background-color: rgba(154, 154, 158, 0.94);
-    background-image:
-      linear-gradient(148deg, rgba(255, 255, 255, 0.3) 0%, transparent 44%),
-      linear-gradient(155deg, var(--mark-silver-hover-mid) 0%, var(--mark-silver-active) 100%);
-    box-shadow:
-      inset 0 2px 5px rgba(0, 0, 0, 0.14),
-      inset 0 1px 0 rgba(255, 255, 255, 0.38),
-      0 1px 3px rgba(0, 0, 0, 0.14);
   }
 
   .glass-divider-light {
@@ -383,6 +342,34 @@
     backdrop-filter: blur(8px);
   }
 
+  /* Social proof X embed: frosted glass rim on #0a0a0a — visible border + inset sheen (matches glass-emphasis / hero) */
+  .social-proof-tweet-glass {
+    border: 1px solid rgba(255, 255, 255, 0.32);
+    background-color: rgba(255, 255, 255, 0.06);
+    background-image:
+      linear-gradient(140deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.06) 45%, rgba(212, 219, 230, 0.1) 100%),
+      linear-gradient(285deg, rgba(255, 255, 255, 0.08), rgba(180, 188, 200, 0.1) 50%, rgba(255, 255, 255, 0.05) 100%),
+      radial-gradient(100% 120% at 12% 0%, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 55%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.42),
+      0 12px 48px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(255, 255, 255, 0.06);
+  }
+
+  .social-proof-tweet-glass blockquote.twitter-tweet {
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+  }
+
+  .social-proof-tweet-glass iframe {
+    border-radius: 0.75rem !important;
+    border: none !important;
+  }
+
   .hero-glass-cta {
     background-image:
       linear-gradient(135deg, rgba(255, 255, 255, 0.26), rgba(212, 219, 230, 0.14) 38%, rgba(255, 255, 255, 0.32) 72%, rgba(230, 232, 236, 0.2) 100%),
@@ -393,6 +380,49 @@
     background-size: 260% 260%, 220% 220%, 180% 180%, 190% 190%, 220% 100%;
     background-position: 0% 50%, 100% 40%, 0% 0%, 100% 100%, 0% 50%;
     animation: hero-glass-shift 12s ease-in-out infinite;
+  }
+
+  /* Waitlist Join only: idle white → same animated ombre glass as hero CTA on hover */
+  .mark-join-hero-glass-hover {
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid transparent;
+    color: #0a0a0a;
+    transition:
+      color 0.3s ease,
+      border-color 0.3s ease,
+      box-shadow 0.3s ease,
+      background-color 0.3s ease;
+  }
+  .mark-join-hero-glass-hover:hover {
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.52);
+    background-color: transparent;
+    background-image:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.26), rgba(212, 219, 230, 0.14) 38%, rgba(255, 255, 255, 0.32) 72%, rgba(230, 232, 236, 0.2) 100%),
+      linear-gradient(285deg, rgba(255, 255, 255, 0.08), rgba(180, 188, 200, 0.14) 45%, rgba(255, 255, 255, 0.12) 100%),
+      radial-gradient(120% 120% at 0% 0%, rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0) 55%),
+      radial-gradient(100% 140% at 100% 100%, rgba(195, 205, 217, 0.34), rgba(195, 205, 217, 0) 58%),
+      linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.26) 50%, transparent 65%);
+    background-size: 260% 260%, 220% 220%, 180% 180%, 190% 190%, 220% 100%;
+    background-position: 0% 50%, 100% 40%, 0% 0%, 100% 100%, 0% 50%;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.55),
+      0 12px 34px rgba(0, 0, 0, 0.26);
+    animation: hero-glass-shift 12s ease-in-out infinite;
+  }
+  .mark-join-hero-glass-hover:active {
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.45);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.5),
+      0 8px 22px rgba(0, 0, 0, 0.35);
+  }
+  .mark-join-hero-glass-hover:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.45);
+    outline-offset: 2px;
   }
 
   /* Muted autoplay background videos: hide iOS/Android overlay play button & control chrome */
@@ -486,62 +516,58 @@
   animation-play-state: paused;
 }
 
-/* As seen on: remote PNG/JPG logos often ship with white boxes — multiply into page bg; keep greyscale */
+/* As seen on: white strip so baked-in logo mattes disappear; multiply into #fff; keep greyscale.
+   Match section + Next/Image wrapper to the same fill. */
+.as-seen-on-marquee {
+  background-color: #fff;
+}
+
+.as-seen-on-marquee a span:has(> img) {
+  background-color: #fff !important;
+}
+
 .as-seen-on-marquee a img {
   mix-blend-mode: multiply;
   filter: grayscale(100%) contrast(1.05);
-  opacity: 0.92;
+  opacity: 1;
   background-color: transparent !important;
 }
 
 /*
- * On-light Reserve CTAs (product, reserve flow): hover → silver glass (match nav silver).
+ * On-light Reserve CTAs (product, reserve flow): hover/active = flat silver (match mark-cta-nav-silver).
  */
 .mark-cta.mark-cta-on-light:hover:not(:disabled),
 .mark-cta.mark-cta-on-light:focus-visible:not(:disabled) {
-  border-color: rgba(29, 29, 31, 0.18) !important;
-  color: var(--mark-silver-shark) !important;
+  border-color: rgba(29, 29, 31, 0.16) !important;
+  color: #1d1d1f !important;
   text-shadow: none !important;
-  background-color: rgba(178, 178, 182, 0.9) !important;
-  background-image:
-    linear-gradient(148deg, rgba(255, 255, 255, 0.42) 0%, rgba(255, 255, 255, 0.06) 38%, transparent 50%),
-    linear-gradient(322deg, rgba(0, 0, 0, 0.1) 0%, transparent 45%),
-    linear-gradient(
-      155deg,
-      var(--mark-silver-highlight) 0%,
-      var(--mark-silver-base) 40%,
-      var(--mark-silver-shadow) 100%
-    ) !important;
-  backdrop-filter: blur(12px) saturate(1.1) !important;
-  -webkit-backdrop-filter: blur(12px) saturate(1.1) !important;
+  /* Same as mark-cta-nav-silver:hover / active (systemGray4 → systemGray3) */
+  background-color: #d1d1d6 !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.68),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.16),
-    inset 1px 0 0 rgba(255, 255, 255, 0.24),
-    inset -1px 0 0 rgba(0, 0, 0, 0.07),
-    0 2px 4px rgba(0, 0, 0, 0.1),
-    0 8px 22px rgba(0, 0, 0, 0.14) !important;
+    inset 0 1px 0 rgba(255, 255, 255, 0.58),
+    0 2px 4px rgba(0, 0, 0, 0.08),
+    0 8px 20px rgba(0, 0, 0, 0.1) !important;
   animation: none !important;
 }
 
 .mark-cta.mark-cta-on-light:focus-visible:not(:disabled) {
-  outline: 2px solid rgba(29, 29, 31, 0.4);
+  outline: 2px solid rgba(29, 29, 31, 0.35);
   outline-offset: 2px;
 }
 
 .mark-cta.mark-cta-on-light:active:not(:disabled) {
-  border-color: rgba(29, 29, 31, 0.2) !important;
-  color: var(--mark-silver-shark) !important;
+  border-color: rgba(29, 29, 31, 0.16) !important;
+  color: #1d1d1f !important;
   text-shadow: none !important;
-  background-color: rgba(154, 154, 158, 0.94) !important;
-  background-image:
-    linear-gradient(148deg, rgba(255, 255, 255, 0.3) 0%, transparent 44%),
-    linear-gradient(155deg, var(--mark-silver-hover-mid) 0%, var(--mark-silver-active) 100%) !important;
-  backdrop-filter: blur(10px) saturate(1.08) !important;
-  -webkit-backdrop-filter: blur(10px) saturate(1.08) !important;
+  background-color: #c7c7cc !important;
+  background-image: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   box-shadow:
-    inset 0 2px 5px rgba(0, 0, 0, 0.14),
-    inset 0 1px 0 rgba(255, 255, 255, 0.38),
-    0 1px 3px rgba(0, 0, 0, 0.14) !important;
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    0 1px 2px rgba(0, 0, 0, 0.1) !important;
   animation: none !important;
 }

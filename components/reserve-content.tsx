@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import { useState, useEffect, useCallback, useRef } from "react"
+import { useSearchParams } from "next/navigation"
 import { Shield, Award, Handshake, Loader2 } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import { SiteFooter } from "@/components/site-footer"
@@ -27,6 +28,7 @@ const guarantees = [
 type Finish = "light" | "dark"
 
 export function ReserveContent() {
+  const searchParams = useSearchParams()
   const [activeIndex, setActiveIndex] = useState(0)
   const [selectedFinish, setSelectedFinish] = useState<Finish | null>(null)
   const [isCheckingOut, setIsCheckingOut] = useState(false)
@@ -74,6 +76,14 @@ export function ReserveContent() {
   }, [])
 
   const handleDotClick = useCallback((index: number) => setActiveIndex(index), [])
+
+  useEffect(() => {
+    const finish = searchParams.get("finish")
+    if (finish === "light" || finish === "dark") {
+      setSelectedFinish(finish)
+      setActiveIndex(finish === "light" ? 0 : 3)
+    }
+  }, [searchParams])
 
   return (
     <>

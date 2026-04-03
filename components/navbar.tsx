@@ -78,7 +78,9 @@ export function Navbar() {
           <Link
             href="/reserve"
             onClick={() => trackMetaCustomEvent("ReserveCTAClick", { source: "navbar" })}
-            className="mark-cta mark-cta-nav-silver px-5 py-2.5 text-sm"
+            className={`mark-cta mark-cta-nav-silver px-5 py-2.5 text-sm ${
+              !useDarkText ? "mark-nav-reserve-join-glass-hover" : ""
+            }`}
           >
             Reserve for $1
           </Link>
@@ -87,7 +89,9 @@ export function Navbar() {
         <Link
           href="/reserve"
           onClick={() => trackMetaCustomEvent("ReserveCTAClick", { source: "navbar_mobile" })}
-          className="mark-cta mark-cta-nav-silver md:hidden px-4 py-2 text-sm shrink-0"
+          className={`mark-cta mark-cta-nav-silver md:hidden px-4 py-2 text-sm shrink-0 ${
+            !useDarkText ? "mark-nav-reserve-join-glass-hover" : ""
+          }`}
         >
           Reserve for $1
         </Link>

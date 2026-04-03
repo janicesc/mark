@@ -81,34 +81,39 @@ function ProductMetaAndCta({
         </p>
       </div>
 
-      <div className="mt-8 flex items-center gap-3">
-        <ColorSwatches activeColor={activeColor} setActiveColor={setActiveColor} />
-      </div>
+      {/* Swatches + (Reserve + deposit line) on md+: deposit centered under the button only */}
+      <div className="mt-8 flex flex-col gap-6 md:flex-row md:items-center md:justify-between md:gap-4 lg:gap-6">
+        <div className="shrink-0 flex items-center">
+          <ColorSwatches activeColor={activeColor} setActiveColor={setActiveColor} />
+        </div>
 
-      <div
-        ref={ctaRef ?? undefined}
-        className="mt-6 inline-flex flex-col items-stretch"
-        style={
-          ctaReveal
-            ? {
-                opacity: ctaVisible ? 1 : 0,
-                transform: ctaVisible ? "none" : "translateY(20px)",
-                transition:
-                  "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
-              }
-            : undefined
-        }
-      >
-        <Link
-          href="/reserve"
-          onClick={() => trackMetaCustomEvent("ReserveCTAClick", { source: "product_showcase" })}
-          className="mark-cta mark-cta-on-light px-8"
-        >
-          Reserve & save
-        </Link>
-        <p className="mt-3 text-xs text-muted-foreground text-center">
-          $1 deposit • 25% off MSRP
-        </p>
+        <div className="flex w-full flex-col items-center gap-3 md:w-auto md:shrink-0">
+          <div
+            ref={ctaRef ?? undefined}
+            className="w-full md:w-auto"
+            style={
+              ctaReveal
+                ? {
+                    opacity: ctaVisible ? 1 : 0,
+                    transform: ctaVisible ? "none" : "translateY(20px)",
+                    transition:
+                      "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
+                  }
+                : undefined
+            }
+          >
+            <Link
+              href={activeColor === "silver" ? "/reserve?finish=light" : "/reserve?finish=dark"}
+              onClick={() => trackMetaCustomEvent("ReserveCTAClick", { source: "product_showcase" })}
+              className="mark-cta mark-cta-on-light px-8 w-full md:w-auto inline-flex"
+            >
+              Reserve & save
+            </Link>
+          </div>
+          <p className="text-xs text-muted-foreground text-center">
+            $1 deposit • 25% off MSRP
+          </p>
+        </div>
       </div>
     </>
   )
@@ -178,18 +183,7 @@ export function ProductCloseup() {
             }}
           >
             <div
-              className="absolute inset-0 flex items-end justify-center pointer-events-none"
-              aria-hidden
-              style={{
-                background:
-                  "radial-gradient(ellipse 70% 60% at 50% 85%, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0.02) 45%, transparent 72%)",
-              }}
-            />
-            <div
-              className="relative w-full max-w-[520px] aspect-[1136/1420] flex items-end justify-center"
-              style={{
-                filter: "drop-shadow(0 30px 60px rgba(0,0,0,0.12))",
-              }}
+              className="relative w-full max-w-[520px] aspect-[1136/1420] flex items-end justify-center md:[filter:drop-shadow(0_30px_60px_rgba(0,0,0,0.12))]"
             >
               <div className="relative w-full aspect-[1136/1420]">
                 <Image

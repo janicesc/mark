@@ -1,3 +1,4 @@
+import { Suspense } from "react"
 import { ReserveContent } from "@/components/reserve-content"
 import type { Metadata } from "next"
 
@@ -11,5 +12,9 @@ export const metadata: Metadata = {
 }
 
 export default function ReservePage() {
-  return <ReserveContent />
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-white" aria-hidden />}>
+      <ReserveContent />
+    </Suspense>
+  )
 }

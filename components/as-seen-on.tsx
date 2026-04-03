@@ -174,40 +174,36 @@ export function AsSeenOn() {
   return (
     <section
       ref={sectionRef}
-      className="as-seen-on-marquee w-full border-t glass-divider-light py-14 md:py-20 px-8 md:px-20 lg:px-28 bg-background overflow-hidden"
+      aria-label="Press coverage"
+      className="as-seen-on-marquee w-full border-t glass-divider-light py-12 md:py-16 px-8 md:px-20 lg:px-28 bg-white overflow-hidden"
       style={{
         opacity: sectionVisible ? 1 : 0,
         transform: sectionVisible ? "none" : "translateY(20px)",
         transition: "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s",
       }}
     >
-      <div className="relative flex flex-col items-center gap-12 md:gap-16">
-        <p className="text-xs font-normal uppercase tracking-[0.2em] text-muted-foreground text-center">
-          Featured in
-        </p>
-        <div className="relative w-full">
-          <div className="flex items-center gap-x-24 md:gap-x-36 lg:gap-x-48 animate-marquee w-max">
-            {[pressOutlets, pressOutlets].map((list, listIndex) => (
-              <div
-                key={listIndex}
-                className="flex items-center gap-x-24 md:gap-x-36 lg:gap-x-48"
-                aria-hidden={listIndex === 1}
-              >
-                {list.map((outlet) => (
-                  <a
-                    key={`${outlet.name}-${listIndex}`}
-                    href={outlet.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex-shrink-0 flex items-center justify-center min-h-[28px] h-7 px-1 opacity-95 transition-opacity duration-300 hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/25 focus-visible:ring-offset-2 rounded text-foreground [&_span]:bg-transparent"
-                    aria-label={`Read about Mark on ${outlet.name}`}
-                  >
-                    <LogoIcon name={outlet.name} />
-                  </a>
-                ))}
-              </div>
-            ))}
-          </div>
+      <div className="relative w-full">
+        <div className="flex items-center gap-x-24 md:gap-x-36 lg:gap-x-48 animate-marquee w-max">
+          {[pressOutlets, pressOutlets].map((list, listIndex) => (
+            <div
+              key={listIndex}
+              className="flex items-center gap-x-24 md:gap-x-36 lg:gap-x-48"
+              aria-hidden={listIndex === 1}
+            >
+              {list.map((outlet) => (
+                <a
+                  key={`${outlet.name}-${listIndex}`}
+                  href={outlet.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex-shrink-0 flex items-center justify-center min-h-[28px] h-7 px-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/25 focus-visible:ring-offset-2 focus-visible:ring-offset-white rounded text-foreground"
+                  aria-label={`Read about Mark on ${outlet.name}`}
+                >
+                  <LogoIcon name={outlet.name} />
+                </a>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
     </section>

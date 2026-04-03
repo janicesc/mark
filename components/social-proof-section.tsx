@@ -66,7 +66,7 @@ export function SocialProofSection() {
           </p>
         </div>
 
-        {/* Embedded tweet */}
+        {/* Embedded tweet — light card inside frosted glass frame on dark bg */}
         <div
           ref={tweetRef}
           className="flex justify-center"
@@ -79,13 +79,13 @@ export function SocialProofSection() {
         >
           <div
             ref={embedRef}
-            className="w-full max-w-lg"
+            className="social-proof-tweet-glass w-full max-w-lg overflow-hidden rounded-2xl p-3 md:p-4"
             style={{
               opacity: tweetReady ? 1 : 0,
               transition: "opacity 0.5s ease",
             }}
           >
-            <blockquote className="twitter-tweet" data-dnt="true" data-theme="dark">
+            <blockquote className="twitter-tweet" data-dnt="true" data-theme="light">
               <p lang="en" dir="ltr">
                 {"Introducing Mark — a $129 AI bookmark that helps book readers remember everything."}
                 <br />
