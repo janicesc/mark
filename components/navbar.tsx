@@ -1,16 +1,17 @@
 "use client"
 
-import { useEffect, useState, useCallback } from "react"
-import { usePathname, useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
+import { usePathname } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
 import { trackMetaCustomEvent } from "@/lib/meta-pixel"
+import { useScrollToAnchor } from "@/hooks/use-scroll-to-anchor"
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
-  const router = useRouter()
   const isHome = pathname === "/"
+  const scrollToAnchor = useScrollToAnchor()
 
   useEffect(() => {
     function onScroll() {
@@ -20,18 +21,6 @@ export function Navbar() {
     onScroll()
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
-
-  const smoothScroll = useCallback((e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
-    e.preventDefault()
-    if (pathname !== "/") {
-      router.push(`/#${targetId}`)
-      return
-    }
-    const el = document.getElementById(targetId)
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" })
-    }
-  }, [pathname, router])
 
   /* On home page: white text when at top (over dark hero video), dark text when scrolled.
      On other pages (e.g. /reserve): always dark text, white bg at top, blurred bg when scrolled. */
@@ -63,7 +52,7 @@ export function Navbar() {
         <nav className="hidden md:flex items-center gap-8">
           <Link
             href="#how-it-works"
-            onClick={(e) => smoothScroll(e, "how-it-works")}
+            onClick={(e) => scrollToAnchor(e, "how-it-works")}
             className={`text-sm font-medium transition-colors duration-300 ${
               useDarkText
                 ? "text-foreground/70 hover:text-foreground"
@@ -76,7 +65,7 @@ export function Navbar() {
             href="#community"
             onClick={(e) => {
               trackMetaCustomEvent("JoinWaitlistClick", { source: "navbar" })
-              smoothScroll(e, "community")
+              scrollToAnchor(e, "community")
             }}
             className={`text-sm font-medium transition-colors duration-300 ${
               useDarkText

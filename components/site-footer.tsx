@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight, ArrowUp } from "lucide-react"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
+import { useScrollToAnchor } from "@/hooks/use-scroll-to-anchor"
 import { trackMetaCustomEvent } from "@/lib/meta-pixel"
 
 const footerLinks = {
@@ -24,6 +25,7 @@ const footerLinks = {
 
 export function SiteFooter() {
   const [logoRef, logoVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.1 })
+  const scrollToAnchor = useScrollToAnchor()
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
@@ -68,7 +70,10 @@ export function SiteFooter() {
             </p>
             <Link
               href="/#community"
-              onClick={() => trackMetaCustomEvent("JoinWaitlistClick", { source: "footer" })}
+              onClick={(e) => {
+                trackMetaCustomEvent("JoinWaitlistClick", { source: "footer" })
+                scrollToAnchor(e, "community")
+              }}
               className="group relative inline-flex h-10 w-[100px] items-center rounded-full bg-white transition-colors duration-200 hover:bg-[#FFDB01]"
               aria-label="Scroll to waitlist signup"
             >

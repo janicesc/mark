@@ -10,10 +10,12 @@ import { SocialProofSection } from "@/components/social-proof-section"
 import { MissionSection } from "@/components/mission-section"
 import { AsSeenOn } from "@/components/as-seen-on"
 import { SiteFooter } from "@/components/site-footer"
+import { HashScrollOnMount } from "@/components/hash-scroll-on-mount"
 
 export default function Home() {
   return (
     <>
+      <HashScrollOnMount />
       <Navbar />
       <main>
         {/* 1. Hero */}
