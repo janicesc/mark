@@ -49,11 +49,11 @@ export function Navbar() {
             priority
           />
         </Link>
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="flex items-center gap-6 md:gap-8 shrink-0">
           <Link
             href="#how-it-works"
             onClick={(e) => scrollToAnchor(e, "how-it-works")}
-            className={`text-sm font-medium transition-colors duration-300 ${
+            className={`hidden md:inline text-sm font-medium transition-colors duration-300 ${
               useDarkText
                 ? "text-foreground/70 hover:text-foreground"
                 : "text-white/70 hover:text-white"
@@ -67,7 +67,7 @@ export function Navbar() {
               trackMetaCustomEvent("JoinWaitlistClick", { source: "navbar" })
               scrollToAnchor(e, "community")
             }}
-            className={`text-sm font-medium transition-colors duration-300 ${
+            className={`hidden md:inline text-sm font-medium transition-colors duration-300 ${
               useDarkText
                 ? "text-foreground/70 hover:text-foreground"
                 : "text-white/70 hover:text-white"
@@ -77,24 +77,19 @@ export function Navbar() {
           </Link>
           <Link
             href="/reserve"
-            onClick={() => trackMetaCustomEvent("ReserveCTAClick", { source: "navbar" })}
-            className={`mark-cta mark-cta-nav-silver px-5 py-2.5 text-sm ${
-              !useDarkText ? "mark-nav-reserve-join-glass-hover" : ""
+            onClick={() =>
+              trackMetaCustomEvent("ReserveCTAClick", {
+                source:
+                  typeof window !== "undefined" && window.innerWidth < 768 ? "navbar_mobile" : "navbar",
+              })
+            }
+            className={`mark-cta mark-cta-nav-rect inline-flex h-10 min-h-[40px] items-center px-4 py-0 text-sm transition-colors duration-300 md:px-5 ${
+              useDarkText ? "mark-cta-on-light" : "mark-cta-nav-silver mark-nav-reserve-join-glass-hover"
             }`}
           >
             Reserve for $1
           </Link>
         </nav>
-        {/* Mobile: Reserve CTA at top right */}
-        <Link
-          href="/reserve"
-          onClick={() => trackMetaCustomEvent("ReserveCTAClick", { source: "navbar_mobile" })}
-          className={`mark-cta mark-cta-nav-silver md:hidden px-4 py-2 text-sm shrink-0 ${
-            !useDarkText ? "mark-nav-reserve-join-glass-hover" : ""
-          }`}
-        >
-          Reserve for $1
-        </Link>
       </div>
     </header>
   )

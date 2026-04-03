@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
+import { HERO_VIDEO_SRC } from '@/lib/hero-video'
 
 // Use deployment URL so og:image works when sharing (set NEXT_PUBLIC_SITE_URL in prod, or Vercel sets VERCEL_URL)
 const siteUrl =
@@ -63,6 +64,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Start hero video fetch early (LCP) — same path as HeroSection */}
+        <link rel="preload" href={HERO_VIDEO_SRC} as="video" type="video/mp4" />
         {/* Meta Pixel Code */}
         <script
           dangerouslySetInnerHTML={{

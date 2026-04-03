@@ -29,26 +29,20 @@ function ColorSwatches({
       <button
         type="button"
         onClick={() => setActiveColor("silver")}
-        className={`w-9 h-9 rounded-full border-2 transition-all duration-300 ${
-          activeColor === "silver"
-            ? "border-foreground/40 scale-110"
-            : "border-transparent hover:border-foreground/20"
-        }`}
+        className={`mark-color-swatch ${activeColor === "silver" ? "mark-color-swatch--active" : ""}`}
         aria-label="Silver"
+        aria-pressed={activeColor === "silver"}
       >
-        <span className="block w-full h-full rounded-full bg-gradient-to-br from-[#d4d4d4] to-[#a3a3a3]" />
+        <span className="block h-full w-full rounded-full bg-gradient-to-br from-[#d4d4d4] to-[#a3a3a3]" />
       </button>
       <button
         type="button"
         onClick={() => setActiveColor("black")}
-        className={`w-9 h-9 rounded-full border-2 transition-all duration-300 ${
-          activeColor === "black"
-            ? "border-foreground/40 scale-110"
-            : "border-transparent hover:border-foreground/20"
-        }`}
+        className={`mark-color-swatch ${activeColor === "black" ? "mark-color-swatch--active" : ""}`}
         aria-label="Black"
+        aria-pressed={activeColor === "black"}
       >
-        <span className="block w-full h-full rounded-full bg-gradient-to-br from-[#404040] to-[#171717]" />
+        <span className="block h-full w-full rounded-full bg-gradient-to-br from-[#404040] to-[#171717]" />
       </button>
     </div>
   )

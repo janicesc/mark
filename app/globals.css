@@ -236,10 +236,38 @@
       0 12px 32px rgba(0, 0, 0, 0.28);
   }
   .mark-cta.hero-glass-cta:hover {
-    border-color: rgba(255, 255, 255, 0.52);
+    border-color: rgba(255, 255, 255, 0.62);
+    /* Stronger light vs shadow in the glass stack (same 5 layers as .hero-glass-cta for hero-glass-shift) */
+    background-image:
+      linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.4),
+        rgba(175, 190, 212, 0.12) 28%,
+        rgba(255, 255, 255, 0.45) 58%,
+        rgba(150, 165, 188, 0.22) 100%
+      ),
+      linear-gradient(
+        285deg,
+        rgba(255, 255, 255, 0.14),
+        rgba(95, 112, 138, 0.32) 44%,
+        rgba(255, 255, 255, 0.18) 100%
+      ),
+      radial-gradient(120% 120% at 0% 0%, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 50%),
+      radial-gradient(
+        100% 140% at 100% 100%,
+        rgba(45, 55, 72, 0.5),
+        rgba(175, 188, 208, 0.28) 46%,
+        rgba(195, 205, 217, 0) 58%
+      ),
+      linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.42) 50%, transparent 70%);
+    background-size: 260% 260%, 220% 220%, 180% 180%, 190% 190%, 220% 100%;
+    background-position: 0% 50%, 100% 40%, 0% 0%, 100% 100%, 0% 50%;
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.55),
-      0 12px 34px rgba(0, 0, 0, 0.26);
+      inset 0 1px 0 rgba(255, 255, 255, 0.72),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.14),
+      0 14px 44px rgba(0, 0, 0, 0.38);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
   }
 
   /* Dark glass on light backgrounds: opaque base + gradients (transparent-only layers read as white on white) */
@@ -257,6 +285,14 @@
       0 10px 28px rgba(0, 0, 0, 0.22);
     /* Base .mark-cta runs 5-layer animation — conflicts with 3-layer charcoal; stop until hover */
     animation: none !important;
+  }
+
+  /* Navbar Reserve: rectangle (4px corners) — works with charcoal or silver */
+  .mark-cta.mark-cta-nav-rect {
+    border-radius: 4px !important;
+    min-height: 40px;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   /* Navbar Reserve: Apple light system grays (UIKit light mode — systemGray5 / 4 / 3) */
@@ -278,15 +314,14 @@
     border-color: rgba(29, 29, 31, 0.16);
     color: #1d1d1f;
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.58),
-      0 2px 4px rgba(0, 0, 0, 0.08),
-      0 8px 20px rgba(0, 0, 0, 0.1);
+      inset 0 1px 0 rgba(255, 255, 255, 0.65),
+      0 1px 2px rgba(0, 0, 0, 0.06);
   }
   .mark-cta.mark-cta-nav-silver:active:not(:disabled) {
     background-color: #c7c7cc;
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.35),
-      0 1px 2px rgba(0, 0, 0, 0.1);
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      0 1px 2px rgba(0, 0, 0, 0.08);
   }
   .mark-cta.mark-cta-nav-silver:focus-visible {
     outline: 2px solid rgba(29, 29, 31, 0.35);
@@ -294,8 +329,8 @@
   }
 
   /*
-   * Nav Reserve over dark hero only (class toggled in navbar): same hover/active/focus as
-   * .mark-join-hero-glass-hover — white label, animated glass. When bar is white, class omitted → flat silver.
+   * Nav Reserve over dark hero only (navbar adds this class when not scrolled on home):
+   * frosted glass hover/focus — white label + animated sheen. Scrolled / other pages use flat silver only.
    */
   .mark-cta.mark-cta-nav-silver.mark-nav-reserve-join-glass-hover:hover,
   .mark-cta.mark-cta-nav-silver.mark-nav-reserve-join-glass-hover:focus-visible {
@@ -340,6 +375,56 @@
     background: linear-gradient(140deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.08));
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(8px);
+  }
+
+  /*
+   * Product feature color swatches (#fafafa): same vocabulary as .glass-emphasis —
+   * hairline rim + inset sheen + light blur; selected state adds a soft ink edge (original scale-110).
+   */
+  .mark-color-swatch {
+    position: relative;
+    display: flex;
+    height: 2.25rem;
+    width: 2.25rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 9999px;
+    /* Original idle was border-transparent; keep a whisper of glass rim + sheen */
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: transparent;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.42),
+      0 0 0 1px rgba(12, 12, 12, 0.04);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition:
+      border-color 0.25s ease,
+      box-shadow 0.25s ease,
+      transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  /* ~ border-foreground/20 on hover */
+  .mark-color-swatch:hover:not(.mark-color-swatch--active) {
+    border-color: rgba(255, 255, 255, 0.45);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.65),
+      0 0 0 1px rgba(12, 12, 12, 0.09);
+  }
+  .mark-color-swatch--active {
+    border-color: rgba(255, 255, 255, 0.62);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.88),
+      0 0 0 1px rgba(29, 29, 31, 0.18),
+      0 2px 10px rgba(0, 0, 0, 0.06);
+    transform: scale(1.1);
+  }
+  .mark-color-swatch:focus {
+    outline: none;
+  }
+  .mark-color-swatch:focus-visible {
+    outline: 2px solid rgba(29, 29, 31, 0.28);
+    outline-offset: 2px;
   }
 
   /* Social proof X embed: frosted glass rim on #0a0a0a — visible border + inset sheen (matches glass-emphasis / hero) */
@@ -534,22 +619,21 @@
 }
 
 /*
- * On-light Reserve CTAs (product, reserve flow): hover/active = flat silver (match mark-cta-nav-silver).
+ * On-light Reserve CTAs (product, reserve flow): hover/active = simple UIKit light grays
+ * (systemGray5 → systemGray4 → systemGray3), same flat silver as .mark-cta-nav-silver.
  */
 .mark-cta.mark-cta-on-light:hover:not(:disabled),
 .mark-cta.mark-cta-on-light:focus-visible:not(:disabled) {
   border-color: rgba(29, 29, 31, 0.16) !important;
   color: #1d1d1f !important;
   text-shadow: none !important;
-  /* Same as mark-cta-nav-silver:hover / active (systemGray4 → systemGray3) */
   background-color: #d1d1d6 !important;
   background-image: none !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.58),
-    0 2px 4px rgba(0, 0, 0, 0.08),
-    0 8px 20px rgba(0, 0, 0, 0.1) !important;
+    inset 0 1px 0 rgba(255, 255, 255, 0.65),
+    0 1px 2px rgba(0, 0, 0, 0.06) !important;
   animation: none !important;
 }
 
@@ -567,7 +651,7 @@
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.35),
-    0 1px 2px rgba(0, 0, 0, 0.1) !important;
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    0 1px 2px rgba(0, 0, 0, 0.08) !important;
   animation: none !important;
 }

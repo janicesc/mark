@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
+import { HERO_VIDEO_SRC } from "@/lib/hero-video"
 import { trackMetaCustomEvent } from "@/lib/meta-pixel"
 
 /** Opal C1–style vertical scroll indicator (static; visual match to opalcamera.com hero) */
@@ -36,8 +37,7 @@ export function HeroSection() {
   const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
-    const t = setTimeout(() => setMounted(true), 100)
-    return () => clearTimeout(t)
+    setMounted(true)
   }, [])
 
   /** Muted inline autoplay + programmatic play — helps mobile start playback without lingering native play UI */
@@ -74,12 +74,13 @@ export function HeroSection() {
       <video
         ref={videoRef}
         className="mark-decorative-video absolute inset-0 h-full w-full object-cover object-[50%_35%]"
-        src="/videos/HeroVideo_Placeholder.mp4"
+        src={HERO_VIDEO_SRC}
         autoPlay
         muted
         loop
         playsInline
         preload="auto"
+        fetchPriority="high"
         controls={false}
         controlsList="nodownload noplaybackrate nofullscreen"
         disablePictureInPicture
