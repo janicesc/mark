@@ -39,7 +39,7 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-[200] transition-all duration-300 ${
         scrolled
           ? "bg-background/90 backdrop-blur-md border-b border-black/10 shadow-sm"
           : !isHome
@@ -89,18 +89,18 @@ export function Navbar() {
           <Link
             href="/reserve"
             onClick={() => trackMetaCustomEvent("ReserveCTAClick", { source: "navbar" })}
-            className="mark-cta px-5 py-2.5 text-sm"
+            className={`mark-cta px-5 py-2.5 text-sm ${useDarkText ? "mark-cta-on-light" : ""}`}
           >
-            Reserve & save
+            Reserve for $1
           </Link>
         </nav>
-        {/* Mobile: show Reserve & save at top right only */}
+        {/* Mobile: Reserve CTA at top right */}
         <Link
           href="/reserve"
           onClick={() => trackMetaCustomEvent("ReserveCTAClick", { source: "navbar_mobile" })}
-          className="mark-cta md:hidden px-4 py-2 text-sm shrink-0"
+          className={`mark-cta md:hidden px-4 py-2 text-sm shrink-0 ${useDarkText ? "mark-cta-on-light" : ""}`}
         >
-          Reserve & save
+          Reserve for $1
         </Link>
       </div>
     </header>

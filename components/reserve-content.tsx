@@ -197,7 +197,7 @@ export function ReserveContent() {
                     type="button"
                     onClick={handleReserveClick}
                     disabled={isCheckingOut}
-                    className="flex-1 sm:flex-initial flex items-center justify-center gap-2 h-12 rounded-[4px] bg-black text-white text-sm font-semibold transition-colors duration-200 hover:bg-[#FFDB01] hover:text-black min-w-[140px] disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="mark-cta mark-cta-on-light flex-1 sm:flex-initial min-h-12 min-w-[140px] px-8 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {isCheckingOut ? (
                       <>

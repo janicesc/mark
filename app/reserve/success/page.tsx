@@ -16,7 +16,7 @@ export default function ReserveSuccessPage() {
           </p>
           <Link
             href="/"
-            className="inline-flex items-center justify-center h-12 rounded-[4px] bg-black text-white text-sm font-semibold px-6 transition-colors hover:bg-[#FFDB01] hover:text-black"
+            className="mark-cta mark-cta-on-light inline-flex min-h-12 px-8"
           >
             Back to home
           </Link>

@@ -60,7 +60,7 @@ export function WaitlistBanner() {
     <section
       id="community"
       ref={sectionRef}
-      className="border-t border-black/20 bg-[#0a0a0a] text-white"
+      className="border-t glass-divider-dark bg-[#0a0a0a] text-white"
     >
       <div
         className="mx-auto max-w-7xl px-6 md:px-8 py-16 md:py-20"

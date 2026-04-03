@@ -8,7 +8,7 @@ export function OrganizeSection() {
   const [imageRef, imageVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.15 })
 
   return (
-    <section className="border-t border-black/[0.06] bg-background overflow-hidden">
+    <section className="border-t glass-divider-light bg-background overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 md:px-8 py-20 md:py-32">
         <div className="flex flex-col-reverse md:flex-row items-center gap-12 md:gap-16">
           {/* App UI screens showcase */}

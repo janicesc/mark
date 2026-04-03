@@ -24,7 +24,7 @@ export function ProductCloseup() {
   const [ctaRef, ctaVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.3 })
 
   return (
-    <section className="border-t border-black/[0.06] bg-background overflow-hidden">
+    <section className="border-t glass-divider-light bg-background overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 md:px-8 py-20 md:py-32">
         {/* Opal-style: content + image row */}
         <div className="flex flex-col md:flex-row items-stretch gap-12 md:gap-8 lg:gap-16">
@@ -58,11 +58,11 @@ export function ProductCloseup() {
               </p>
 
               {/* Battery as micro feature highlight */}
-              <div className="mt-6 pt-6 border-t border-black/10">
-                <p className="text-sm font-bold uppercase tracking-wider text-foreground">
+              <div className="mt-8 pt-7 border-t glass-divider-light">
+                <p className="text-[11px] md:text-xs font-semibold uppercase tracking-[0.14em] text-foreground/80">
                   7+ days battery life
                 </p>
-                <p className="mt-1.5 text-muted-foreground text-sm md:text-base leading-relaxed">
+                <p className="mt-1.5 text-muted-foreground/90 text-xs md:text-sm leading-relaxed max-w-md">
                   Charge it once, forget about it — just you and the book, whenever you want.
                 </p>
               </div>
@@ -104,7 +104,7 @@ export function ProductCloseup() {
                 <Link
                   href="/reserve"
                   onClick={() => trackMetaCustomEvent("ReserveCTAClick", { source: "product_showcase" })}
-                  className="mark-cta px-8"
+                  className="mark-cta mark-cta-on-light px-8"
                 >
                   Reserve & save
                 </Link>

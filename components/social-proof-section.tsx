@@ -45,7 +45,7 @@ export function SocialProofSection() {
   }, [tweetVisible])
 
   return (
-    <section className="border-t border-white/10 bg-[#0a0a0a] py-20 md:py-32">
+    <section className="border-t glass-divider-dark bg-[#0a0a0a] py-20 md:py-32">
       <div className="mx-auto max-w-3xl px-6 md:px-8">
         {/* Heading */}
         <div

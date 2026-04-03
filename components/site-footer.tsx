@@ -57,7 +57,7 @@ export function SiteFooter() {
       {/* Content area */}
       <div className="mx-auto max-w-[1616px] px-4 md:px-8">
         {/* Newsletter + Link columns row */}
-        <div className="border-t border-white/10 pt-8 pb-16 md:pb-24 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8">
+        <div className="border-t glass-divider-dark pt-8 pb-16 md:pb-24 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8">
           {/* Newsletter — left side */}
           <div className="max-w-[320px]">
             <p className="mb-5 text-xl font-semibold leading-7">
@@ -106,7 +106,7 @@ export function SiteFooter() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/10 py-6 flex items-center justify-between">
+        <div className="border-t glass-divider-dark py-6 flex items-center justify-between">
           <div className="flex items-center gap-8">
             <span className="text-[13px] text-white/40">Mark Inc.</span>
             <span className="text-[13px] text-white/40">

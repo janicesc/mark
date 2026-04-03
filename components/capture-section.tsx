@@ -27,7 +27,7 @@ export function CaptureSection() {
   }, [flipVisible])
 
   return (
-    <section className="border-t border-black/[0.06] bg-background overflow-hidden">
+    <section className="border-t glass-divider-light bg-background overflow-hidden">
       <div ref={sectionRef} className="mx-auto max-w-7xl px-6 md:px-8 py-20 md:py-32">
         <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
           {/* Text content */}

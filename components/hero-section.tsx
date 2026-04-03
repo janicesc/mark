@@ -1,6 +1,5 @@
 "use client"
 
-import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import { trackMetaCustomEvent } from "@/lib/meta-pixel"
@@ -93,8 +92,8 @@ export function HeroSection() {
         aria-hidden="true"
       />
 
-      {/* Left rail: mix-blend-difference so dots invert cleanly over video (Opal pattern) */}
-      <div className="pointer-events-none absolute left-0 top-0 z-[100] hidden h-full w-14 mix-blend-difference md:block">
+      {/* Left rail — keep z below nav (z-200): same z as nav + later DOM order was stealing clicks over hero */}
+      <div className="pointer-events-none absolute left-0 top-0 z-40 hidden h-full w-14 mix-blend-difference md:block">
         <div className="sticky top-0 ml-3 flex h-[100svh] items-center">
           <HeroPaginationDots />
         </div>
@@ -103,40 +102,39 @@ export function HeroSection() {
       {/* Mobile: bottom-left stack over darker scrim. md+: top-left grid like Opal desktop. */}
       <header
         id="mark-hero"
-        className="relative z-[60] flex w-full flex-1 flex-col justify-end pb-10 pt-0 max-md:pb-[max(2.5rem,env(safe-area-inset-bottom,0px))] md:flex-none md:justify-start md:pt-[calc(5rem+10svh)] md:pb-24 min-[960px]:pt-[22vh]"
+        className="pointer-events-none relative z-10 flex w-full flex-1 flex-col justify-end pb-10 pt-0 max-md:pb-[max(4.5rem,env(safe-area-inset-bottom,0px))] md:flex-none md:justify-start md:pt-[clamp(8rem,18vh,13rem)] md:pb-24"
       >
         <div
           id="mark-hero-content"
-          className="mx-auto flex w-full max-w-7xl flex-col items-start px-6 text-left md:px-12 lg:px-20"
+          className="pointer-events-auto mx-auto flex w-full max-w-6xl flex-col items-start px-6 text-left md:px-12 lg:px-20"
         >
           <div
             id="mark-hero-txt"
-            className="max-w-2xl max-md:[text-shadow:0_2px_32px_rgba(0,0,0,0.55)]"
+            className="max-w-[17.5rem] sm:max-w-xl md:max-w-[34rem] max-md:[text-shadow:0_2px_32px_rgba(0,0,0,0.55)]"
           >
             <h1
               id="mark-hero-txt-title"
-              className="font-sans text-[clamp(2rem,6vw,4.5rem)] font-medium leading-[1.05] tracking-[-0.02em] text-white"
+              className="font-sans text-[clamp(1.85rem,6vw,4.25rem)] font-medium leading-[1.06] tracking-[-0.02em] text-white"
               style={fade("0.05s")}
             >
               World&apos;s First AI Highlighter
             </h1>
             <p
               id="mark-hero-txt-p"
-              className="mt-4 text-lg font-normal leading-snug tracking-[-0.01em] text-zinc-300 sm:text-xl md:mt-5 md:text-2xl md:leading-8 md:text-zinc-400"
+              className="mt-4 text-lg font-normal leading-snug tracking-[-0.01em] text-white/88 sm:text-xl md:mt-5 md:text-2xl md:leading-8 md:text-white/78"
               style={fade("0.15s")}
             >
               Read once. Retrieve anytime.
             </p>
           </div>
 
-          <div style={fade("0.28s")} className="mt-8 md:mt-14">
+          <div style={fade("0.28s")} className="mt-7 md:mt-10">
             <Link
               href="/reserve"
               onClick={() => trackMetaCustomEvent("ReserveCTAClick", { source: "hero" })}
-              className="mark-cta"
+              className="mark-cta hero-glass-cta"
             >
-              <ArrowRight className="h-4 w-4 shrink-0" />
-              Reserve & save
+              Get early access
             </Link>
           </div>
         </div>

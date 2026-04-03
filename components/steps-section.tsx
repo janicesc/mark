@@ -41,7 +41,7 @@ export function StepsSection() {
   const [gridRef, gridVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.1 })
 
   return (
-    <section id="how-it-works" className="border-t border-black/[0.06] bg-background px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32">
+    <section id="how-it-works" className="border-t glass-divider-light bg-background px-6 py-20 md:px-12 md:py-28 lg:px-20 lg:py-32">
       <div className="mx-auto max-w-7xl">
         <div
           ref={headRef}
@@ -57,11 +57,8 @@ export function StepsSection() {
           <h2 className="text-center font-sans text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-foreground text-balance mb-4">
             How Mark Works
           </h2>
-          <p className="text-center text-lg md:text-xl text-muted-foreground text-balance max-w-2xl mx-auto mb-6">
+          <p className="text-center text-lg md:text-xl text-muted-foreground text-balance max-w-2xl mx-auto mb-10 md:mb-14">
             A lifetime of knowledge.
-          </p>
-          <p className="text-center text-sm md:text-base font-medium text-foreground mb-10 md:mb-14">
-            Three steps to:
           </p>
         </div>
 

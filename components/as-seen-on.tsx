@@ -166,7 +166,7 @@ export function AsSeenOn() {
   return (
     <section
       ref={sectionRef}
-      className="w-full border-t border-black/[0.06] py-14 md:py-20 px-8 md:px-20 lg:px-28 bg-background overflow-hidden"
+      className="w-full border-t glass-divider-light py-14 md:py-20 px-8 md:px-20 lg:px-28 bg-background overflow-hidden"
       style={{
         opacity: sectionVisible ? 1 : 0,
         transform: sectionVisible ? "none" : "translateY(20px)",
@@ -178,11 +178,11 @@ export function AsSeenOn() {
           Featured in
         </p>
         <div className="relative w-full">
-          <div className="flex items-center gap-x-16 md:gap-x-24 animate-marquee w-max">
+          <div className="flex items-center gap-x-24 md:gap-x-36 lg:gap-x-48 animate-marquee w-max">
             {[pressOutlets, pressOutlets].map((list, listIndex) => (
               <div
                 key={listIndex}
-                className="flex items-center gap-x-16 md:gap-x-24"
+                className="flex items-center gap-x-24 md:gap-x-36 lg:gap-x-48"
                 aria-hidden={listIndex === 1}
               >
                 {list.map((outlet) => (
@@ -191,10 +191,10 @@ export function AsSeenOn() {
                     href={outlet.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex-shrink-0 flex items-center justify-center min-h-[28px] h-7 opacity-70 hover:opacity-100 transition-opacity duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/30 focus-visible:ring-offset-2 focus-visible:opacity-100 rounded text-foreground"
+                    className="group flex-shrink-0 flex items-center justify-center min-h-[28px] h-7 px-1 opacity-95 transition-opacity duration-300 hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/25 focus-visible:ring-offset-2 rounded text-foreground"
                     aria-label={`Read about Mark on ${outlet.name}`}
                   >
-                    <span className="grayscale transition-all duration-200 group-hover:grayscale-0">
+                    <span className="grayscale transition-all duration-300">
                       <LogoIcon name={outlet.name} />
                     </span>
                   </a>
