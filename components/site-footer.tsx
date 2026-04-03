@@ -74,11 +74,11 @@ export function SiteFooter() {
                 trackMetaCustomEvent("JoinWaitlistClick", { source: "footer" })
                 scrollToAnchor(e, "community")
               }}
-              className="group relative inline-flex h-10 w-[100px] items-center rounded-full bg-white transition-colors duration-200 hover:bg-[#FFDB01]"
+              className="group mark-silver-hover-pill relative inline-flex h-10 w-[100px] items-center rounded-full"
               aria-label="Scroll to waitlist signup"
             >
               <ArrowRight
-                className="absolute text-black transition-all duration-300 ease-out left-[calc(100%-44px)] group-hover:left-[calc(50%-12px)]"
+                className="absolute text-black transition-all duration-300 ease-out left-[calc(100%-44px)] group-hover:left-[calc(50%-12px)] group-hover:text-[var(--mark-silver-shark)]"
                 size={24}
                 strokeWidth={2}
               />

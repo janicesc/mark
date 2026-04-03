@@ -35,7 +35,7 @@ function LogoIcon({ name }: { name: string }) {
       )
     case "Y Combinator":
       return (
-        <span className="font-semibold text-base tracking-tight text-inherit">
+        <span className="font-semibold text-base tracking-tight text-muted-foreground grayscale">
           Y Combinator
         </span>
       )
@@ -102,10 +102,12 @@ function LogoIcon({ name }: { name: string }) {
             alt="Superhuman AI"
             width={26}
             height={26}
-            className="h-[26px] w-[26px] rounded-md object-cover"
+            className="h-[26px] w-[26px] rounded-md object-cover bg-transparent"
             unoptimized
           />
-          <span className="font-medium text-base leading-6 text-inherit">Superhuman AI</span>
+          <span className="font-medium text-base leading-6 text-muted-foreground">
+            Superhuman AI
+          </span>
         </div>
       )
     case "Gamereactor":
@@ -127,10 +129,12 @@ function LogoIcon({ name }: { name: string }) {
             alt="Ben's Bites"
             width={26}
             height={26}
-            className="h-[26px] w-[26px] rounded-md object-cover"
+            className="h-[26px] w-[26px] rounded-md object-cover bg-transparent"
             unoptimized
           />
-          <span className="font-bold text-base uppercase leading-6 text-inherit">Ben&apos;s Bites</span>
+          <span className="font-bold text-base uppercase leading-6 text-muted-foreground">
+            Ben&apos;s Bites
+          </span>
         </div>
       )
     case "ForkLog":
@@ -156,7 +160,11 @@ function LogoIcon({ name }: { name: string }) {
         />
       )
     default:
-      return <span className="font-medium text-base leading-6 text-inherit">{name}</span>
+      return (
+        <span className="font-medium text-base leading-6 text-muted-foreground grayscale">
+          {name}
+        </span>
+      )
   }
 }
 
@@ -166,7 +174,7 @@ export function AsSeenOn() {
   return (
     <section
       ref={sectionRef}
-      className="w-full border-t glass-divider-light py-14 md:py-20 px-8 md:px-20 lg:px-28 bg-background overflow-hidden"
+      className="as-seen-on-marquee w-full border-t glass-divider-light py-14 md:py-20 px-8 md:px-20 lg:px-28 bg-background overflow-hidden"
       style={{
         opacity: sectionVisible ? 1 : 0,
         transform: sectionVisible ? "none" : "translateY(20px)",
@@ -191,12 +199,10 @@ export function AsSeenOn() {
                     href={outlet.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex-shrink-0 flex items-center justify-center min-h-[28px] h-7 px-1 opacity-95 transition-opacity duration-300 hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/25 focus-visible:ring-offset-2 rounded text-foreground"
+                    className="group flex-shrink-0 flex items-center justify-center min-h-[28px] h-7 px-1 opacity-95 transition-opacity duration-300 hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground/25 focus-visible:ring-offset-2 rounded text-foreground [&_span]:bg-transparent"
                     aria-label={`Read about Mark on ${outlet.name}`}
                   >
-                    <span className="grayscale transition-all duration-300">
-                      <LogoIcon name={outlet.name} />
-                    </span>
+                    <LogoIcon name={outlet.name} />
                   </a>
                 ))}
               </div>

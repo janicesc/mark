@@ -111,10 +111,10 @@ export function WaitlistBanner() {
                 />
                 <button
                   type="submit"
-                  className="group flex items-center gap-2.5 bg-white px-6 py-3.5 text-sm font-semibold text-black transition-colors duration-300 hover:bg-[#FFDB01] flex-shrink-0"
+                  className="group mark-silver-hover-pill flex items-center gap-2.5 px-6 py-3.5 text-sm font-semibold text-black flex-shrink-0"
                 >
                   Join
-                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
+                  <ArrowRight className="w-4 h-4 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-[var(--mark-silver-shark)]" />
                 </button>
               </form>
             )}

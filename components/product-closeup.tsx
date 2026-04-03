@@ -17,21 +17,118 @@ const variants = {
   },
 }
 
+function ColorSwatches({
+  activeColor,
+  setActiveColor,
+}: {
+  activeColor: "silver" | "black"
+  setActiveColor: (c: "silver" | "black") => void
+}) {
+  return (
+    <div className="flex items-center gap-3">
+      <button
+        type="button"
+        onClick={() => setActiveColor("silver")}
+        className={`w-9 h-9 rounded-full border-2 transition-all duration-300 ${
+          activeColor === "silver"
+            ? "border-foreground/40 scale-110"
+            : "border-transparent hover:border-foreground/20"
+        }`}
+        aria-label="Silver"
+      >
+        <span className="block w-full h-full rounded-full bg-gradient-to-br from-[#d4d4d4] to-[#a3a3a3]" />
+      </button>
+      <button
+        type="button"
+        onClick={() => setActiveColor("black")}
+        className={`w-9 h-9 rounded-full border-2 transition-all duration-300 ${
+          activeColor === "black"
+            ? "border-foreground/40 scale-110"
+            : "border-transparent hover:border-foreground/20"
+        }`}
+        aria-label="Black"
+      >
+        <span className="block w-full h-full rounded-full bg-gradient-to-br from-[#404040] to-[#171717]" />
+      </button>
+    </div>
+  )
+}
+
+function ProductMetaAndCta({
+  activeColor,
+  setActiveColor,
+  ctaRef,
+  ctaVisible,
+  batterySpacingClass,
+}: {
+  activeColor: "silver" | "black"
+  setActiveColor: (c: "silver" | "black") => void
+  /** Desktop only — omit on mobile so the outer mobile block owns scroll reveal */
+  ctaRef?: React.RefObject<HTMLDivElement | null>
+  ctaVisible?: boolean
+  /** e.g. mt-8 when below copy on desktop; mt-0 when below product image on mobile */
+  batterySpacingClass: string
+}) {
+  const ctaReveal = ctaRef != null && ctaVisible != null
+  return (
+    <>
+      <div className={`${batterySpacingClass} pt-7 border-t glass-divider-light`}>
+        <p className="text-[11px] md:text-xs font-semibold uppercase tracking-[0.14em] text-foreground/80">
+          7+ days battery life
+        </p>
+        <p className="mt-1.5 text-muted-foreground/90 text-xs md:text-sm leading-relaxed max-w-md">
+          Charge it once, forget about it — just you and the book, whenever you want.
+        </p>
+      </div>
+
+      <div className="mt-8 flex items-center gap-3">
+        <ColorSwatches activeColor={activeColor} setActiveColor={setActiveColor} />
+      </div>
+
+      <div
+        ref={ctaRef ?? undefined}
+        className="mt-6 inline-flex flex-col items-stretch"
+        style={
+          ctaReveal
+            ? {
+                opacity: ctaVisible ? 1 : 0,
+                transform: ctaVisible ? "none" : "translateY(20px)",
+                transition:
+                  "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
+              }
+            : undefined
+        }
+      >
+        <Link
+          href="/reserve"
+          onClick={() => trackMetaCustomEvent("ReserveCTAClick", { source: "product_showcase" })}
+          className="mark-cta mark-cta-on-light px-8"
+        >
+          Reserve & save
+        </Link>
+        <p className="mt-3 text-xs text-muted-foreground text-center">
+          $1 deposit • 25% off MSRP
+        </p>
+      </div>
+    </>
+  )
+}
+
 export function ProductCloseup() {
   const [activeColor, setActiveColor] = useState<"silver" | "black">("silver")
   const [textRef, textVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.2 })
   const [imgRef, imgVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.15 })
   const [ctaRef, ctaVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.3 })
+  const [mobileMetaRef, mobileMetaVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.2 })
 
   return (
     <section className="border-t glass-divider-light bg-background overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 md:px-8 py-20 md:py-32">
-        {/* Opal-style: content + image row */}
         <div className="flex flex-col md:flex-row items-stretch gap-12 md:gap-8 lg:gap-16">
-          {/* Left: content (tight column, max 420–460px) */}
+          {/* Copy: heading + body only */}
           <div
             ref={textRef}
-            className="w-full md:w-[38%] shrink-0 flex flex-col"
+            className="w-full md:w-[38%] shrink-0 flex flex-col order-1 md:order-none"
             style={{
               opacity: textVisible ? 1 : 0,
               transform: textVisible ? "none" : "translateY(40px)",
@@ -44,7 +141,6 @@ export function ProductCloseup() {
                 <span className="block">for reading.</span>
               </h2>
 
-              {/* Design cue: SLEEK. COMPACT. */}
               <p className="mt-10 text-sm md:text-base font-bold uppercase tracking-wider text-foreground">
                 Sleek. Compact.
               </p>
@@ -54,78 +150,33 @@ export function ProductCloseup() {
               </p>
 
               <p className="mt-5 text-muted-foreground text-sm md:text-base leading-relaxed">
-                With an intuitive scanner for paper and screens, an integrated microphone, and intelligent AI organization, Mark turns what you read into structured knowledge.
+                With an intuitive scanner for paper and screens, an integrated microphone, and intelligent AI
+                organization, Mark turns what you read into structured knowledge.
               </p>
 
-              {/* Battery as micro feature highlight */}
-              <div className="mt-8 pt-7 border-t glass-divider-light">
-                <p className="text-[11px] md:text-xs font-semibold uppercase tracking-[0.14em] text-foreground/80">
-                  7+ days battery life
-                </p>
-                <p className="mt-1.5 text-muted-foreground/90 text-xs md:text-sm leading-relaxed max-w-md">
-                  Charge it once, forget about it — just you and the book, whenever you want.
-                </p>
-              </div>
-
-              {/* Color swatches — closer to content flow, above CTA */}
-              <div className="mt-8 flex items-center gap-3">
-                <button
-                  type="button"
-                  onClick={() => setActiveColor("silver")}
-                  className={`w-9 h-9 rounded-full border-2 transition-all duration-300 ${
-                    activeColor === "silver"
-                      ? "border-foreground/40 scale-110"
-                      : "border-transparent hover:border-foreground/20"
-                  }`}
-                  aria-label="Silver"
-                >
-                  <span className="block w-full h-full rounded-full bg-gradient-to-br from-[#d4d4d4] to-[#a3a3a3]" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setActiveColor("black")}
-                  className={`w-9 h-9 rounded-full border-2 transition-all duration-300 ${
-                    activeColor === "black"
-                      ? "border-foreground/40 scale-110"
-                      : "border-transparent hover:border-foreground/20"
-                  }`}
-                  aria-label="Black"
-                >
-                  <span className="block w-full h-full rounded-full bg-gradient-to-br from-[#404040] to-[#171717]" />
-                </button>
-              </div>
-
-              {/* CTA — left-aligned with body and color section; microcopy centered under button */}
-              <div ref={ctaRef} className="mt-6 inline-flex flex-col items-stretch" style={{
-                opacity: ctaVisible ? 1 : 0,
-                transform: ctaVisible ? "none" : "translateY(20px)",
-                transition: "opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)",
-              }}>
-                <Link
-                  href="/reserve"
-                  onClick={() => trackMetaCustomEvent("ReserveCTAClick", { source: "product_showcase" })}
-                  className="mark-cta mark-cta-on-light px-8"
-                >
-                  Reserve & save
-                </Link>
-                <p className="mt-3 text-xs text-muted-foreground text-center">
-                  $1 deposit • 25% off MSRP
-                </p>
+              {/* Desktop: battery, swatches, CTA stay in left column under copy */}
+              <div className="hidden md:block">
+                <ProductMetaAndCta
+                  activeColor={activeColor}
+                  setActiveColor={setActiveColor}
+                  ctaRef={ctaRef}
+                  ctaVisible={ctaVisible}
+                  batterySpacingClass="mt-8"
+                />
               </div>
             </div>
           </div>
 
-          {/* Right: device — larger, lower, with depth */}
+          {/* Product image — on mobile: directly under body copy */}
           <div
             ref={imgRef}
-            className="w-full md:w-[62%] relative flex items-end justify-center min-w-0 md:pb-0"
+            className="order-2 md:order-none w-full md:w-[62%] relative flex items-end justify-center min-w-0 md:pb-0 mt-2 md:mt-0"
             style={{
               opacity: imgVisible ? 1 : 0,
               transform: imgVisible ? "none" : "translateY(60px) scale(0.95)",
               transition: "opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s",
             }}
           >
-            {/* Subtle radial gradient behind device for depth */}
             <div
               className="absolute inset-0 flex items-end justify-center pointer-events-none"
               aria-hidden
@@ -134,7 +185,6 @@ export function ProductCloseup() {
                   "radial-gradient(ellipse 70% 60% at 50% 85%, rgba(0,0,0,0.06) 0%, rgba(0,0,0,0.02) 45%, transparent 72%)",
               }}
             />
-            {/* Device frame: scale up ~7%, allow bleed toward bottom */}
             <div
               className="relative w-full max-w-[520px] aspect-[1136/1420] flex items-end justify-center"
               style={{
@@ -165,6 +215,23 @@ export function ProductCloseup() {
                 />
               </div>
             </div>
+          </div>
+
+          {/* Mobile only: battery, colorways, CTA below product image */}
+          <div
+            ref={mobileMetaRef}
+            className="order-3 md:hidden w-full max-w-[440px] -mt-2"
+            style={{
+              opacity: mobileMetaVisible ? 1 : 0,
+              transform: mobileMetaVisible ? "none" : "translateY(24px)",
+              transition: "opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1)",
+            }}
+          >
+            <ProductMetaAndCta
+              activeColor={activeColor}
+              setActiveColor={setActiveColor}
+              batterySpacingClass="mt-0"
+            />
           </div>
         </div>
       </div>
