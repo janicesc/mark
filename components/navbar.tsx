@@ -83,11 +83,9 @@ export function Navbar() {
                   typeof window !== "undefined" && window.innerWidth < 768 ? "navbar_mobile" : "navbar",
               })
             }
-            className={`mark-cta mark-cta-nav-rect inline-flex h-10 min-h-[40px] items-center px-4 py-0 text-sm transition-colors duration-300 md:px-5 ${
-              useDarkText ? "mark-cta-on-light" : "mark-cta-nav-silver mark-nav-reserve-join-glass-hover"
-            }`}
+            className="mark-cta mark-cta-on-light mark-cta-nav-rect inline-flex h-10 min-h-[40px] items-center px-4 py-0 text-sm transition-colors duration-300 md:px-5"
           >
-            Reserve for $1
+            Reserve now
           </Link>
         </nav>
       </div>

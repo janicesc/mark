@@ -514,6 +514,10 @@
   .mark-decorative-video {
     pointer-events: none;
   }
+  /* Hero video only: lift exposure slightly without washing highlights */
+  .mark-hero-video {
+    filter: brightness(1.14) contrast(1.06) saturate(1.06);
+  }
   .mark-decorative-video::-webkit-media-controls {
     display: none !important;
   }

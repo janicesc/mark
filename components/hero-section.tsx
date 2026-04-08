@@ -73,7 +73,7 @@ export function HeroSection() {
       {/* Full-bleed video — product sits in lower frame like Opal C1 */}
       <video
         ref={videoRef}
-        className="mark-decorative-video absolute inset-0 h-full w-full object-cover object-[50%_35%]"
+        className="mark-decorative-video mark-hero-video absolute inset-0 h-full w-full object-cover object-[50%_35%]"
         src={HERO_VIDEO_SRC}
         autoPlay
         muted
@@ -89,7 +89,7 @@ export function HeroSection() {
       />
       {/* Readability: stronger bottom scrim on small screens so bottom-left copy sits on darker video */}
       <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/30 to-black/[0.92] max-md:via-black/40 md:from-black/50 md:via-black/25 md:to-black/85"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/35 via-black/22 to-black/[0.86] max-md:via-black/32 md:from-black/45 md:via-black/18 md:to-black/78"
         aria-hidden="true"
       />
 
