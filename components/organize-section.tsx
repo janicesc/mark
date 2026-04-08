@@ -3,6 +3,8 @@
 import Image from "next/image"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
+const EASE = "cubic-bezier(0.16, 1, 0.3, 1)"
+
 const organizeUiShots = [
   {
     src: "/images/Organize_UI_1.png",
@@ -18,31 +20,45 @@ const organizeUiShots = [
   },
 ]
 
+function OrganizeUiShot({
+  shot,
+  index,
+}: {
+  shot: (typeof organizeUiShots)[number]
+  index: number
+}) {
+  const [ref, visible] = useScrollReveal<HTMLDivElement>({ threshold: 0.12 })
+  const delay = `${0.08 + index * 0.12}s`
+
+  return (
+    <div
+      ref={ref}
+      className="relative min-w-[180px] flex-1 max-w-[230px] md:min-w-0 md:max-w-none"
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "none" : "translateY(44px)",
+        transition: `opacity 0.85s ${EASE} ${delay}, transform 0.85s ${EASE} ${delay}`,
+      }}
+    >
+      <div className="relative w-full aspect-[9/19.5] overflow-hidden rounded-[22px]">
+        <Image src={shot.src} alt={shot.alt} fill className="object-contain" sizes="(max-width: 768px) 44vw, 20vw" />
+      </div>
+    </div>
+  )
+}
+
 export function OrganizeSection() {
   const [textRef, textVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.2 })
-  const [imageRef, imageVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.15 })
 
   return (
     <section className="border-t glass-divider-light bg-background overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 md:px-8 py-20 md:py-32">
         <div className="flex flex-col-reverse md:flex-row items-center gap-12 md:gap-16">
           {/* App UI screens showcase */}
-          <div
-            ref={imageRef}
-            className="w-full md:w-[62%]"
-            style={{
-              opacity: imageVisible ? 1 : 0,
-              transform: imageVisible ? "none" : "translateY(50px)",
-              transition: "opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s",
-            }}
-          >
+          <div className="w-full md:w-[62%]">
             <div className="flex w-full gap-5 overflow-x-auto pb-1 md:gap-8 md:overflow-visible">
-              {organizeUiShots.map((shot) => (
-                <div key={shot.src} className="relative min-w-[180px] flex-1 max-w-[230px] md:min-w-0 md:max-w-none">
-                  <div className="relative w-full aspect-[9/19.5] overflow-hidden rounded-[22px]">
-                    <Image src={shot.src} alt={shot.alt} fill className="object-contain" sizes="(max-width: 768px) 44vw, 20vw" />
-                  </div>
-                </div>
+              {organizeUiShots.map((shot, i) => (
+                <OrganizeUiShot key={shot.src} shot={shot} index={i} />
               ))}
             </div>
           </div>
