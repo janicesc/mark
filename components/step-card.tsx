@@ -21,18 +21,11 @@ export function StepCard({
   objectPosition = "center",
   priority = false,
 }: StepCardProps) {
-  const borderRadiusClass =
-    rounded === "top-left"
-      ? "rounded-tl-[60px] md:rounded-tl-[100px]"
-      : rounded === "bottom-right"
-        ? "rounded-br-[60px] md:rounded-br-[100px]"
-        : ""
+  void rounded
 
   return (
     <div className="flex flex-col">
-      <div
-        className={`relative aspect-[2/3] w-full overflow-hidden ${borderRadiusClass}`}
-      >
+      <div className="relative w-full aspect-[20/29] overflow-hidden">
         <Image
           src={imageSrc}
           alt={imageAlt}
@@ -43,11 +36,8 @@ export function StepCard({
           priority={priority}
         />
       </div>
-      <div className="pt-6 pb-2 flex items-baseline gap-4">
-        <span className="text-3xl md:text-4xl font-sans font-light text-muted-foreground/50">
-          {stepNumber}
-        </span>
-        <h3 className="text-xl md:text-2xl font-medium tracking-tight text-foreground">
+      <div className="pt-6 pb-2">
+        <h3 className="text-xl md:text-2xl font-semibold tracking-tight text-foreground">
           {title}
         </h3>
       </div>

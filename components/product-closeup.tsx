@@ -8,12 +8,12 @@ import { trackMetaCustomEvent } from "@/lib/meta-pixel"
 
 const variants = {
   silver: {
-    src: "/images/mark-light-front.png",
-    alt: "Mark device in silver finish - premium 3D render showing the scanner and reader body",
+    src: "/images/mark-light-side.png",
+    alt: "Mark device in silver finish - side profile render",
   },
   black: {
-    src: "/images/mark-dark-front.png",
-    alt: "Mark device in black finish - premium 3D render showing the scanner and reader body",
+    src: "/images/mark-dark-side.png",
+    alt: "Mark device in black finish - side profile render",
   },
 }
 
@@ -123,7 +123,7 @@ export function ProductCloseup() {
   return (
     <section className="border-t glass-divider-light bg-background overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 md:px-8 py-20 md:py-32">
-        <div className="flex flex-col md:flex-row items-stretch gap-12 md:gap-8 lg:gap-16">
+        <div className="flex flex-col md:flex-row items-stretch md:items-center gap-12 md:gap-8 lg:gap-16">
           {/* Copy: heading + body only */}
           <div
             ref={textRef}
@@ -169,7 +169,7 @@ export function ProductCloseup() {
           {/* Product image — on mobile: directly under body copy */}
           <div
             ref={imgRef}
-            className="order-2 md:order-none w-full md:w-[62%] relative flex items-end justify-center min-w-0 md:pb-0 mt-2 md:mt-0"
+            className="order-2 md:order-none w-full md:w-[62%] relative flex items-center justify-center min-w-0 mt-2 md:mt-0"
             style={{
               opacity: imgVisible ? 1 : 0,
               transform: imgVisible ? "none" : "translateY(60px) scale(0.95)",

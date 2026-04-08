@@ -3,6 +3,21 @@
 import Image from "next/image"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 
+const organizeUiShots = [
+  {
+    src: "/images/Organize_UI_1.png",
+    alt: "Mark mobile app UI showing organized reading highlights and insights",
+  },
+  {
+    src: "/images/Organize_UI_2.png",
+    alt: "Mark mobile app UI showing searchable ideas and quote cards",
+  },
+  {
+    src: "/images/Organize_UI_3.png",
+    alt: "Mark mobile app UI showing personalized reading organization tools",
+  },
+]
+
 export function OrganizeSection() {
   const [textRef, textVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.2 })
   const [imageRef, imageVisible] = useScrollReveal<HTMLDivElement>({ threshold: 0.15 })
@@ -14,28 +29,28 @@ export function OrganizeSection() {
           {/* App UI screens showcase */}
           <div
             ref={imageRef}
-            className="w-full md:w-[60%]"
+            className="w-full md:w-[62%]"
             style={{
               opacity: imageVisible ? 1 : 0,
               transform: imageVisible ? "none" : "translateY(50px)",
               transition: "opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s",
             }}
           >
-            <div className="relative w-full aspect-[3/2] rounded-2xl overflow-hidden">
-              <Image
-                src="/images/Organize-UISet.png"
-                alt="Mark app screens showing home dashboard with reading stats, scrollable quote cards from various books, and user profile with reading library"
-                fill
-                className="object-contain"
-                sizes="(max-width: 768px) 100vw, 60vw"
-              />
+            <div className="flex w-full gap-5 overflow-x-auto pb-1 md:gap-8 md:overflow-visible">
+              {organizeUiShots.map((shot) => (
+                <div key={shot.src} className="relative min-w-[180px] flex-1 max-w-[230px] md:min-w-0 md:max-w-none">
+                  <div className="relative w-full aspect-[9/19.5] overflow-hidden rounded-[22px]">
+                    <Image src={shot.src} alt={shot.alt} fill className="object-contain" sizes="(max-width: 768px) 44vw, 20vw" />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
           {/* Text content */}
           <div
             ref={textRef}
-            className="w-full md:w-[40%] shrink-0"
+            className="w-full md:w-[40%] shrink-0 md:pl-6 lg:pl-10"
             style={{
               opacity: textVisible ? 1 : 0,
               transform: textVisible ? "none" : "translateY(40px)",
